@@ -21,5 +21,8 @@
   "prisma": {
     "seed": "yarn rw exec seed"
   },
+  "scripts": {
+    "ctp:getDiasporaCredentials": "yarn rw exec getDiasporaCredentials | yarn rw-log-formatter"
+  },
   "packageManager": "yarn@3.2.4"
 }

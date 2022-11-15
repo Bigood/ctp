@@ -7453,6 +7453,9 @@ __metadata:
   dependencies:
     "@redwoodjs/api": 3.4.0
     "@redwoodjs/graphql-server": 3.4.0
+    cross-undici-fetch: ^0.4.14
+    faktory-worker: ^4.5.1
+    openid-client: ^5.3.0
   languageName: unknown
   linkType: soft
 
@@ -9585,6 +9588,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"commander@npm:^9.4.0":
+  version: 9.4.1
+  resolution: "commander@npm:9.4.1"
+  checksum: 04ea8ccc6fe3d3d1ca7ca26b06187498af8e6341a2c98b534528d504f8cad95b0c5ac2f3b78a7f0d332da16da9332db2ab9e43cb06241d367e9c7ee75cb76202
+  languageName: node
+  linkType: hard
+
 "common-path-prefix@npm:^3.0.0":
   version: 3.0.0
   resolution: "common-path-prefix@npm:3.0.0"
@@ -10075,7 +10085,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-undici-fetch@npm:0.4.14":
+"cross-undici-fetch@npm:0.4.14, cross-undici-fetch@npm:^0.4.14":
   version: 0.4.14
   resolution: "cross-undici-fetch@npm:0.4.14"
   dependencies:
@@ -12268,6 +12278,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"faktory-worker@npm:^4.5.1":
+  version: 4.5.1
+  resolution: "faktory-worker@npm:4.5.1"
+  dependencies:
+    commander: ^9.4.0
+    debug: ^4.1.0
+    generic-pool: 3.7.8
+    koa-compose: ^4.1.0
+    redis-parser: ^3.0.0
+    uuid: 8.3.2
+  bin:
+    faktory-cluster: bin/faktory-cluster
+    faktory-work: bin/faktory-work
+  checksum: b8ae8b473982905f560a79d5107bb6f70f6bcfb7e5fd4ee68a8d59e5060671c89cab16f087c5d5cddf19a1cd1b4f2356c568dec96c66c44b27e1652cfbc53971
+  languageName: node
+  linkType: hard
+
 "fast-decode-uri-component@npm:^1.0.1":
   version: 1.0.1
   resolution: "fast-decode-uri-component@npm:1.0.1"
@@ -13043,6 +13070,13 @@ __metadata:
     strip-ansi: ^6.0.1
     wide-align: ^1.1.5
   checksum: ef10d7981113d69225135f994c9f8c4369d945e64a8fc721d655a3a38421b738c9fe899951721d1b47b73c41fdb5404ac87cc8903b2ecbed95d2800363e7e58c
+  languageName: node
+  linkType: hard
+
+"generic-pool@npm:3.7.8":
+  version: 3.7.8
+  resolution: "generic-pool@npm:3.7.8"
+  checksum: 08f7f2e3b4a61ed8cfe16f9311a214b00085e3ceb13c96d9a84b63fd8e5984e85eb2c7d7bbf016b904af4602c6349e7b16397970fbc0141d71cd233a760ccffe
   languageName: node
   linkType: hard
 
@@ -15666,6 +15700,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jose@npm:^4.10.0":
+  version: 4.11.0
+  resolution: "jose@npm:4.11.0"
+  checksum: f2090dd4aea5de9f0d26ef942c5e3c3c355d6d07e819bef4b6962e5f7a047fe5db97bf95bc1872d32b1628b8ad2bc4298a44f49828ee2a43ad69e743ddacf228
+  languageName: node
+  linkType: hard
+
 "js-levenshtein@npm:^1.1.6":
   version: 1.1.6
   resolution: "js-levenshtein@npm:1.1.6"
@@ -16017,6 +16058,13 @@ __metadata:
   version: 2.0.5
   resolution: "klona@npm:2.0.5"
   checksum: 5b752c11ca8e2996612386699f52cc5aed802aa4116663d26239ac0b054fae25191dacb95587ecf1a167b039daa9fc3fa2da17dfd5d0821f3037de3821d9a9e5
+  languageName: node
+  linkType: hard
+
+"koa-compose@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "koa-compose@npm:4.1.0"
+  checksum: f1f786f994a691931148e7f38f443865bf2702af4a61610d1eea04dab79c04b1232285b59d82a0cf61c830516dd92f10ab0d009b024fcecd4098e7d296ab771a
   languageName: node
   linkType: hard
 
@@ -17700,6 +17748,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"object-hash@npm:^2.0.1":
+  version: 2.2.0
+  resolution: "object-hash@npm:2.2.0"
+  checksum: 1527de843926c5442ed61f8bdddfc7dc181b6497f725b0e89fcf50a55d9c803088763ed447cac85a5aa65345f1e99c2469ba679a54349ef3c4c0aeaa396a3eb9
+  languageName: node
+  linkType: hard
+
 "object-inspect@npm:^1.12.2, object-inspect@npm:^1.9.0":
   version: 1.12.2
   resolution: "object-inspect@npm:1.12.2"
@@ -17823,6 +17878,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"oidc-token-hash@npm:^5.0.1":
+  version: 5.0.1
+  resolution: "oidc-token-hash@npm:5.0.1"
+  checksum: 9b2120aafa2cede2e81614421864eb26fb5ed3708697d9172e85e7f744384b08439a940eeb403f86338026c7faa664e358795b2d2f8f255f7a4283c7dc7be339
+  languageName: node
+  linkType: hard
+
 "on-exit-leak-free@npm:^2.1.0":
   version: 2.1.0
   resolution: "on-exit-leak-free@npm:2.1.0"
@@ -17891,6 +17953,18 @@ __metadata:
   bin:
     opener: bin/opener-bin.js
   checksum: dd56256ab0cf796585617bc28e06e058adf09211781e70b264c76a1dbe16e90f868c974e5bf5309c93469157c7d14b89c35dc53fe7293b0e40b4d2f92073bc79
+  languageName: node
+  linkType: hard
+
+"openid-client@npm:^5.3.0":
+  version: 5.3.0
+  resolution: "openid-client@npm:5.3.0"
+  dependencies:
+    jose: ^4.10.0
+    lru-cache: ^6.0.0
+    object-hash: ^2.0.1
+    oidc-token-hash: ^5.0.1
+  checksum: c84c4db6729ec4464ebbcf7a9dfc5b68068614a0532178a2651ca92e621cfa108c6073643a82e1b7f31f74d47719aef61fbb6ae984fdf78e15bf50bcdf995534
   languageName: node
   linkType: hard
 
@@ -19916,6 +19990,22 @@ __metadata:
     indent-string: ^4.0.0
     strip-indent: ^3.0.0
   checksum: d64a6b5c0b50eb3ddce3ab770f866658a2b9998c678f797919ceb1b586bab9259b311407280bd80b804e2a7c7539b19238ae6a2a20c843f1a7fcff21d48c2eae
+  languageName: node
+  linkType: hard
+
+"redis-errors@npm:^1.0.0":
+  version: 1.2.0
+  resolution: "redis-errors@npm:1.2.0"
+  checksum: 5b316736e9f532d91a35bff631335137a4f974927bb2fb42bf8c2f18879173a211787db8ac4c3fde8f75ed6233eb0888e55d52510b5620e30d69d7d719c8b8a7
+  languageName: node
+  linkType: hard
+
+"redis-parser@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "redis-parser@npm:3.0.0"
+  dependencies:
+    redis-errors: ^1.0.0
+  checksum: ee16ac4c7b2a60b1f42a2cdaee22b005bd4453eb2d0588b8a4939718997ae269da717434da5d570fe0b05030466eeb3f902a58cf2e8e1ca058bf6c9c596f632f
   languageName: node
   linkType: hard
 
