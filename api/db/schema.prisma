@@ -24,6 +24,8 @@ model User {
   organizationId Int
 
   organizationsAuthored Organization[] @relation("OrganizationAuthoring")
+
+  practices UserOnPractice[]
 }
 
 model Organization {
@@ -36,4 +38,27 @@ model Organization {
   name      String
   address   String?
   logo      String? //Logo de l'établissement
+}
+
+model Practice {
+  id               Int              @id @default(autoincrement())
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  name             String
+  synonym          String[]
+  description      String?
+  shortDescription String?
+  sources          String[]
+  users            UserOnPractice[]
+}
+
+model UserOnPractice {
+  id         Int      @id @default(autoincrement())
+  user       User     @relation(fields: [userId], references: [id])
+  userId     Int
+  practice   Practice @relation(fields: [practiceId], references: [id])
+  practiceId Int
+
+  // @@unique([userId, practiceId])
+  @@unique([userId, practiceId])
 }

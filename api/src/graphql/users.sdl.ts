@@ -9,6 +9,7 @@ export const schema = gql`
     organization: Organization!
     organizationId: Int!
     organizationsAuthored: [Organization]!
+    practices: [UserOnPractice]!
   }
 
   type Query {
