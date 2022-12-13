@@ -1,6 +1,6 @@
 'use strict';
 
-import logger from "src/lib/logger";
+import { logger } from "src/lib/logger";
 import { fetch } from "cross-undici-fetch";
 import { Issuer, generators } from 'openid-client';
 
@@ -17,8 +17,8 @@ const generateHeaders = (req) => {
   let headers = {
     "Cache-Control": "no-cache",
     "Accept": "*/*",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Connection": "keep-alive",
+    // "Accept-Encoding": "gzip, deflate, br",
+    // "Connection": "keep-alive",
     "Content-Type": "application/json",
   }
   if (req && req.session && req.session.diaspora_access_token)
@@ -122,6 +122,9 @@ export const createDiasporaProfile = ({body, user_type = "user", id}) => {
       })
     },
   )
+  .then(res => res.text())
+  .then(text => { logger.debug({ custom: { text: text, data: body } }, "Diaspora create user") })
+  .catch(error => { logger.error({ custom: { error } }, "Diaspora create user") })
 }
 
 
@@ -151,10 +154,10 @@ export const updateDiasporaProfile = ({req, body, user_type = "user", id}) => {
         carto_user_type: user_type, // "pedago"
       })
     },
-  )
-    .then(res => res.text())
-    .then(logger.debug)
-    .catch(logger.error)
+    )
+  .then(res => res.text())
+  .then(text => {logger.debug({custom: {text: text, data : body}}, "Diaspora update user")})
+  .catch(error => {logger.error({ custom: { error } }, "Diaspora update user")})
 }
 
 
