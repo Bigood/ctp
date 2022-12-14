@@ -11,7 +11,7 @@ import {
 import type { EditUserById, UpdateUserInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
-
+import PracticesCheckboxesCell from 'src/components/PracticesCheckboxesCell'
 
 
 type FormUser = NonNullable<EditUserById['user']>
@@ -25,19 +25,19 @@ interface UserFormProps {
 
 const UserForm = (props: UserFormProps) => {
   const onSubmit = (data: FormUser) => {
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
     props.onSave(data, props?.user?.id)
   }
 
@@ -50,7 +50,7 @@ const UserForm = (props: UserFormProps) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-      
+
         <Label
           name="email"
           className="rw-label"
@@ -58,7 +58,7 @@ const UserForm = (props: UserFormProps) => {
         >
           Email
         </Label>
-        
+
           <TextField
             name="email"
             defaultValue={props.user?.email}
@@ -66,7 +66,7 @@ const UserForm = (props: UserFormProps) => {
             errorClassName="rw-input rw-input-error"
             validation={{ required: true }}
           />
-        
+
 
         <FieldError name="email" className="rw-field-error" />
 
@@ -77,14 +77,14 @@ const UserForm = (props: UserFormProps) => {
         >
           Name
         </Label>
-        
+
           <TextField
             name="name"
             defaultValue={props.user?.name}
             className="rw-input"
             errorClassName="rw-input rw-input-error"
           />
-        
+
 
         <FieldError name="name" className="rw-field-error" />
 
@@ -95,14 +95,14 @@ const UserForm = (props: UserFormProps) => {
         >
           Surname
         </Label>
-        
+
           <TextField
             name="surname"
             defaultValue={props.user?.surname}
             className="rw-input"
             errorClassName="rw-input rw-input-error"
           />
-        
+
 
         <FieldError name="surname" className="rw-field-error" />
 
@@ -113,17 +113,33 @@ const UserForm = (props: UserFormProps) => {
         >
           Organization id
         </Label>
-        
+
           <NumberField
             name="organizationId"
             defaultValue={props.user?.organizationId}
             className="rw-input"
             errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
+            // validation={{ required: true }}
           />
-        
+
 
         <FieldError name="organizationId" className="rw-field-error" />
+
+        <Label
+          name="practices"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Practices
+        </Label>
+
+        <PracticesCheckboxesCell
+          name="practices"
+          defaultValue={props.user?.practices.map(practice => practice.practiceId) || []}
+          valueAsNumber
+          />
+
+        <FieldError name="practices" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit

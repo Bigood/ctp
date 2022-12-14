@@ -14,6 +14,9 @@ export const QUERY = gql`
       name
       surname
       organizationId
+      practices {
+        practiceId
+      }
     }
   }
 `

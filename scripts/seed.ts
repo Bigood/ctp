@@ -1,5 +1,6 @@
 import type { Prisma } from '@prisma/client'
 import { db } from 'api/src/lib/db'
+//https://mariusschulz.com/blog/importing-json-modules-in-typescript
 import allPractices from './seed_data/practice.json'
 
 export default async () => {

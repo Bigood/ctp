@@ -7,7 +7,7 @@ export const schema = gql`
     name: String
     surname: String
     organization: Organization!
-    organizationId: Int!
+    organizationId: Int
     organizationsAuthored: [Organization]!
     practices: [UserOnPractice]!
   }
@@ -21,7 +21,8 @@ export const schema = gql`
     email: String!
     name: String
     surname: String
-    organizationId: Int!
+    organizationId: Int
+    practices: [Int]!
   }
 
   input UpdateUserInput {
@@ -29,6 +30,7 @@ export const schema = gql`
     name: String
     surname: String
     organizationId: Int
+    practices: [Int]!
   }
 
   type Mutation {
