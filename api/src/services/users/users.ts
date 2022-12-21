@@ -6,6 +6,7 @@ import type {
 
 import { db } from 'src/lib/db'
 import { logger } from 'src/lib/logger'
+import { createMessage } from '../relay/relay'
 
 export const users: QueryResolvers['users'] = () => {
   return db.user.findMany()
@@ -33,8 +34,17 @@ export const createUser: MutationResolvers['createUser'] = ({ input }) => {
 }
 
 export const updateUser: MutationResolvers['updateUser'] = ({ id, input }) => {
+  createMessage(input);
+  const { practices, ...data } = input;
   return db.user.update({
-    data: input,
+    data: {
+      ...data,
+      // practices: {
+      //   //Création de la relation m-n, et pas une connection à une entité existante puisqu'il y a la table intermédiaire
+      //   //https://stackoverflow.com/a/67898001/1437016
+      //   create: practices.map(id => ({ "practiceId": id }))
+      // }
+    },
     where: { id },
   })
 }

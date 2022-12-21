@@ -24,5 +24,8 @@
   "scripts": {
     "ctp:getDiasporaCredentials": "yarn rw exec getDiasporaCredentials | yarn rw-log-formatter"
   },
-  "packageManager": "yarn@3.2.4"
+  "packageManager": "yarn@3.2.4",
+  "dependencies": {
+    "cross-fetch": "^3.1.5"
+  }
 }
