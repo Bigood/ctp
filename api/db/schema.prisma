@@ -26,6 +26,9 @@ model User {
   organizationsAuthored Organization[] @relation("OrganizationAuthoring")
 
   practices UserOnPractice[]
+
+  instance   Instance? @relation("UsersFromInstance", fields: [instanceId], references: [id])
+  instanceId Int?
 }
 
 model Organization {
@@ -61,4 +64,15 @@ model UserOnPractice {
 
   // @@unique([userId, practiceId])
   @@unique([userId, practiceId])
+}
+
+model Instance {
+  id   Int    @id @default(autoincrement())
+  host String @unique
+
+  version String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  users     User[]   @relation("UsersFromInstance")
 }

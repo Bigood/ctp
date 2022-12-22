@@ -67,6 +67,9 @@ const User = ({ user }: Props) => {
             </tr><tr>
               <th>Organization id</th>
               <td>{user.organizationId}</td>
+            </tr><tr>
+              <th>Distant instance</th>
+              <td>{user.instance?.host}</td>
             </tr>
           </tbody>
         </table>

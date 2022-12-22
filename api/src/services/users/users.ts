@@ -6,7 +6,7 @@ import type {
 
 import { db } from 'src/lib/db'
 import { logger } from 'src/lib/logger'
-import { createMessage } from '../relay/relay'
+import { createMessage, OPERATIONS } from '../../lib/relay'
 
 export const users: QueryResolvers['users'] = () => {
   return db.user.findMany()
@@ -20,7 +20,7 @@ export const user: QueryResolvers['user'] = ({ id }) => {
 
 export const createUser: MutationResolvers['createUser'] = ({ input }) => {
   const {practices, ...data} = input;
-
+  createMessage(OPERATIONS.CREATE, "user", { ...input });
   return db.user.create({
     data: {
       ...data,
@@ -34,7 +34,7 @@ export const createUser: MutationResolvers['createUser'] = ({ input }) => {
 }
 
 export const updateUser: MutationResolvers['updateUser'] = ({ id, input }) => {
-  createMessage(input);
+  createMessage(OPERATIONS.UPDATE, "user", {id, ...input});
   const { practices, ...data } = input;
   return db.user.update({
     data: {
@@ -66,5 +66,8 @@ export const User: UserRelationResolvers = {
   },
   practices: (_obj, { root }) => {
     return db.user.findUnique({ where: { id: root?.id } }).practices()
+  },
+  instance: (_obj, { root }) => {
+    return db.user.findUnique({ where: { id: root?.id } }).instance()
   },
 }
