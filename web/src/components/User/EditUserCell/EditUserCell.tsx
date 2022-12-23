@@ -18,7 +18,11 @@ export const QUERY = gql`
       surname
       organizationId
       practices {
-        practiceId
+        id
+      }
+      instance {
+        id
+        host
       }
     }
   }
@@ -34,7 +38,11 @@ const UPDATE_USER_MUTATION = gql`
       surname
       organizationId
       practices {
-        practiceId
+        id
+      }
+      instance {
+        id
+        host
       }
     }
   }

@@ -135,7 +135,7 @@ const UserForm = (props: UserFormProps) => {
 
         <PracticesCheckboxesCell
           name="practices"
-          defaultValue={props.user?.practices.map(practice => practice.practiceId) || []}
+          defaultValue={props.user?.practices.map(practice => practice.id) || []}
           valueAsNumber
           />
 

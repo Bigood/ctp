@@ -8,7 +8,7 @@ export const schema = gql`
     description: String
     shortDescription: String
     sources: [String]!
-    users: [UserOnPractice]!
+    users: [User]!
   }
 
   type Query {

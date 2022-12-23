@@ -15,7 +15,7 @@ export const QUERY = gql`
       surname
       organizationId
       practices {
-        practiceId
+        id
       }
       instance {
         id

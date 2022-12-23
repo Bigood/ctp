@@ -18,19 +18,20 @@ export const user: QueryResolvers['user'] = ({ id }) => {
   })
 }
 
-export const createUser: MutationResolvers['createUser'] = ({ input }) => {
+export const createUser: MutationResolvers['createUser'] = async ({ input }) => {
   const {practices, ...data} = input;
-  createMessage(OPERATIONS.CREATE, "user", { ...input });
-  return db.user.create({
+  const user = await db.user.create({
     data: {
       ...data,
       practices: {
         //Création de la relation m-n, et pas une connection à une entité existante puisqu'il y a la table intermédiaire
         //https://stackoverflow.com/a/67898001/1437016
-        create: practices.map(id => ({ "practiceId": id }))
+        connect: practices.map(id => ({ id: id }))
       }
     },
   })
+  // createMessage(OPERATIONS.CREATE, "user", { ...input });
+  return user;
 }
 
 export const updateUser: MutationResolvers['updateUser'] = ({ id, input }) => {
@@ -39,11 +40,11 @@ export const updateUser: MutationResolvers['updateUser'] = ({ id, input }) => {
   return db.user.update({
     data: {
       ...data,
-      // practices: {
-      //   //Création de la relation m-n, et pas une connection à une entité existante puisqu'il y a la table intermédiaire
-      //   //https://stackoverflow.com/a/67898001/1437016
-      //   create: practices.map(id => ({ "practiceId": id }))
-      // }
+      practices: {
+        //Création de la relation m-n, et pas une connection à une entité existante puisqu'il y a la table intermédiaire
+        //https://stackoverflow.com/a/67898001/1437016
+        connect: practices.map(id => ({ id: id }))
+      }
     },
     where: { id },
   })

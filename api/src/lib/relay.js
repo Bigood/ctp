@@ -22,6 +22,8 @@ export const OPERATIONS_PER_HTTPMETHOD = {
 
 //Pour éviter les erreur d'analyse
 // const remote_gql = gql;
+let relayClient
+try {
 
 //Création du client Apollo vers le relai
 const httpLink = createHttpLink({
@@ -39,11 +41,14 @@ const authLink = setContext((_, { headers }) => {
   }
 });
 
-const relayClient = new ApolloClient({
+relayClient = new ApolloClient({
   link: authLink.concat(httpLink),
   cache: new InMemoryCache()
 });
 
+} catch (error) {
+  logger.error(error)
+}
 //@ts-ignore
 const CREATE_MESSAGE_QUERY = gql`
   mutation createMessageFromClient($operation: String!, $entity: String!, $payload: String!) {
