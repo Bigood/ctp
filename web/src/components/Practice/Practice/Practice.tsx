@@ -50,6 +50,9 @@ const Practice = ({ practice }: Props) => {
               <th>Id</th>
               <td>{practice.id}</td>
             </tr><tr>
+              <th>Cuid</th>
+              <td>{practice.cuid}</td>
+            </tr><tr>
               <th>Created at</th>
               <td>{timeTag(practice.createdAt)}</td>
             </tr><tr>

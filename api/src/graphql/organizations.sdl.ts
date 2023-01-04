@@ -1,6 +1,7 @@
 export const schema = gql`
   type Organization {
     id: Int!
+    cuid: String!
     createdAt: DateTime!
     updatedAt: DateTime!
     author: User

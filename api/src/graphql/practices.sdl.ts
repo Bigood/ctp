@@ -1,6 +1,7 @@
 export const schema = gql`
   type Practice {
     id: Int!
+    cuid: String!
     createdAt: DateTime!
     updatedAt: DateTime!
     name: String!

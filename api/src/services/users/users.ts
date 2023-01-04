@@ -6,7 +6,7 @@ import type {
 
 import { db } from 'src/lib/db'
 import { logger } from 'src/lib/logger'
-import { createMessage, OPERATIONS } from '../../lib/relay'
+import { sendMessage, OPERATIONS } from '../../lib/relay'
 
 export const users: QueryResolvers['users'] = () => {
   return db.user.findMany()
@@ -30,14 +30,13 @@ export const createUser: MutationResolvers['createUser'] = async ({ input }) => 
       }
     },
   })
-  // createMessage(OPERATIONS.CREATE, "user", { ...input });
+  sendMessage(OPERATIONS.CREATE, "user", user);
   return user;
 }
 
-export const updateUser: MutationResolvers['updateUser'] = ({ id, input }) => {
-  createMessage(OPERATIONS.UPDATE, "user", {id, ...input});
+export const updateUser: MutationResolvers['updateUser'] = async ({ id, input }) => {
   const { practices, ...data } = input;
-  return db.user.update({
+  const user = await db.user.update({
     data: {
       ...data,
       practices: {
@@ -48,12 +47,16 @@ export const updateUser: MutationResolvers['updateUser'] = ({ id, input }) => {
     },
     where: { id },
   })
+  sendMessage(OPERATIONS.UPDATE, "user", user);
+  return user;
 }
 
-export const deleteUser: MutationResolvers['deleteUser'] = ({ id }) => {
-  return db.user.delete({
+export const deleteUser: MutationResolvers['deleteUser'] = async ({ id }) => {
+  const user = await db.user.delete({
     where: { id },
   })
+  sendMessage(OPERATIONS.DELETE, "user", user);
+  return user;
 }
 
 export const User: UserRelationResolvers = {

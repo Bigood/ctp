@@ -5,6 +5,7 @@ import type {
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
+import { OPERATIONS, sendMessage } from 'src/lib/relay'
 
 export const organizations: QueryResolvers['organizations'] = () => {
   return db.organization.findMany()
@@ -16,30 +17,29 @@ export const organization: QueryResolvers['organization'] = ({ id }) => {
   })
 }
 
-export const createOrganization: MutationResolvers['createOrganization'] = ({
-  input,
-}) => {
-  return db.organization.create({
+export const createOrganization: MutationResolvers['createOrganization'] = async ({ input, }) => {
+  const organization = await db.organization.create({
     data: input,
   })
+  sendMessage(OPERATIONS.CREATE, "organization", organization);
+  return organization;
 }
 
-export const updateOrganization: MutationResolvers['updateOrganization'] = ({
-  id,
-  input,
-}) => {
-  return db.organization.update({
+export const updateOrganization: MutationResolvers['updateOrganization'] = async ({ id, input, }) => {
+  const organization = await db.organization.update({
     data: input,
     where: { id },
   })
+  sendMessage(OPERATIONS.UPDATE, "organization", organization);
+  return organization;
 }
 
-export const deleteOrganization: MutationResolvers['deleteOrganization'] = ({
-  id,
-}) => {
-  return db.organization.delete({
+export const deleteOrganization: MutationResolvers['deleteOrganization'] = async ({ id, }) => {
+  const organization = await db.organization.delete({
     where: { id },
   })
+  sendMessage(OPERATIONS.DELETE, "organization", organization);
+  return organization;
 }
 
 export const Organization: OrganizationRelationResolvers = {

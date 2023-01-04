@@ -1,5 +1,6 @@
 [
   {
+    "cuid": "clcghc12i00003b6k36x6g258",
     "name": "Apprentissage par problème",
     "synonym": ["Approche par problème", "APP", "Problem based learning", "PBL"],
     "description": "<b>Méthode où l’enseignant propose aux apprenants un problème complexe, motivant, réaliste et issu de leur future réalité professionnelle.</b> Ce qui constitue l’originalité de cette méthode, c’est que les apprenants ne disposent pas des connaissances nécessaires pour réaliser un traitement immédiat de la situation. Ils doivent en équipe sur une ou plusieurs semaines proposer une ou des solutions au problème. Pour cela, ils interrogent des notions théoriques non enseignées préalablement et réfléchissent à une solution au problème en passant par une démarche systématique : en équipe, ils lisent le problème et trouvent des définitions des termes, analysent le problème, identifient les connaissances à acquérir, classent ces connaissances, établissent des priorités de recherche et d’étude, se répartissent le travail, se documentent et étudient individuellement. Une fois qu’ils ont effectué ces étapes, les étudiants se réunissent de nouveau pour mettre en commun leurs connaissances et pour tenter de résoudre le problème. Ils répètent ce processus jusqu’à ce que le problème soit résolu. Dans le cadre de l’évaluation, le processus de résolution du problème prime par rapport à la solution elle-même.",
@@ -12,6 +13,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00013b6kvzv6ypt8",
     "name": "Apprentissage sur le terrain",
     "description": "<b>Méthode de formation pratique qui est généralement réalisée dans un lieu apparenté au futur milieu de travail de l’apprenant.</b> En plus d’être conseillé par un enseignant, l’apprenant bénéficie d’un encadrement individuel confié à un professionnel sur le terrain. Cette personne lui fournit des feedbacks formatifs. Cela peut être suivi de la rédaction d’un rapport et d’une présentation orale.",
     "shortDescription": "Méthode de formation pratique qui est généralement réalisée dans un lieu apparenté au futur milieu de travail de l’apprenant.",
@@ -20,6 +22,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00023b6kb8pxc1n3",
     "name": "Approche par projet",
     "synonym": ["Apprentissage par projet", "approche projet", "pédagogie par projet", "project learning"],
     "description": "<b>Méthode dans laquelle l’apprenant, seul ou en équipe, applique et intègre un ensemble de connaissances et d’habiletés dans la réalisation d’une œuvre concrète</b> (prototype, maquette, plan d’intervention, film, œuvre picturale, création littéraire...). Le projet prend le plus souvent la forme d'un fil rouge qui peut être découpé en plusieurs problèmes. Pour ce faire, l'apprenant ou l'équipe doit identifier la nature du projet et de chacun des problèmes le cas échéant, définir des objectifs et un calendrier, réaliser des recherches, proposer plusieurs solutions et mettre en application la solution jugée la plus adaptée, réaliser la solution par étape et, bien souvent, l’évaluer. Dans la réalisation d’un projet, ce n’est pas le sujet en soi qui est important, mais plutôt l’application d’une méthode ou d’un ensemble de connaissances à un projet réel ou fictif. C’est en tant qu’activité de synthèse que le projet prend tout son sens. Le projet peut prendre plusieurs formes et ce, à des échelles complètements différentes, allant de quelques heures à quelques mois, mais quelle que soit sa forme ou son étendue, l’apprenant a une grande liberté d’action et une grande place est laissée à la poursuite de ses intérêts personnels. Cette méthode peut se combiner à un rapport écrit, un exposé réalisé par l'apprenant ou l'équipe ou des exercices. Pour une déclinaison interdisciplinaire cf. Projet intégrateur",
@@ -31,6 +34,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00033b6kklwhm2ah",
     "name": "Aquarium",
     "synonym": ["Bocal à poisson", "Fishbowl"],
     "description": "<b>Activité où des apprenants (8 à 15) forment un groupe de discussion et les autres apprenants constitueront un groupe d’observateurs. Le groupe d’observateurs écoute en silence les opinions ou les arguments du groupe de discussion sur un sujet ou un problème donné, sans possibilité de faire de commentaires.</b> S’il y a la possibilité de bouger les chaises dans l'espace, elles peuvent être disposées en deux cercles concentriques. Le cercle intérieur sera réservé aux apprenants du groupe de discussion. Le cercle extérieur sera réservé aux apprenants du groupe d’observateurs. Si un apprenant du groupe d’observateurs souhaite prendre la parole, il peut échanger sa place avec un apprenant du groupe de discussion. Les observateurs discutent en plénière de ce qu'ils ont entendu et de leurs réactions. Il est possible que tous les apprenants soient regroupés pour cette plénière. Cette technique peut aussi être utilisée dans le jeu de rôle.",
@@ -42,6 +46,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00043b6k5h2a2y10",
     "name": "A quoi ça sert",
     "description": "<b>Technique qui consiste pour l'enseignant à énoncer en quelques minutes au début d’un cours, d'une séance le type de problème que les apprenants seront en mesure de résoudre en tout ou en partie, ou encore le type d’énigmes philosophiques, littéraires, sociales, chimiques ou biologiques...qu’ils seront capables de dénouer à la fin du cours, de la séance.</b> Il leur demande ensuite jusqu’à quel point ces problèmes ou ces énigmes ont du sens pour eux, de manière à déceler les thèmes d’intérêt de l'ensemble des apprenants.",
     "shortDescription": "Technique qui consiste pour l'enseignant à énoncer en quelques minutes au début d’un cours, d'une séance le type de problème que les apprenants seront en mesure de résoudre en tout ou en partie, ou encore le type d’énigmes philosophiques, littéraires, sociales, chimiques ou biologiques...qu’ils seront capables de dénouer à la fin du cours, de la séance.",
@@ -50,6 +55,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00053b6k3xw8tijb",
     "name": "Buzz session",
     "synonym": ["Buzz groupe"],
     "description": "<b>Technique qui consiste à faire travailler les apprenants par groupe sur une question précise. Les apprenants sont regroupés en groupe de 3 à 6 personnes pour un épisode de 3 à 7 minutes au maximum.</b> Chaque groupe échange dans le but d’accomplir une tâche, d’exécuter une action, de résoudre un problème ou une question posée par l’enseignant. Un rapporteur par groupe résume à l’ensemble des apprenants la synthèse du travail de son groupe. Cela peut être poursuivi par une discussion collective.",
@@ -60,6 +66,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00063b6k78scm404",
     "name": "Carte mentale",
     "synonym": ["Mind map"],
     "description": "<b>Technique qui permet de représenter graphiquement et visuellement une problématique, une idée, un concept, un planning, un discours, un texte, une classification…</b> Son principe repose sur la similarité entre le fonctionnement du cerveau et la représentation hiérarchique des idées à l’image de notre réseau de neurones. La carte mentale représente quatre caractéristiques essentielles : le sujet principal est placé au centre, les sujets secondaires se ramifient par association comme des branches autour du sujet principal, les branches comportent idéalement une image ou un mot-clé qui résume l’idée principale qu’elle porte, les thèmes de moindre importance sont également représentés sous forme de branches partant des branches plus centrales. Les branches forment une structure nodale. La carte mentale peut être personnalisée à l’aide de couleurs, de dessins, d’images, de symboles, de courbes et de codes. Elle offre une possibilité de matérialisation et de structuration autre que les plans, les diagrammes, les tableaux... Elle peut être utilisée dans le cadre du brainstorming pour relier les idées entre elles, les regrouper. Elle peut servir à réaliser des synthèses de connaissances. Elle peut être préalable à la rédaction d’un plan linéaire. Sa réalisation peut être individuelle ou collective. Il est possible de demander aux apprenants répartis en sous-groupe de réaliser une carte mentale collective à partir d'une réflexion autour des cartes qu'ils ont produites individuellement.",
@@ -71,6 +78,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00073b6kncpxufcd",
     "name": "Citer des applications",
     "description": "<b>Technique qui consiste à demander aux apprenants de citer plusieurs applications de ce que l’enseignant vient d’expliquer par écrit ou verbalement.</b> Cette technique peut être utilisée à chaque fois que l’on doit recourir à des exemples. Elle permet de vérifier la capacité de transfert des apprenants.",
     "shortDescription": "Technique qui consiste à demander aux apprenants de citer plusieurs applications de ce que l’enseignant vient d’expliquer par écrit ou verbalement.",
@@ -79,6 +87,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00083b6kffw6gt53",
     "name": "Classe inversée",
     "description": "<b>Méthode dont la partie transmissive de l’enseignement (notions, concepts), rendue disponible en préalable à une séance en présence, se fait « à distance » éventuellement à l’aide des technologies</b> (ex. : vidéo en ligne, lecture de documents papier, préparation d’exercices...). Les apprenants étudient individuellement et en autonomie en amont de la séance en présence afin de consacrer le temps en présentiel à d’autres activités : mobilisation des connaissances, approfondissement de certaines notions, réponses aux questions des apprenants, mais aussi mises en commun des productions, projets d'équipe, activités de laboratoire, séminaires, discussions et débats… En présentiel, l’apprentissage est donc basé sur les activités et les interactions. N.B: Le présentiel peut être encadré ou non encadré.",
     "shortDescription": "Méthode dont la partie transmissive de l’enseignement (notions, concepts), rendue disponible en préalable à une séance en présence, se fait « à distance » éventuellement à l’aide des technologies.",
@@ -87,6 +96,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00093b6kfsdnbovh",
     "name": "Classe renversée",
     "description": "<b>Méthode où les apprenants collaborent afin de construire un ou des éléments de la séquence.</b> L’enseignant répartit les apprenants en équipe, chacun des membres de l'équipe doit avoir des compétences complémentaires. L’enseignant définit les objectifs pédagogiques, les grands thèmes de la séquence à préparer et les livrables avec chaque équipe. Ensuite, au fil de plusieurs séances en équipe les apprenants construisent le contenu de la séquence qui leur a été attribué sans qu’aucun document ne leur soit fourni. Ils construisent donc leurs connaissances pour eux et pour les partager avec les autres. Les contenus sont publiés au fur et à mesure après chaque séance sur une plateforme en vue de favoriser la collaboration. L’enseignant devient un coach, un accompagnateur de la construction du savoir (animation des séances et assemblage des chapitres) en plus de son évaluation. Cette méthode pédagogique dépasse la « classe inversée », car les apprenants regroupés en équipe vont construire des éléments ou la totalité de l'unité d'enseignement. Ils ne se limitent pas à travailler à la maison pour être ensuite évalués en cours.",
     "shortDescription": "Méthode où les apprenants collaborent afin de construire un ou des éléments de la séquence.",
@@ -95,11 +105,13 @@
     ]
   },
   {
+    "cuid": "clcghc12i000a3b6kknqycau7",
     "name": "Conseil mutuel",
     "description": "<b>Technique qui consiste à demander aux apprenants de se réunir en petits groupes et d’échanger aléatoirement entre eux le résultat de leur travail ou de leur réflexion individuelle.</b> Dans un premier temps, chacun prend connaissance du travail d’un autre et l’évalue à l’aide d’une grille critériée fournie par l'enseignant. Ensuite, les apprenants partagent avec le groupe le résultat de leur analyse. Cette approche peut être utilisée dans le cadre d’un exposé magistral.",
     "shortDescription": "Technique qui consiste à demander aux apprenants de se réunir en petits groupes et d’échanger aléatoirement entre eux le résultat de leur travail ou de leur réflexion individuelle."
   },
   {
+    "cuid": "clcghc12i000b3b6kje4q74k1",
     "name": "Débat",
     "description": "<b>Activité où les apprenants sont engagés dans un processus dialectique à propos d’un sujet donné.</b> Dans un premier temps, l’enseignant énonce le sujet débattu, les objectifs du débat et les règles. Dans un second temps, les apprenants débattent en petits groupes afin de s’approprier le sujet. A l’issue de ce premier débat, les apprenants sont amenés à se positionner individuellement sur le sujet. Ce positionnement peut être fait publiquement par vote. Lors du débat public qui suit, ils seront amenés à défendre leurs positions à l’aide d’arguments et de contre-arguments. Le débat se clôture par une phase de restructuration dirigée par l’enseignant. Le but est d’organiser les idées discutées pendant le débat, d’apporter les contenus manquants et de faire émerger le sens du problème.",
     "shortDescription": "Activité où les apprenants sont engagés dans un processus dialectique à propos d’un sujet donné.",
@@ -109,6 +121,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000c3b6kv8mqv2kh",
     "name": "Débat mouvant",
     "description": "<b>Activité qui s’appuie sur une affirmation clivante et qui induit des positions divergentes chez les apprenants. Cette divergence s’exprime physiquement dans l’espace.</b> Suite à l’exposé de la problématique débattue par l'enseignant, les apprenants se répartissent dans l’espace en deux groupes, d’un côté ceux qui sont d’accord avec ce qui vient d’être dit et de l’autre ceux qui ne sont pas d’accord. Aucun apprenant n’a le droit de rester au milieu (sans avis). Une fois que chaque apprenant a choisi son camp, un temps est dédié à une discussion entre les apprenants de chaque camp. A l’issue de ce premier échange, l’enseignant demande à un rapporteur du camp qui le souhaite de prendre la parole pour expliquer son positionnement. Quand un camp a donné un argument, c’est au tour de l’autre camp d’exprimer un argument par l'intermédiaire d'un rapporteur. C’est un ping-pong. Si un argument du camp opposé est jugé valable par un apprenant, il peut changer de camp. Le fait de se déplacer pousse réellement les apprenants à choisir un camp et des arguments. Le débat est clos, un commun accord entre les apprenants, à l'issue d'un temps imparti ou quand l'enseignant le décide. Une plénière avec l'ensemble des apprenants peut suivre afin de faire un débriefing sur le déroulement du débat et sur les notions transmises lors de ce dernier.",
     "shortDescription": "Activité qui s’appuie sur une affirmation clivante et qui induit des positions divergentes chez les apprenants. Cette divergence s’exprime physiquement dans l’espace.",
@@ -117,6 +130,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000d3b6kblwtl57h",
     "name": "Démonstration",
     "description": "<b>Activité où l’enseignant illustre ou démontre un phénomène, une expérience, une opération, une procédure, une formule, une propriété, un théorème en le ou la réalisant devant les apprenants regroupés autour de lui.</b> Elle permet de montrer comme s’exécute une action, comment fonctionne un appareil, comment s’explique un principe, etc. La démonstration peut se donner à un seul apprenant ou à un groupe d'apprenants. Dans la démonstration, c’est l’enseignant qui détermine ce qu’il fera, dans quel ordre et avec quel degré de précision. La démonstration a pour fonction de voir des étapes, un ordre de relation ou encore des caractéristiques qui seraient difficilement accessibles aux apprenants par la simple explication. En général, les apprenants sont libres de poser des questions. Cette méthode peut se combiner avec un exposé, des discussions, une étude de cas ou un apprentissage par problème.",
     "shortDescription": "Activité où l’enseignant illustre ou démontre un phénomène, une expérience, une opération, une procédure, une formule, une propriété, un théorème en le ou la réalisant devant les apprenants regroupés autour de lui.",
@@ -127,6 +141,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000e3b6k92ydi73v",
     "name": "Discussion",
     "synonym": ["Groupe de discussion"],
     "description": "<b>Activité dans laquelle les apprenants, sous la supervision de l’enseignant et/ou d’un apprenant qualifié, échangent collectivement ou en petits groupes dans un temps donné leurs points de vue concernant un thème, une question ou un problème dans le but de préciser leurs opinions</b>, de rendre une décision ou de formuler une conclusion. L'initiative est laissée aux apprenants d'aborder le sujet traité à leur manière. L'enseignant indique le thème de la discussion et oriente la discussion au besoin. Cela suppose que les apprenants maîtrisent assez bien certaines connaissances puisque ce sont eux qui transmettent l’information. Il y a trois composantes essentielles : des échanges entre les apprenants, une animation par l’enseignant et un objectif à atteindre. Une plénière avec l'ensemble des apprenants peut suivre si l’activité a été réalisée en petits groupes. Variante : buzz groupe, un-deux-tous",
@@ -138,6 +153,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000f3b6kz0gfsumx",
     "name": "Dossier d'apprentissage",
     "synonym": ["Portfolio d'apprentissage"],
     "description": "<b>Méthode qui permet de garder une trace des travaux, réalisations ou apprentissages effectués par un apprenant pendant une certaine période.</b> Il intègre des réflexions sur les apprentissages réalisés. C'est en ce sens qu'il se distingue du portfolio. Il permet de témoigner des acquis et de la progression d’un apprenant dans ses réalisations et son parcours de formation. Il identifie les forces et les faiblesses de l’apprenant ainsi que des pistes de développement professionnel. <ul> Il comprend généralement quatre parties : <li> une description du contenu (explication de la structure, du choix des pièces, etc.), </li> <li>une analyse des réalisations de l'apprenant en matière d'apprentissages réalisés et de compétences développées,</li> <li>une démonstration objective et réaliste de sa progression (points forts et aspects à améliorer),</li> <li>une prospective sur les aspects de formation à approfondir. </li> En annexe, l'apprenant joint les réalisations qu'il a choisies pour soutenir et illustrer son autoanalyse. </ul> Il peut également servir de moyen d’évaluer les apprentissages par les produits et réflexions qui y ont été déposés tout au long du processus de formation. ",
@@ -148,6 +164,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000g3b6ky4hba4iy",
     "name": "Enigme",
     "description": "<b>Technique qui consiste au début d'une période de cours, d'une séance à demander aux apprenants de résoudre une courte énigme ou devinette qui s’appuie sur un certain nombre des fondamentaux qui seront vus dans la suite du cours, de la séance.</b> La solution peut être donnée ou non à la fin du cours et participer si besoin est à une évaluation formative.",
     "shortDescription": "Technique qui consiste au début d'une période de cours, d'une séance à demander aux apprenants de résoudre une courte énigme ou devinette qui s’appuie sur un certain nombre des fondamentaux qui seront vus dans la suite du cours, de la séance.",
@@ -156,6 +173,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000h3b6kxnxv3px1",
     "name": "Etude de cas",
     "description": "<b>Activité où les apprenants doivent trouver une solution à une situation problématique proche d'une situation réelle qui exige une décision. Le cas prend le plus souvent la forme d’un document écrit.</b> La première phase permet de prendre connaissance du cas et de l’analyser. La situation à analyser peut comporter toutes sortes de renseignements : faits, événements, sentiments, attentes, habitudes, attitudes, buts des intervenants, description du milieu, données, figures, tableaux, etc. Cependant la résolution du cas ne doit reposer sur aucun jugement, aucun piège, aucune interprétation préalable des faits. Par contre, il implique la formulation hypothèses. La deuxième phase consiste à réaliser un diagnostic en ayant une approche systémique. La dernière phase vise la formulation d’une proposition de solution, soit la formulation d’une décision. L’étude de cas est spécialement indiquée pour la formation au diagnostic et à la décision. L’étude de cas permet de découvrir des propriétés, des formules ou des conjectures et de déduire des règles ou des principes applicables à des cas similaires. Elle est spécialement indiquée pour la formation au diagnostic, à la proposition de solutions et à la prise de décision. Elle permet l’application de connaissances théoriques ou abstraites, acquises au préalable ou à l’occasion de l’étude de cas elle-même.",
     "shortDescription": "Activité où les apprenants doivent trouver une solution à une situation problématique proche d'une situation réelle qui exige une décision. Le cas prend le plus souvent la forme d’un document écrit.",
@@ -167,6 +185,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000i3b6k3dxhsuj2",
     "name": "Exposé magistral",
     "synonym": ["Enseignement magistral", "Conférence"],
     "description": "<b>Activité où l’enseignant, placé en avant des apprenants, réalise une présentation orale durant laquelle il transmet ses savoirs et les apprenants passifs écoutent et prennent des notes.</b> L’exposé, dans sa forme la plus épurée, est entièrement contrôlé par l’enseignant : c’est le type conférence. Cette forme s’impose davantage à mesure que le nombre d'apprenant augmente. Un temps est dédié à la fin pour des questions éventuelles des apprenants.",
@@ -177,6 +196,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000j3b6k46skcr3b",
     "name": "Exposé présenté par les apprenants",
     "synonym": ["Présentation d'apprenants"],
     "description": "<b>Activité où l’enseignant réparti entre les apprenants des sujets complémentaires aux éléments vus dans le cadre d'enseignement en présentiel.</b> Ces exposés sont courts et peuvent avoir lieu à différents moments ; ils peuvent être réalisés individuellement ou en équipe. L’enseignant veille à ce que les apprenants comprennent bien le sujet, les points à traiter et élaborent un plan adapté. Il peut également valider les ressources utilisées par les apprenants avant que ceux-ci commencent à préparer leur exposé. Après s’être préparé, les apprenants ou les équipes viennent à tour de rôle exposer devant leurs pairs le résultat de leur travail. La présentation est faite de manière structurée. Lors de cet exposé, il s’agit de transmettre des informations, de décrire ou d’expliquer quelque chose. Le but est d’enrichir les connaissances de l’ensemble des apprenants. L’exposé peut être suivi d’une période de questions. Cette méthode peut se combiner à un débat, un apprentissage par problème, une étude de cas ou une ressource du milieu.",
@@ -188,6 +208,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000k3b6kbwd9i7jj",
     "name": "Groupe d'experts",
     "description": "<b>Activité réalisée à partir de quatre courts textes, préparés au préalable par l’enseignant, qui résument quatre aspects d’un sujet.</b> Chaque apprenant lit individuellement l’un des quatre textes. L'ensemble des apprenants est ensuite divisé en quatre groupes « d’experts », chaque groupe d'experts étant composé d’apprenants ayant lu le même texte. Une discussion s’en suit à l’intérieur des groupes d'experts pour clarifier les points mal compris, avec l’aide de l’enseignant au besoin. Les groupes d’experts se séparent et des équipes de quatre apprenants composés d’experts de chacun des aspects sont formées. À tour de rôle, chaque expert explique aux autres membres du groupe de discussion le contenu du texte qu’il a étudié. En plénière, l’enseignant fait un retour et demande à un expert de chaque aspect de présenter ce qu’il a appris, aidé des clarifications des autres experts de son sujet et de l’enseignant. Un test formatif sur le sujet global peut être soumis aux apprenants qui répondent en présentiel ou à distance.",
     "shortDescription": "Activité réalisée à partir de quatre courts textes, préparés au préalable par l’enseignant, qui résument quatre aspects d’un sujet.",
@@ -196,6 +217,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000l3b6kszr95ady",
     "name": "Jeu de rôle",
     "description": "<b>Activité visant à représenter une situation inspirée de la vie courante ou fabriquée de toutes pièces. L’enseignant répartit les rôles que les apprenants doivent simuler. Chaque apprenant joue un rôle en se mettant dans la peau de son personnage.</b> L’interprétation du rôle d’un personnage en situation hypothétique permet de mieux comprendre les motivations qui justifient les comportements. Le jeu de rôle se distingue de la simulation par le caractère subjectif de la vision qu’on propose de la réalité. L’apprenant interprète un rôle de façon spontanée et a une grande liberté d’action quant à la manière d’interpréter ce rôle. Le jeu de rôle peut s’organiser de différentes façons : Aquarium, Théâtre-forum et peut être combiné avec un Débat.",
     "shortDescription": "Activité visant à représenter une situation inspirée de la vie courante ou fabriquée de toutes pièces. L’enseignant répartit les rôles que les apprenants doivent simuler. Chaque apprenant joue un rôle en se mettant dans la peau de son personnage.",
@@ -207,6 +229,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000m3b6kupw2df5v",
     "name": "Jeu de formation",
     "description": "<b>Activité qui utilise le jeu à des fins d’apprentissage. Il y a des joueurs, des règles à respecter et un but à atteindre. Le jeu peut opposer des individus ou des équipes, ou confronter une seule personne à une tâche.</b> Le jeu peut amener de la compétition (position de confrontation avec d'autres joueurs), de la coopération (mis en position de confrontation tous ensemble contre d'autres forces) ou de la coopétition (mélange de coopération et compétition; tu coopères avec ton équipe et du compétitionne avec les autres équipes). L’enseignant peut accepter que les joueurs modifient les règles du jeu à condition que les résultats d’apprentissage soient atteints à l’issue du jeu. A la fin de cette activité, un débriefing est nécessaire afin de faire un retour sur le déroulement du jeu et sur les notions transmises via le jeu. Il existe différents jeux, cf. Les jeux-cadres de Thiagi. Les jeux sérieux pédagogiques ou serious game pédagogique sont une déclinaison du jeu de formation, ils sont le plus souvent présentés sous format numérique.",
     "shortDescription": "Méthode qui utilise le jeu à des fins d’apprentissage. Il y a des joueurs, des règles à respecter et un but à atteindre. Le jeu peut opposer des individus ou des équipes, ou confronter une seule personne à une tâche.",
@@ -217,6 +240,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000n3b6kxwrwvl14",
     "name": "Journal de bord",
     "description": "<b>Activité qui implique qu’un apprenant rédige individuellement ou en équipe quotidiennement un document regroupant des activités, des impressions, des découvertes ou d'autres remarques pertinentes.</b> Cela peut être associé à une approche par projet, une étude de cas, une classe renversée, un apprentissage sur le terrain. ",
     "shortDescription": "Activité qui implique qu’un apprenant rédige individuellement ou en équipe quotidiennement un document regroupant des activités, des impressions, des découvertes ou d'autres remarques pertinentes.",
@@ -225,6 +249,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000o3b6k57aw5hys",
     "name": "Laboratoire",
     "description": "<b>Activité qui consiste à faire étudier par des apprenants un sujet ou une théorie, à procéder à une application pratique en passant par les stades de l’observation, de l’expérimentation et de la recherche sous la supervision d'un enseignant.</b> Selon cette définition, le laboratoire n’est pas strictement réservé aux disciplines scientifiques. Il peut servir à étudier des phénomènes de divers ordres : physique, chimique, social, psychologique ou autre. On peut également réaliser une classe-laboratoire en langue, en science de la nature, en lecture, etc.",
     "shortDescription": "Activité qui consiste à faire étudier par des apprenants un sujet ou une théorie, à procéder à une application pratique en passant par les stades de l’observation, de l’expérimentation et de la recherche sous la supervision d'un enseignant.",
@@ -234,6 +259,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000p3b6kwvpcawjz",
     "name": "Mix présentiel et à distance",
     "synonym": ["Formation hybride", "Apprentissage hybride", "Blended learning"],
     "description": "<b>Méthode qui repose sur l’alternance d'apprentissage à distance et en présentiel.  Dans le cadre des apprentissages à distance, les apprenants travaillent seuls à partir de ressources numériques ou non disponibles en ligne.</b> Dans la majorité des cas un guide écrit lui indique quel travail il doit accomplir à l’aide des ressources proposées. Les apprentissages en présentiel remplissent alors exclusivement 3 fonctions : échanger entre pairs, se mettre en situation et s’engager individuellement et collectivement vers l’action. Les autres objectifs sont traités en amont et en aval. N.B: Le présentiel peut être encadré ou non encadré.",
@@ -243,6 +269,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000q3b6ku2t96837",
     "name": "Négociation",
     "description": "<b>Activité dans laquelle les apprenants sont amenés à confronter des intérêts totalement ou en partie opposés et à convenir entre eux d’une décision qui satisfasse de façon optimale leurs intérêts.</b> La négociation peut se dérouler entre les groupes ou à l’intérieur de chaque groupe.",
     "shortDescription": "Activité dans laquelle les apprenants sont amenés à confronter des intérêts totalement ou en partie opposés et à convenir entre eux d’une décision qui satisfasse de façon optimale leurs intérêts.",
@@ -251,6 +278,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000r3b6kclp20cep",
     "name": "Portfolio",
     "description": "<b>Méthode qui consiste à demander à un apprenant d’assembler et de valoriser ses réalisations, compétences et aptitudes. Il s’agit pour l’apprenant de mettre en avant ses atouts et ressources.</b> Ce travail nécessite une analyse de tout son parcours, de ses expériences personnelles, artistiques, sociales, professionnelles… et une sélection des productions réalisées et donc des compétences développées dans ce cadre. La constitution du portfolio trouve tout son sens dans l’aspect réflexif et l’apprentissage qu’il permet. A ce titre, il n’a pas toujours vocation à être partagé, il peut simplement être un outil qui va permettre d’expliciter son parcours, de  se présenter de façon structurée. Ce portfolio peut être numérique ou non. Il n'intègre pas de réflexions sur les apprentissages réalisés, c'est ce qui le distingue du dossier d'apprentissage.",
     "shortDescription": "Méthode qui consiste à demander à un apprenant d’assembler et de valoriser ses réalisations, compétences et aptitudes.",
@@ -259,6 +287,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000s3b6ki1upslxw",
     "name": "Projet intégrateur",
     "description": "<b>Méthode qui a pour but de réaliser un projet interdisciplinaire et de mobiliser des compétences transverses.</b> Il permet de concrétiser et de donner du sens aux aspects théoriques vus au préalable au sein d’une séance ou de plusieurs séances par leur application dans le cadre du développement d’un projet concret visant la résolution d’une problématique complexe. La réalisation du projet peut impliquer de faire des liens interdisciplinaires et de développer de nouvelles connaissances en incluant des considérations environnementales, sociales, éthiques, économiques, culturelles ou en tenant compte de normes, de lois, de règlements, etc. Ce travail est généralement effectué en équipes. Le travail est décomposé en plusieurs extrants témoignant de l’avancement du projet. Les projets créés sont développés sous forme de maquette afin d’être présentés à un public (apprenants de la même promotion, apprenants de l'établissement, ensemble de l'établissement, professionnels, citoyens…) sous forme de kiosques.",
     "shortDescription": "Méthode qui a pour but de réaliser un projet interdisciplinaire et de mobiliser des compétences transverses.",
@@ -268,6 +297,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000t3b6k1x7x5ur4",
     "name": "Puzzle",
     "synonym": ["Classe puzzle", "jigsaw"],
     "description": "<b>Activité qui convient bien à l’apprentissage de notions théoriques. Les apprenants sont repartis en sous groupes de travail. Chaque membre du groupe de travail se voit confier une portion de matières théoriques à étudier.</b> Par exemple, chaque apprenant 1 dans chacun des groupes de travail se voit confier la partie 1 de la matière à étudier, chaque apprenant 2 la partie 2, etc. Par la suite, tous les apprenants ayant étudié la partie 1 se réunissent pour former des groupes d’experts sur la portion de matière qui leur a été confiée. Quand la compréhension de celle-ci semble acquise dans chaque groupe d'experts, les experts retournent dans leur groupe de travail respectif pour en rendre compte. Ainsi, toute la matière est parcourue avec attention par le groupe de travail qui aura, enfin, à la résumer devant l'ensemble des apprenants. Cette activité se rapproche de l’activité « Groupes d’experts ».",
@@ -279,6 +309,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000u3b6krryoku3k",
     "name": "Question en profondeur",
     "description": "<b>Technique qui peut se faire après un exposé magistral d’une quinzaine de minutes. Pour l’enseignant cela consiste à poser une question sollicitant de la part des apprenants soit un résumé de l’exposé, soit la résolution d’un problème simple que l’écoute de l’exposé permet de résoudre, soit à exprimer une opinion permettant d’approfondir le thème de l’exposé.</b> Inviter tous les apprenants à trouver une réponse (résumé, éléments de solutions, opinion) à la question en leur laissant le temps nécessaire pour le faire (2 à 3 minutes). Choisir au hasard des apprenants et les inviter à partager à l'ensemble des apprenants le résultat de leurs réflexions.",
     "shortDescription": "Technique qui peut se faire après un exposé magistral d’une quinzaine de minutes. Pour l’enseignant cela consiste à poser une question sollicitant de la part des apprenants soit un résumé de l’exposé, soit la résolution d’un problème simple que l’écoute de l’exposé permet de résoudre, soit à exprimer une opinion permettant d’approfondir le thème de l’exposé.",
@@ -287,6 +318,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000v3b6kctgbms8r",
     "name": "Recherche documentaire",
     "synonym": ["Recherche guidée"],
     "description": "<b>Méthode de découverte personnelle impliquant l’apprenant dans l’observation, l’analyse, la vérification et la généralisation de concepts, de notions ou de règles.</b> L’enseignant détermine « ce qui pose problème ». Les apprenants doivent utiliser des données brutes et effectuer des observations selon la façon propre à une discipline. Par exemple, une recherche en histoire sera menée à la manière d’un historien, une recherche en biologie à la manière d’un biologiste, etc. L’apprenant est auteur du plan de travail en concertation avec l'enseignant. L’apprentissage de l’apprenant dépend, d’une part de ce que le milieu offre comme information et, d’autre part, de ce que l’apprenant veut bien en retenir. En fait, les apprenants découvrent ce qui existe déjà, mais c’est la façon d’apprendre qui diffère dans ce cas-ci.",
@@ -296,6 +328,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000w3b6k1zpaotjv",
     "name": "Remue-méninges",
     "synonym": ["Brainstorming"],
     "description": "<b>Technique de recherche collective d’un grand nombre d’idées originales en vue de trouver une solution, une réponse à une question, une problématique.</b> L’enseignant commence par présenter les objectifs du remue-méninges et les règles particulières de cette technique. Aucune analyse, censure, autocensure ou critique n’est permise pendant la phase d’expression des idées. Dans un temps dédié, les apprenants expriment individuellement leurs idées à l’oral ou à l’écrit. Ils indiquent tout ce qui leur passe par la tête. Ces idées sont répertoriées dans un environnement dédié. Lorsque tous se sont exprimés ou que le temps est terminé, les apprenants découvrent les idées et collectivement les classent par ordre de pertinence ou par familles. L'ensemble des apprenants échange afin de perfectionner les idées jugées les plus performantes. Un résultat se dégage au fil des échanges. Cette approche peut se faire en plusieurs séances. Si la question à traiter est trop vaste, elle peut être décomposée en sous-questions. Cette technique a pour but de sensibiliser à la pensée créative. Ceci permet d’exprimer les idées les plus farfelues et d’envisager le problème sous des angles complètement inattendus.",
@@ -309,6 +342,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000x3b6kfjdgk390",
     "name": "Résolution de problème",
     "description": "<b>Activité où les apprenants tentent de résoudre un problème plus ou moins complexe, faisant appel à des connaissances multiples.</b> Un minimum d’informations est fourni au départ pour contextualiser le problème. Les apprenants doivent traiter en groupe les informations disponibles et rechercher des renseignements supplémentaires afin de trouver la solution qui leur semble la plus adaptée. Plusieurs solutions sont possibles. Le problème abordé ne nécessite pas la maîtrise ou l’acquisition de connaissances spécialisées ou nouvelles, mais le traitement des informations déjà possédées par les membres du groupe. Ce distingue de l'exercice applicatif qui est décontextualisé, qui mobilise des savoirs faire élémentaires et qui n'a qu'une solution possible.",
     "shortDescription": "Activité où les apprenants tentent de résoudre un problème plus ou moins complexe, faisant appel à des connaissances multiples.",
@@ -318,6 +352,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000y3b6kj0no2rkp",
     "name": "Ressources du milieu",
     "synonym": ["Visite de terrain", "Visite d'entreprise"],
     "description": "<b>Activité qui utilise et exploite les sources d’apprentissage qu’offre le milieu : des spécialistes invités ou visités, des sorties à l’extérieur (industrie, usine, bureau), des richesses de l’environnement (cours d’eau, minerais), des artefacts (musée)... pour varier la source d’information, utiliser des informations non accessibles autrement et découvrir les richesses du milieu.</b> Ces ressources apportent questionnement et expertises et visent à confronter les connaissances de l’apprenant à ces réalités. Activité combinable avec un apprentissage par problème, des études de cas, un stage ou un exposé par les apprenants.",
@@ -328,6 +363,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i000z3b6ktv3s05o7",
     "name": "Revue d'actualité",
     "description": "<b>Activité où chaque apprenant fait une courte présentation à l’ensemble des apprenants, au moins une fois dans le semestre</b>, résumant un article de l’actualité portant sur un des thèmes de l'unité d'enseignement. L’article a été préalablement approuvé (contenu scientifique, date de parution, longueur, etc.) par l’enseignant. Après la présentation suit une période de questions qui permet de clarifier certains aspects de l’article. Diverses variantes de cette formule sont possibles. Les présentations des apprenants peuvent porter, selon les disciplines, sur des œuvres littéraires ou sur des thèmes en lien avec l'unité d'enseignement.",
     "shortDescription": "Activité où chaque apprenant fait une courte présentation à l’ensemble des apprenants, au moins une fois dans le semestre.",
@@ -336,6 +372,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00103b6karac4h1z",
     "name": "Simulation",
     "description": "<b>Activité qui se caractérise par l'interaction d'un apprenant avec une situation constituant un modèle simplifié, dépouillé de ses éléments non essentiels, mais juste d’une réalité, d’un phénomène, d’un système. L’apprenant y tient un rôle, une tâche, une mission définit par l’enseignant.</b> Le but est de permettre à l’apprenant une étude et une confrontation avec les divers aspects de cette situation, d’observer les résultats de ces actions sans qu’il soit nécessaire d’entrer directement en contact avec la réalité. Cela permet également une compréhension objective de la réalité, ce qui la distingue nettement du jeu de rôle où c’est la subjectivité qui domine. Même si l’enseignant organise la situation qui sera exploitée, l’apprenant y tient une grande place, explorant à sa guise la situation à l’étude et exerçant son jugement. L'apprenant a la possibilité de faire plusieurs essais en manipulant les paramètres et d'en observer les résultats. La simulation peut être exploitée par un apprenant ou par un groupe. Lors d’un débriefing, les apprenants s’expriment sur ce qu’ils ont vécu. La simulation et le débriefing vont de pair. La portée pédagogique de la simulation est sérieusement compromise s’il n’y pas de débriefing.",
     "shortDescription": "Activité qui se caractérise par l'interaction d'un apprenant avec une situation constituant un modèle simplifié, dépouillé de ses éléments non essentiels, mais juste d’une réalité, d’un phénomène, d’un système. L’apprenant y tient un rôle, une tâche, une mission définit par l’enseignant.",
@@ -346,6 +383,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00113b6k6rboqwot",
     "name": "Table ronde",
     "description": "<b>Activité représentant une réunion caractérisée par le principe d'égalité entre les apprenants, convoqués pour discuter d'un sujet précis. Le thème à discuter est choisi par l’enseignant et ne fait pas l'unanimité</b>, sinon il n'y aurait aucun intérêt à organiser une table ronde. Pour se préparer à la table ronde, les apprenants doivent effectuer une recherche d’informations sur le sujet retenu. Ils préparent des arguments qui serviront à défendre leur point de vue. La plupart du temps, c'est l’enseignant qui anime une table ronde. Un apprenant en mesure de maintenir une dynamique de discussion peut aussi agir comme animateur, modérateur ou gestionnaire du temps. Variante : discuter des thèmes de textes lus et analysés préalablement.",
     "shortDescription": "Activité représentant une réunion caractérisée par le principe d'égalité entre les apprenants, convoqués pour discuter d'un sujet précis. Le thème à discuter est choisi par l’enseignant et ne fait pas l'unanimité.",
@@ -355,6 +393,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00123b6kn3zugqbo",
     "name": "Tournoi",
     "description": "<b>Activité mettant en compétition les apprenants. Le tournoi se déroule généralement en deux temps : d’abord l’étude du contenu, puis la formation d’équipes pour réaliser le tournoi.</b> C’est une activité qui n’existe que par et pour l'équipe. Le tournoi est une formule dont la principale fonction est de permettre d’améliorer un apprentissage dans un contexte de compétition, d’intérêt et de grande participation des apprenants.",
     "shortDescription": "Activité mettant en compétition les apprenants. Le tournoi se déroule généralement en deux temps : d’abord l’étude du contenu, puis la formation d’équipes pour réaliser le tournoi.",
@@ -364,6 +403,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00133b6kso90gkme",
     "name": "Un-deux-tous",
     "synonym": ["Penser-comparer-partager", "réfléchir-collaborer-partager", "think-pair-share"],
     "description": "<b>Technique où l’enseignant pose une question pour amener à des discussions. Dans un premier temps, les apprenants y répondent individuellement par écrit dans un laps de temps donné.</b> Dans un deuxième temps, ils comparent leur réponse avec leur voisin ou en petits groupes pour arriver à une solution qui fasse consensus. L’enseignant demande à des groupes choisis au hasard ou volontaires de présenter leurs idées et leurs réponses à l’ensemble des apprenants. Les autres groupes réagissent, apportent des compléments. Variante : un-deux-quatre, un-quatre-tous",
@@ -375,6 +415,7 @@
     ]
   },
   {
+    "cuid": "clcghc12i00143b6k71mpl3n1",
     "name": "Vote",
     "synonym": ["Boitier de vote électronique", "mini-quizz"],
     "description": "<b>Technique qui consiste à valider l’opinion ou la compréhension des apprenants en leur soumettant des questions pouvant favoriser la rétroaction des apprenants dans le cadre d’un exposé magistral.</b> Il s’agit le plus souvent de questions à choix multiples. La question et les différentes propositions de réponses sont affichées. Le vote peut se faire via des outils numériques tel que des boîtiers de vote électronique, mais également à l’aide de papier de couleur ou à main levée. L’enseignant prend connaissance des réponses et peut apporter des éléments pour clarifier les points qui ont été mal compris par les apprenants.",

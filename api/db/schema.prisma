@@ -14,6 +14,7 @@ generator client {
 
 model User {
   id        Int      @id @default(autoincrement())
+  cuid      String   @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   email     String   @unique
@@ -33,6 +34,7 @@ model User {
 
 model Organization {
   id        Int      @id @default(autoincrement())
+  cuid      String   @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   author    User?    @relation("OrganizationAuthoring", fields: [authorId], references: [id])
@@ -41,10 +43,14 @@ model Organization {
   name      String
   address   String?
   logo      String? //Logo de l'établissement
+
+  instance   Instance? @relation("OrganizationsFromInstance", fields: [instanceId], references: [id])
+  instanceId Int?
 }
 
 model Practice {
   id               Int      @id @default(autoincrement())
+  cuid             String   @unique @default(cuid())
   createdAt        DateTime @default(now())
   updatedAt        DateTime @updatedAt
   name             String
@@ -53,6 +59,9 @@ model Practice {
   shortDescription String?
   sources          String[]
   users            User[]   @relation("UserPractices")
+
+  instance   Instance? @relation("PracticesFromInstance", fields: [instanceId], references: [id])
+  instanceId Int?
 }
 
 model Instance {
@@ -63,5 +72,8 @@ model Instance {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  users     User[]   @relation("UsersFromInstance")
+
+  users         User[]         @relation("UsersFromInstance")
+  organizations Organization[] @relation("OrganizationsFromInstance")
+  practices     Practice[]     @relation("PracticesFromInstance")
 }

@@ -8,6 +8,7 @@ export const QUERY = gql`
   query FindPracticeById($id: Int!) {
     practice: practice(id: $id) {
       id
+      cuid
       createdAt
       updatedAt
       name

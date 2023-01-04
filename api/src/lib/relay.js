@@ -57,7 +57,7 @@ const CREATE_MESSAGE_QUERY = gql`
     }
   }
 `
-export const createMessage = (operation, entity, payload) => {
+export const sendMessage = (operation, entity, payload) => {
   const message = JSON.stringify(payload);
 
   // encrypter.update(message);
@@ -98,25 +98,78 @@ export const handleMessage = async (operation, {instance, entity, payload}) => {
     localInstance = await db.instance.create({ data: { host: instance.host, version: instance.version }})
   }
 
-  const { practices, ...__payload } = payload;
-  let _data = {
-    data: {
-      ...__payload,
-      instanceId : localInstance.id
+  //Transformation du payload pour que les connexions de relations par cuid soient transformées en connect
+  let _data = transformPayload(payload, localInstance, operation);
+  logger.debug({ custom: _data }, "Payload transformé")
 
+  logger.debug({_data, entity, operation, localInstance}, "Opération sur entité depuis relai")
+  const result = await prismaEntity[operation](_data).catch(err => {
+    logger.error(err)
+    throw Error(`Erreur d'enregistrement Prisma ${err}`)
+  });
+
+  return result;
+}
+
+/**
+ * @example
+ * {
+ *   "id": 4,
+ *   "cuid": "clcgjnrvd0000v5rm2q32hrsj",
+ *   ...
+ *   "practices": [
+ *     {
+ *       "cuid": "clcghc12i00013b6kvzv6ypt8"
+ *     },
+ *     {
+ *       "cuid": "clcghc12i00043b6k5h2a2y10"
+ *     },
+ *     {
+ *       "cuid": "clcghc12i00063b6k78scm404"
+ *     }
+ *   ],
+ *   "organization": {
+ *     "cuid": "clcgjdj9w0003v5r05c8qed1b"
+ *   }
+ *}
+ * @param {*} payload
+ * @returns
+ */
+const transformPayload = (payload, localInstance, operation) => {
+  //Deep clone
+  let _payload = JSON.parse(JSON.stringify(payload));
+
+  for (const key in payload) {
+    if (Object.hasOwnProperty.call(payload, key)) {
+      const element = payload[key];
+      //Si on est dans le cas d'un tableau ou d'un objet, c'est qu'on traite une relation
+      //Attention : null est un object
+      if(!!element && typeof element == "object"){
+        //On modifie le payload cloné pour utiliser la syntaxe prisma de connexion
+        if(Array.isArray(element))
+          _payload[key] = {connect: element.map(relation => ({cuid: relation.cuid}))}
+        else
+          _payload[key] = {connect: {cuid: element.cuid}}
+        //Suppression préemptive d'un scalar qui trainerait (organizationId, je te regarde)
+        delete _payload[`${key}Id`]
+      }
     }
   }
-  if (operation == OPERATIONS.UPDATE){
-    _data.where = { email: payload.email};
-    delete _data.data.id;
+  //Suppression préemptive de l'id, dont on ne se servira jamais, puisqu'on cible par cuid
+  delete _payload.id
+  //Connexion de l'instance
+  _payload.instance = { connect: { id: localInstance.id } }
+  delete _payload.instanceId
+  let _data = { data: _payload }
+
+  //Gestion de l'opération
+  if (operation == OPERATIONS.UPDATE) {
+    _data.where = { cuid: payload.cuid };
   }
 
   if (operation == OPERATIONS.DELETE) {
-    _data.where = { email: payload.email };
+    _data.where = { cuid: payload.cuid };
     delete _data.data;
   }
-  logger.debug({_data, entity, operation, localInstance}, "Opération sur entité depuis relai")
-  const result = await prismaEntity[operation](_data).catch(err => {throw Error(`Erreur d'enregistrement Prisma ${err}`)});
-
-  return result;
+  return _data;
 }

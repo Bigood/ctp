@@ -44,7 +44,7 @@ export const handler = async (event: APIGatewayEvent, context: Context) => {
       options,
     })
 
-    webhookLogger.debug({ custom: event.headers }, 'Headers')
+    // webhookLogger.debug({ custom: event.headers }, 'Headers')
 
     const payload = JSON.parse(event.body)
 
