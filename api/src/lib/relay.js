@@ -4,6 +4,8 @@ import { setContext } from '@apollo/client/link/context';
 import { logger } from 'src/lib/logger';
 import { db } from 'src/lib/db'
 
+import faktory from 'faktory-worker'
+
 import { createCipheriv, randomBytes } from 'crypto'
 
 
@@ -57,6 +59,14 @@ const CREATE_MESSAGE_QUERY = gql`
     }
   }
 `
+export const propagateMessage = async (operation, entity, payload) => {
+  // Envoi dans la file de traitement
+  const client = await faktory.connect()
+  const job = client.job('sendMessage', operation, entity, payload)
+  job.queue = process.env.FAKTORY_QUEUE
+  await job.push();  await client.close()
+  return;
+}
 export const sendMessage = (operation, entity, payload) => {
   const message = JSON.stringify(payload);
 
@@ -72,8 +82,8 @@ export const sendMessage = (operation, entity, payload) => {
   relayClient.mutate({ mutation: CREATE_MESSAGE_QUERY, variables : { operation, entity, payload: message }})
 }
 
-export const handleMessage = async (operation, {instance, entity, payload}) => {
-
+export const handleMessage = async (operation, message) => {
+  const { instance, entity, payload } = message;
   if (!entity)
     throw Error(`Message reçu du relai sans entity : ${entity}, ${payload}`)
 
@@ -157,9 +167,9 @@ const transformPayload = (payload, localInstance, operation) => {
   }
   //Suppression préemptive de l'id, dont on ne se servira jamais, puisqu'on cible par cuid
   delete _payload.id
-  //Connexion de l'instance
-  _payload.instance = { connect: { id: localInstance.id } }
-  delete _payload.instanceId
+  //Remplacement de l'instanceId dans l'objet, qui va être transformé en {connect :id} par foreignKeyReplacement
+  _payload.instanceId = localInstance.id;
+  _payload = foreignKeyReplacement(_payload);
   let _data = { data: _payload }
 
   //Gestion de l'opération
@@ -172,4 +182,24 @@ const transformPayload = (payload, localInstance, operation) => {
     delete _data.data;
   }
   return _data;
+}
+
+//Eviter le mix de foreignKey directe et de connect, on met tout en connect
+export const foreignKeyReplacement = (input) => {
+  let output = input
+  const foreignKeys = Object.keys(input).filter((k) => k.match(/Id$/))
+
+  foreignKeys.forEach((key) => {
+    const modelName = key.replace(/Id$/, '')
+    const value = input[key]
+
+    delete output[key]
+    //Si null, on ne fait rien
+    if(value)
+      output = Object.assign(output, {
+        [modelName]: { connect: { id: value } },
+      })
+  })
+
+  return output
 }

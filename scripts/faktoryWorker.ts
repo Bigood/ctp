@@ -1,33 +1,23 @@
 import faktory from 'faktory-worker'
+import { logger } from 'api/src/lib/logger'
+import { sendMessage, handleMessage } from 'api/src/lib/relay'
 
-import {logger} from 'api/src/lib/logger'
-import { createDiasporaProfile, initDiaspora, loginDiaspora, updateDiasporaProfile } from 'api/src/services/diaspora/diaspora'
-
-faktory.register('init', async (taskArgs) => {
-  logger.info("running init in background worker")
-  await initDiaspora(taskArgs)
+faktory.register('sendMessage', async (operation, entity, payload) => {
+  logger.info("running sendMessage in background worker")
+  await sendMessage(operation, entity, payload)
 })
 
-faktory.register('postLogin', async (taskArgs) => {
-  logger.info("running postLogin in background worker")
-  await loginDiaspora(taskArgs)
-})
-
-faktory.register('postSignup', async (taskArgs) => {
-  logger.info("running postSignup in background worker")
-  await createDiasporaProfile(taskArgs)
-})
-
-faktory.register('postEditUser', async (taskArgs) => {
-  logger.info("running postEditUser in background worker")
-  await updateDiasporaProfile(taskArgs)
+faktory.register('handleMessage', async (operation, message) => {
+  logger.info("running handleMessage in background worker")
+  await handleMessage(operation, message)
 })
 
 export default async ({ _args }) => {
   logger.error(process.env.FAKTORY_URL)
   const worker = await faktory
     .work({
-      url: process.env.FAKTORY_URL
+      url: process.env.FAKTORY_URL,
+      queues: [process.env.FAKTORY_QUEUE]
     })
     .catch((error) => {
       logger.error(`worker failed to start: ${error}`)

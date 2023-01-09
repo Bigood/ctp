@@ -34,5 +34,17 @@
       "request": "launch",
       "type": "node-terminal"
     },
+    {
+      "command": "docker run --name ctp-faktory -it -v `pwd`/.faktory:/var/lib/faktory/db -p 127.0.0.1:7419:7419 -p 127.0.0.1:7420:7420 contribsys/faktory:latest /faktory -b :7419 -w :7420",
+      "name": "Docker: start faktory worker",
+      "request": "launch",
+      "type": "node-terminal"
+    },
+    {
+      "command": "yarn rw exec faktoryWorker",
+      "name": "Redwood: start faktory script",
+      "request": "launch",
+      "type": "node-terminal"
+    },
   ]
 }

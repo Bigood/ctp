@@ -6,7 +6,7 @@ import type {
 
 import { db } from 'src/lib/db'
 import { logger } from 'src/lib/logger'
-import { sendMessage, OPERATIONS } from '../../lib/relay'
+import { propagateMessage, OPERATIONS } from '../../lib/relay'
 
 export const users: QueryResolvers['users'] = () => {
   return db.user.findMany()
@@ -30,7 +30,7 @@ export const createUser: MutationResolvers['createUser'] = async ({ input }) => 
       }
     },
   })
-  sendMessage(OPERATIONS.CREATE, "user", user);
+  propagateMessage(OPERATIONS.CREATE, "user", user);
   return user;
 }
 
@@ -47,7 +47,7 @@ export const updateUser: MutationResolvers['updateUser'] = async ({ id, input })
     },
     where: { id },
   })
-  sendMessage(OPERATIONS.UPDATE, "user", user);
+  propagateMessage(OPERATIONS.UPDATE, "user", user);
   return user;
 }
 
@@ -55,7 +55,7 @@ export const deleteUser: MutationResolvers['deleteUser'] = async ({ id }) => {
   const user = await db.user.delete({
     where: { id },
   })
-  sendMessage(OPERATIONS.DELETE, "user", user);
+  propagateMessage(OPERATIONS.DELETE, "user", user);
   return user;
 }
 

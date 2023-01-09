@@ -5,7 +5,7 @@ import type {
 } from 'types/graphql'
 
 import { db } from 'src/lib/db'
-import { OPERATIONS, sendMessage } from 'src/lib/relay'
+import { OPERATIONS, propagateMessage } from 'src/lib/relay'
 
 export const organizations: QueryResolvers['organizations'] = () => {
   return db.organization.findMany()
@@ -21,7 +21,7 @@ export const createOrganization: MutationResolvers['createOrganization'] = async
   const organization = await db.organization.create({
     data: input,
   })
-  sendMessage(OPERATIONS.CREATE, "organization", organization);
+  propagateMessage(OPERATIONS.CREATE, "organization", organization);
   return organization;
 }
 
@@ -30,7 +30,7 @@ export const updateOrganization: MutationResolvers['updateOrganization'] = async
     data: input,
     where: { id },
   })
-  sendMessage(OPERATIONS.UPDATE, "organization", organization);
+  propagateMessage(OPERATIONS.UPDATE, "organization", organization);
   return organization;
 }
 
@@ -38,7 +38,7 @@ export const deleteOrganization: MutationResolvers['deleteOrganization'] = async
   const organization = await db.organization.delete({
     where: { id },
   })
-  sendMessage(OPERATIONS.DELETE, "organization", organization);
+  propagateMessage(OPERATIONS.DELETE, "organization", organization);
   return organization;
 }
 
