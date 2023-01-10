@@ -12,6 +12,7 @@ import type { EditUserById, UpdateUserInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 import PracticesCheckboxesCell from 'src/components/PracticesCheckboxesCell'
+import OrganizationsSelectCell from 'src/components/Organization/OrganizationsSelectCell'
 
 
 type FormUser = NonNullable<EditUserById['user']>
@@ -111,16 +112,9 @@ const UserForm = (props: UserFormProps) => {
           className="rw-label"
           errorClassName="rw-label rw-label-error"
         >
-          Organization id
+          Organization
         </Label>
-
-          <NumberField
-            name="organizationId"
-            defaultValue={props.user?.organizationId}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            // validation={{ required: true }}
-          />
+        <OrganizationsSelectCell defaultValue={props.user?.organizationId}/>
 
 
         <FieldError name="organizationId" className="rw-field-error" />
