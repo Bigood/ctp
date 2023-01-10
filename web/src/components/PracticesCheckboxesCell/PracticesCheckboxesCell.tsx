@@ -1,4 +1,4 @@
-import type { Practice } from 'types/graphql'
+import type { FindPractices } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import { CheckboxField, Label, useController } from '@redwoodjs/forms'
 import { Controller, RegisterOptions, useErrorStyles } from '@redwoodjs/forms'
@@ -26,9 +26,14 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div style={{ color: 'red' }}>Error: {error?.message}</div>
 )
 
-export const Success = ({ name, practices, ...rest }: CellSuccessProps<FindPractices>) => {
+interface ControlledCheckboxes extends FindPractices {
+  defaultValue: any;
+  name: string;
+  valueAsNumber: boolean;
+}
+export const Success = ({ practices, ...rest }: CellSuccessProps<ControlledCheckboxes>) => {
   return (
-    <ControlledCheckboxes {...rest} options={practices} name={name}/>
+    <ControlledCheckboxes {...rest} options={practices} />
   )
 }
 // Composant controlé, pour que les checkbox renvoient des entiers, valueAsNumber de React Hook Form ne marche pas sur les CheckboxField (seulement sur les input type text, cf docs)
