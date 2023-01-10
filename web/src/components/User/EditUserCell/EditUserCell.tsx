@@ -14,8 +14,17 @@ export const QUERY = gql`
       createdAt
       updatedAt
       email
+      image
       name
       surname
+      phone
+      showEmail
+      showPhone
+      job
+      department
+      shortPresentation
+      presentation
+      subjects
       organizationId
       practices {
         id
@@ -34,8 +43,17 @@ const UPDATE_USER_MUTATION = gql`
       createdAt
       updatedAt
       email
+      image
       name
       surname
+      phone
+      showEmail
+      showPhone
+      job
+      department
+      shortPresentation
+      presentation
+      subjects
       organizationId
       practices {
         id

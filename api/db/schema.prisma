@@ -17,9 +17,21 @@ model User {
   cuid      String   @unique @default(cuid())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  email     String   @unique
+
+  email String @unique
+
+  image     String?
   name      String?
   surname   String?
+  phone     String?
+  showEmail Boolean? @default(false)
+  showPhone Boolean? @default(false)
+
+  job               String?
+  department        String?
+  shortPresentation String?
+  presentation      String?
+  subjects          String?
 
   organization   Organization @relation("OrganizationBelonging", fields: [organizationId], references: [id])
   organizationId Int
@@ -76,4 +88,9 @@ model Instance {
   users         User[]         @relation("UsersFromInstance")
   organizations Organization[] @relation("OrganizationsFromInstance")
   practices     Practice[]     @relation("PracticesFromInstance")
+}
+
+enum Metier {
+  TEACHER
+  SUPPORT
 }

@@ -22,35 +22,6 @@ export const OPERATIONS_PER_HTTPMETHOD = {
 }
 // const encrypter = crypto.createHmac('sha1', process.env.RELAY_CLIENT_SECRET);
 
-//Pour éviter les erreur d'analyse
-// const remote_gql = gql;
-let relayClient
-try {
-
-//Création du client Apollo vers le relai
-const httpLink = createHttpLink({
-  uri: `${process.env.RELAY_URL}/graphql`,
-  fetch
-});
-
-const authLink = setContext((_, { headers }) => {
-  // return the headers to the context so httpLink can read them
-  return {
-    headers: {
-      ...headers,
-      authorization: process.env.RELAY_CLIENT_TOKEN ? `Bearer ${process.env.RELAY_CLIENT_TOKEN}` : "",
-    }
-  }
-});
-
-relayClient = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache()
-});
-
-} catch (error) {
-  logger.error(error)
-}
 //@ts-ignore
 const CREATE_MESSAGE_QUERY = gql`
   mutation createMessageFromClient($operation: String!, $entity: String!, $payload: String!) {
@@ -78,8 +49,37 @@ export const sendMessage = (operation, entity, payload) => {
   // const cipher = createCipheriv('aes256', Buffer.from(process.env.RELAY_CLIENT_SECRET, 'hex'), iv);
   // const encryptedMessage = cipher.update(message, 'utf8', 'hex') + cipher.final('hex');
 
-  logger.debug({custom: message}, 'Message envoyé au relai')
-  relayClient.mutate({ mutation: CREATE_MESSAGE_QUERY, variables : { operation, entity, payload: message }})
+  //Pour éviter les erreur d'analyse
+  // const remote_gql = gql;
+  let relayClient
+  try {
+
+    //Création du client Apollo vers le relai
+    const httpLink = createHttpLink({
+      uri: `${process.env.RELAY_URL}/graphql`,
+      fetch
+    });
+
+    const authLink = setContext((_, { headers }) => {
+      // return the headers to the context so httpLink can read them
+      return {
+        headers: {
+          ...headers,
+          authorization: process.env.RELAY_CLIENT_TOKEN ? `Bearer ${process.env.RELAY_CLIENT_TOKEN}` : "",
+        }
+      }
+    });
+
+    relayClient = new ApolloClient({
+      link: authLink.concat(httpLink),
+      cache: new InMemoryCache()
+    });
+
+    logger.debug({custom: message}, 'Message envoyé au relai')
+    relayClient.mutate({ mutation: CREATE_MESSAGE_QUERY, variables : { operation, entity, payload: message }})
+  } catch (error) {
+    logger.error(error)
+  }
 }
 
 export const handleMessage = async (operation, message) => {

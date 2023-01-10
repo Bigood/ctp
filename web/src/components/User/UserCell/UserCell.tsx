@@ -11,9 +11,21 @@ export const QUERY = gql`
       createdAt
       updatedAt
       email
+      image
       name
       surname
-      organizationId
+      phone
+      showEmail
+      showPhone
+      job
+      department
+      shortPresentation
+      presentation
+      subjects
+      organization {
+        id
+        name
+      }
       practices {
         id
       }

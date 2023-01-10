@@ -3,7 +3,7 @@ import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { timeTag,  } from 'src/lib/formatters'
+import { timeTag, checkboxInputTag } from 'src/lib/formatters'
 
 import type { DeleteUserMutationVariables, FindUserById } from 'types/graphql'
 
@@ -65,11 +65,35 @@ const User = ({ user }: Props) => {
               <th>Surname</th>
               <td>{user.surname}</td>
             </tr><tr>
-              <th>Organization id</th>
-              <td>{user.organizationId}</td>
+              <th>Organization</th>
+              <td>{user.organization?.name} (#{user.organization?.id})</td>
             </tr><tr>
               <th>Distant instance</th>
               <td>{user.instance?.host}</td>
+            </tr><tr>
+              <th>Phone</th>
+              <td>{user.phone}</td>
+            </tr><tr>
+              <th>ShowEmail</th>
+              <td>{checkboxInputTag(user.showEmail)}</td>
+            </tr><tr>
+              <th>ShowPhone</th>
+              <td>{checkboxInputTag(user.showPhone)}</td>
+            </tr><tr>
+              <th>Job</th>
+              <td>{user.job}</td>
+            </tr><tr>
+              <th>Department</th>
+              <td>{user.department}</td>
+            </tr><tr>
+              <th>ShortPresentation</th>
+              <td>{user.shortPresentation}</td>
+            </tr><tr>
+              <th>Presentation</th>
+              <td>{user.presentation}</td>
+            </tr><tr>
+              <th>Subjects</th>
+              <td>{user.subjects}</td>
             </tr>
           </tbody>
         </table>

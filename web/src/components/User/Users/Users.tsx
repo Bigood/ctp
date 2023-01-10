@@ -47,7 +47,7 @@ const UsersList = ({ users }: FindUsers) => {
             <th>Email</th>
             <th>Name</th>
             <th>Surname</th>
-            <th>Organization id</th>
+            <th>Organization</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -60,7 +60,7 @@ const UsersList = ({ users }: FindUsers) => {
               <td>{truncate(user.email)}</td>
               <td>{truncate(user.name)}</td>
               <td>{truncate(user.surname)}</td>
-              <td>{truncate(user.organizationId)}</td>
+              <td>{truncate(user.organization?.name)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

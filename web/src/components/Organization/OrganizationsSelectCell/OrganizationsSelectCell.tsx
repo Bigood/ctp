@@ -41,6 +41,7 @@ const OrganizationsSelect = (props) => {
       defaultValue={defaultValue}
       className="rw-input"
       errorClassName="rw-input rw-input-error"
+      validation={{ valueAsNumber: true }}
     // validation={{ required: true }}
     >
       <option>Choisir un établissement</option>

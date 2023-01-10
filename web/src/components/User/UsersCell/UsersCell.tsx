@@ -14,7 +14,10 @@ export const QUERY = gql`
       email
       name
       surname
-      organizationId
+      organization {
+        id
+        name
+      }
     }
   }
 `

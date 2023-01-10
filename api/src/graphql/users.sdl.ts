@@ -5,14 +5,23 @@ export const schema = gql`
     createdAt: DateTime!
     updatedAt: DateTime!
     email: String!
+    image: String
     name: String
     surname: String
+    phone: String
+    showEmail: Boolean
+    showPhone: Boolean
+    job: String
+    department: String
+    shortPresentation: String
+    presentation: String
+    subjects: String
     organization: Organization!
-    organizationId: Int
+    organizationId: Int!
     organizationsAuthored: [Organization]!
     practices: [Practice]!
-
     instance: Instance
+    instanceId: Int
   }
 
   type Query {
@@ -22,18 +31,38 @@ export const schema = gql`
 
   input CreateUserInput {
     email: String!
+    image: String
     name: String
     surname: String
-    organizationId: Int
+    phone: String
+    showEmail: Boolean
+    showPhone: Boolean
+    job: String
+    department: String
+    shortPresentation: String
+    presentation: String
+    subjects: String
     practices: [Int]!
+    organizationId: Int!
+    instanceId: Int
   }
 
   input UpdateUserInput {
     email: String
+    image: String
     name: String
     surname: String
+    phone: String
+    showEmail: Boolean
+    showPhone: Boolean
+    job: String
+    department: String
+    shortPresentation: String
+    presentation: String
+    subjects: String
     organizationId: Int
     practices: [Int]!
+    instanceId: Int
   }
 
   type Mutation {

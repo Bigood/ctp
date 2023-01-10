@@ -1,0 +1,13 @@
+.ctp-practices-checkboxes {
+    height: 230px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+.ctp-inline-group {
+    display: flex;
+    flex-wrap: wrap;
+}
+.ctp-inline-group > div {
+    flex-grow: 1;
+}
