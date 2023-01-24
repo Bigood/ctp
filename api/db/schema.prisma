@@ -5,8 +5,9 @@ datasource db {
 }
 
 generator client {
-  provider      = "prisma-client-js"
-  binaryTargets = "native"
+  provider        = "prisma-client-js"
+  previewFeatures = ["multiSchema"] //https://github.com/prisma/prisma/issues/1175#issuecomment-1336491410
+  binaryTargets   = "native"
 }
 
 // Define your own datamodels here and run `yarn redwood prisma migrate dev`

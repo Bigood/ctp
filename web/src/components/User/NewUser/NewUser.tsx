@@ -14,7 +14,7 @@ const CREATE_USER_MUTATION = gql`
   }
 `
 
-const NewUser = () => {
+const NewUser = ({values}) => {
   const [createUser, { loading, error }] = useMutation(
     CREATE_USER_MUTATION,
     {
@@ -35,10 +35,10 @@ const NewUser = () => {
   return (
     <div className="rw-segment">
       <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">New User</h2>
+        <h2 className="rw-heading rw-heading-secondary">Nouvel utilisateur</h2>
       </header>
       <div className="rw-segment-main">
-        <UserForm onSave={onSave} loading={loading} error={error} />
+        <UserForm onSave={onSave} loading={loading} error={error} user={values}/>
       </div>
     </div>
   )

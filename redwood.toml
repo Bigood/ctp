@@ -10,7 +10,7 @@
   port = 8910
   host = "mac-a.cartotalents.com"
   apiUrl = "/.redwood/functions" # you can customise graphql and dbauth urls individually too: see https://redwoodjs.com/docs/app-configuration-redwood-toml#api-paths
-  includeEnvironmentVariables = [] # any ENV vars that should be available to the web side, see https://redwoodjs.com/docs/environment-variables#web
+  includeEnvironmentVariables = ["SUPABASE_URL", "SUPABASE_KEY"]
 [api]
   port = 8911
 [browser]

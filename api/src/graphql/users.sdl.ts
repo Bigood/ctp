@@ -31,6 +31,7 @@ export const schema = gql`
 
   input CreateUserInput {
     email: String!
+    cuid: String
     image: String
     name: String
     surname: String

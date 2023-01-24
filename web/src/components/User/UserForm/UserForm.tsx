@@ -47,13 +47,20 @@ const UserForm = (props: UserFormProps) => {
 
   return (
     <div className="rw-form-wrapper">
-      <Form<FormUser> onSubmit={onSubmit} error={props.error}>
+      <Form<FormUser> onSubmit={onSubmit} error={props.error} config={{ mode: 'onBlur' }}>
         <FormError
           error={props.error}
           wrapperClassName="rw-form-error-wrapper"
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
+        {props.user?.cuid &&
+          <TextField
+            name="cuid"
+            defaultValue={props.user?.cuid}
+            hidden
+          />
+        }
         <div>
           <Label
             name="email"
@@ -70,9 +77,10 @@ const UserForm = (props: UserFormProps) => {
           <TextField
             name="email"
             defaultValue={props.user?.email}
+            disabled={!!props.user?.email}
             className="rw-input"
             errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
+            validation={{ required: true, disabled: !!props.user?.email }}
           />
           <FieldError name="email" className="rw-field-error" />
         </div>
@@ -195,7 +203,7 @@ const UserForm = (props: UserFormProps) => {
         <section className="ctp-practices-checkboxes">
           <PracticesCheckboxesCell
             name="practices"
-            defaultValue={props.user?.practices.map(practice => practice.id) || []}
+            defaultValue={props.user?.practices?.map(practice => practice.id) || []}
             valueAsNumber
           />
         </section>
