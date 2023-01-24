@@ -17,8 +17,7 @@ const Routes = () => {
       <Private unauthenticated="login">
         <Route path="/profile" page={UserUserProfilePage} name="profile" />
       </Private>
-      <Private unauthenticated="home" //roles="admin"
-      >
+      <Private unauthenticated="home" roles="admin">
         <Set wrap={ScaffoldLayout} title="Practices" titleTo="practices" buttonLabel="New Practice" buttonTo="newPractice">
           <Route path="/admin/practices/new" page={PracticeNewPracticePage} name="newPractice" />
           <Route path="/admin/practices/{id:Int}/edit" page={PracticeEditPracticePage} name="editPractice" />
@@ -43,7 +42,7 @@ const Routes = () => {
       </Set>
       <Set wrap={ScaffoldLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
       </Set>
-      <Route path="/login" page={LoginPage} name="login" />
+      <Route path="/auth" page={LoginPage} name="auth" />
       <Route path="/" page={HomePage} name="home" />
       <Route notfound page={NotFoundPage} />
     </Router>

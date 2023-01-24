@@ -77,10 +77,10 @@ const UserForm = (props: UserFormProps) => {
           <TextField
             name="email"
             defaultValue={props.user?.email}
-            disabled={!!props.user?.email}
+            // disabled={!!props.user?.email}
             className="rw-input"
             errorClassName="rw-input rw-input-error"
-            validation={{ required: true, disabled: !!props.user?.email }}
+            validation={{ required: true }}
           />
           <FieldError name="email" className="rw-field-error" />
         </div>

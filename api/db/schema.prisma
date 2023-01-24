@@ -20,6 +20,7 @@ model User {
   updatedAt DateTime @updatedAt
 
   email String @unique
+  roles String @default("user") //user | admin
 
   image     String?
   name      String?

@@ -176,3 +176,17 @@ The best way to learn Redwood is by going through the comprehensive [tutorial](h
 
 - Stay updated: read [Forum announcements](https://community.redwoodjs.com/c/announcements/5), follow us on [Twitter](https://twitter.com/redwoodjs), and subscribe to the [newsletter](https://redwoodjs.com/newsletter)
 - [Learn how to contribute](https://redwoodjs.com/docs/contributing)
+
+
+# Default values
+
+Use these commands to create a default organization on a fresh install:
+
+```bash
+yarn rw exec createOrganization --name CTP
+```
+Then create a user using the standard flow on **/auth**, and give it admin role with:
+
+```bash
+yarn rw exec setUserAdmin --email mjuganaikloo@gmail.com
+```
