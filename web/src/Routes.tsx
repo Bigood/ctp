@@ -16,7 +16,7 @@ const Routes = () => {
   return (
     <Router>
       <Set wrap={AppLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
-        <Private unauthenticated="login">
+        <Private unauthenticated="auth">
           <Route path="/profile" page={UserUserProfilePage} name="profile" />
         </Private>
         <Private unauthenticated="home" roles="admin">

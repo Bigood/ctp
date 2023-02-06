@@ -17,6 +17,8 @@ export const QUERY = gql`
       name
       address
       logo
+      latitude
+      longitude
     }
   }
 `
@@ -30,6 +32,8 @@ const UPDATE_ORGANIZATION_MUTATION = gql`
       name
       address
       logo
+      latitude
+      longitude
     }
   }
 `

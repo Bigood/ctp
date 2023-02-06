@@ -10,6 +10,8 @@ export const schema = gql`
     name: String!
     address: String
     logo: String
+    latitude: Float
+    longitude: Float
   }
 
   type Query {
@@ -22,6 +24,8 @@ export const schema = gql`
     name: String!
     address: String
     logo: String
+    latitude: Float
+    longitude: Float
   }
 
   input UpdateOrganizationInput {
@@ -29,6 +33,8 @@ export const schema = gql`
     name: String
     address: String
     logo: String
+    latitude: Float
+    longitude: Float
   }
 
   type Mutation {

@@ -6,6 +6,13 @@ import { db } from 'src/lib/db'
 
 import faktory from 'faktory-worker'
 
+//Ensure faktory connection at init
+try {
+  faktory.connect().then(client => client.close())
+} catch (error) {
+  throw "Is faktory running ? $ yarn rw exec faktoryWorker"
+}
+
 import { createCipheriv, randomBytes } from 'crypto'
 
 

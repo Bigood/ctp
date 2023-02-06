@@ -2,11 +2,16 @@
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
+  // On n'utilise pas PostGIS, parce que la liaison Supabase / Prisma / PostGIS implique d'autres extensions qui
+  // compliquent trop l'usage de postgis. Alternative : https://alizahid.dev/blog/geo-queries-with-prisma
+  // extensions = [postgis(version: "2.1")]
 }
 
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["multiSchema"] //https://github.com/prisma/prisma/issues/1175#issuecomment-1336491410
+  //Multischema : https://github.com/prisma/prisma/issues/1175#issuecomment-1336491410
+  //"postgresqlExtensions" Extensions : https://www.prisma.io/docs/concepts/components/prisma-schema/postgresql-extensions#how-to-enable-the-postgresqlextensions-preview-feature
+  previewFeatures = ["multiSchema"]
   binaryTargets   = "native"
 }
 
@@ -60,6 +65,9 @@ model Organization {
 
   instance   Instance? @relation("OrganizationsFromInstance", fields: [instanceId], references: [id])
   instanceId Int?
+
+  latitude  Float?
+  longitude Float?
 }
 
 model Practice {
