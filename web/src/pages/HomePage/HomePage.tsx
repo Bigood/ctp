@@ -12,10 +12,17 @@ const HomePage = () => {
     <>
       <MetaTags title="Home" description="Home page" />
 
-      <h1>Les initiatives pédagogiques des enseignants des établissements membres UNIT</h1>
-      <UsersMapCell />
-
-
+      <section className="flex items-center">
+        <div className="flex-1">
+          <UsersMapCell className="relative h-75vh max-h-screen" />
+        </div>
+        <div className="flex-1 p-2">
+          <h1>
+            Les initiatives pédagogiques des enseignants des établissements
+            membres UNIT
+          </h1>
+        </div>
+      </section>
     </>
   )
 }

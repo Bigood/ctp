@@ -4,7 +4,7 @@ import { Link, routes } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import Users from 'src/components/User/Users'
-import Map from 'src/components/Map/Map'
+import Map, { UsersMap } from 'src/components/Map/Map'
 
 export const QUERY = gql`
   query FindUsersForMap {
@@ -15,6 +15,7 @@ export const QUERY = gql`
       organization {
         id
         name
+        address
         longitude
         latitude
       }
@@ -27,24 +28,14 @@ export const QUERY = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Empty = () => {
-  return (
-    <div className="rw-text-center">
-      {'No users yet. '}
-      <Link
-        to={routes.newUser()}
-        className="rw-link"
-      >
-        {'Create one?'}
-      </Link>
-    </div>
-  )
+export const Empty = (props) => {
+  return <UsersMap {...props} />
 }
 
 export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error?.message}</div>
 )
 
-export const Success = ({ users }: CellSuccessProps<FindUsers>) => {
-  return <Map markers={users} />
+export const Success = ({ users, ...props }: CellSuccessProps<FindUsers>) => {
+  return <UsersMap markers={users} {...props}/>
 }

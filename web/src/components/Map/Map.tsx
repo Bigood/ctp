@@ -28,6 +28,7 @@ interface MapProps {
    * Optional style override
    */
   style?: {}
+  className?: string
 }
 
 const defaultMapCenter = {
@@ -54,6 +55,7 @@ const Map = (props: MapProps) => {
   const {
     markers,
     style = {},
+    className = "relative h-64",
     popupGenerator = defaultPopup,
     markerGenerator = defaultMarker,
   } = props
@@ -77,7 +79,9 @@ const Map = (props: MapProps) => {
       displayedMarkers.forEach((marker) => marker?.remove())
       setDisplayedMarkers(
         markers.map((marker) => {
-          const { longitude, latitude } = marker
+          //@ts-ignore Multiple types de markers. On pioche dans organization si c'est un utilisateur,
+          //sinon faudrait itérer à travers tous les utilisateurs en amont pour aplatir la localisation
+          const { longitude, latitude } = marker?.organization || marker
           if (!longitude || !latitude) return
 
           var el = document.createElement('div')
@@ -101,8 +105,8 @@ const Map = (props: MapProps) => {
     <div >
       <div
         ref={(el) => (mapContainerHTML.current = el)}
-        className="relative h-64"
-        // style={style}
+        className={className}
+        style={style}
       />
     </div>
   )
@@ -112,11 +116,10 @@ export default Map
 
 interface UserMarkerProps {
   id: any
-  longitude: number
-  latitude: number
+  image?: string
   name?: string
-  email?: string
-  organization?: { longitude: number; latitude: number }
+  surname?: string
+  organization: { name: string, longitude: number; latitude: number }
 
   /**
    * Possible instance id, where the data comes from
@@ -137,15 +140,13 @@ const generateUserMarker = (marker: UserMarkerProps) => {
 const generateUserPopup = (user: UserMarkerProps) => {
   return (
     <div className="bg-white p-2">
-      <h2 className="text-lg">{user.name}</h2>
-      {/* <p>{user.email}</p> */}
+      <h2 className="text-lg">{user.name} {user.surname}</h2>
+      <p>{user.organization?.name}</p>
       {typeof user.instanceId == 'string' ? (
         <div>
           <p>Remote user from {user.instanceId}</p>
           <a
-            className={`button ${
-              user.instanceId ? 'remote-background' : 'local-background'
-            }`}
+            className="btn btn-sm btn-secondary"
             href={`//${user.instanceId}/user/${user.id}`}
           >
             See on remote site
@@ -153,12 +154,10 @@ const generateUserPopup = (user: UserMarkerProps) => {
         </div>
       ) : (
         <div>
-          <p>Local user</p>
+
           <Link to={`/user/${user.id}`}>
             <div
-              className={`btn ${
-                user.instanceId ? 'remote-background' : 'local-background'
-              }`}
+              className="btn btn-sm btn-primary"
             >
               See more
             </div>
