@@ -1,11 +1,11 @@
 import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
-import EditUserCell from 'src/components/User/EditUserCell'
-import NewUser from 'src/components/User/NewUser/NewUser'
+import EditUserCell from 'src/components/Admin/User/EditUserCell'
+import NewUser from 'src/components/Admin/User/NewUser/NewUser'
 
 
-const UserProfilePage = () => {
+const EditProfilePage = () => {
   const { currentUser } = useAuth()
 
   //Récupération de l'ID local de l'user s'il a déjà créé
@@ -22,4 +22,4 @@ const UserProfilePage = () => {
   )
 }
 
-export default UserProfilePage
+export default EditProfilePage

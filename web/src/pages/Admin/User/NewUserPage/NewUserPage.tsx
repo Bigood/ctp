@@ -1,4 +1,4 @@
-import NewUser from 'src/components/User/NewUser'
+import NewUser from 'src/components/Admin/User/NewUser'
 
 const NewUserPage = () => {
   return <NewUser />

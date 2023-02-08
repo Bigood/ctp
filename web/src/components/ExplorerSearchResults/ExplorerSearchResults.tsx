@@ -1,4 +1,4 @@
-import { Link } from "@redwoodjs/router"
+import { Link, routes } from "@redwoodjs/router"
 import { useContext } from "react"
 import QueryContext from "src/providers/context/QueryContext"
 
@@ -20,15 +20,20 @@ export default ExplorerSearchResults
 
 const ExplorerSearchResult = ({user}) => {
   return (
-    <Link to={`/user/${user.id}`}>
-      <div className="flex p-1 btn btn-block">
-        <div className="avatar flex-none mr-2">
+    <Link
+      to={routes.showUser({ id: user.id })}
+      title={'Show user ' + user.id + ' detail'}
+    >
+      <div className="btn-block btn flex p-1">
+        <div className="avatar mr-2 flex-none">
           <div className="h-8 w-8 rounded-full">
             <img src={user.image || 'https://gravatar.com/avatar'} />
           </div>
         </div>
         <div className="flex-1">
-          <h2>{user.surname} {user.name}</h2>
+          <h2>
+            {user.surname} {user.name}
+          </h2>
           <h3>{user.organization?.name}</h3>
         </div>
       </div>

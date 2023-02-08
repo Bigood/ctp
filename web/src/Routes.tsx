@@ -17,7 +17,7 @@ const Routes = () => {
     <Router>
       <Set wrap={AppLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
         <Private unauthenticated="auth">
-          <Route path="/profile" page={UserUserProfilePage} name="profile" />
+          <Route path="/profile" page={UserEditProfilePage} name="profile" />
           <Route path="/explore/users" page={ExplorerPage} name="explorer_users" />
           <Route path="/explore/initiatives" page={ExplorerPage} name="explorer_initiatives"  />
         </Private>
@@ -29,10 +29,10 @@ const Routes = () => {
             <Route path="/admin/practices" page={PracticePracticesPage} name="practices" />
           </Set>
           <Set wrap={AdminLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
-            <Route path="/admin/users/new" page={UserNewUserPage} name="newUser" />
-            <Route path="/admin/users/{id:Int}/edit" page={UserEditUserPage} name="editUser" />
-            <Route path="/admin/users/{id:Int}" page={UserUserPage} name="user" />
-            <Route path="/admin/users" page={UserUsersPage} name="users" />
+            <Route path="/admin/users/new" page={AdminUserNewUserPage} name="newUser" />
+            <Route path="/admin/users/{id:Int}/edit" page={AdminUserEditUserPage} name="editUser" />
+            <Route path="/admin/users/{id:Int}" page={AdminUserUserPage} name="user" />
+            <Route path="/admin/users" page={AdminUserUsersPage} name="users" />
           </Set>
           <Set wrap={AdminLayout} title="Organizations" titleTo="organizations" buttonLabel="New Organization" buttonTo="newOrganization">
             <Route path="/admin/organizations/new" page={OrganizationNewOrganizationPage} name="newOrganization" />
@@ -41,7 +41,7 @@ const Routes = () => {
             <Route path="/admin/organizations" page={OrganizationOrganizationsPage} name="organizations" />
           </Set>
         </Private>
-        <Route path="/user/{id:Int}" page={UserUserPage} name="user" />
+        <Route path="/user/{id:Int}" page={UserProfilePage} name="showUser" />
         <Route path="/auth" page={LoginPage} name="auth" />
         <Route path="/" page={HomePage} name="home" />
         <Route notfound page={NotFoundPage} />

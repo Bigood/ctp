@@ -1,14 +1,14 @@
 import { render } from '@redwoodjs/testing/web'
 
-import UserProfilePage from './UserProfilePage'
+import EditProfilePage from './EditProfilePage'
 
 //   Improve this test with help from the Redwood Testing Doc:
 //   https://redwoodjs.com/docs/testing#testing-pages-layouts
 
-describe('UserProfilePage', () => {
+describe('EditProfilePage', () => {
   it('renders successfully', () => {
     expect(() => {
-      render(<UserProfilePage />)
+      render(<EditProfilePage />)
     }).not.toThrow()
   })
 })

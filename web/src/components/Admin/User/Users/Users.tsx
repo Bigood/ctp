@@ -2,7 +2,7 @@ import { Link, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { QUERY } from 'src/components/User/UsersCell'
+import { QUERY } from 'src/components/Admin/User/UsersCell'
 import { timeTag, truncate } from 'src/lib/formatters'
 
 import type { DeleteUserMutationVariables, FindUsers } from 'types/graphql'

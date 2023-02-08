@@ -14,7 +14,7 @@ import {
 import type { EditUserById, UpdateUserInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
-import PracticesCheckboxesCell from 'src/components/PracticesCheckboxesCell'
+import PracticesCheckboxesCell from 'src/components/Practice/PracticesCheckboxesCell'
 import OrganizationsSelectCell from 'src/components/Organization/OrganizationsSelectCell'
 
 

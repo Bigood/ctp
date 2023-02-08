@@ -1,4 +1,4 @@
-import UserCell from 'src/components/User/UserCell'
+import UserCell from 'src/components/Admin/User/UserCell'
 
 type UserPageProps = {
   id: number

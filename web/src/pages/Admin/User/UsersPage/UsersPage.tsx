@@ -1,4 +1,4 @@
-import UsersCell from 'src/components/User/UsersCell'
+import UsersCell from 'src/components/Admin/User/UsersCell'
 
 const UsersPage = () => {
   return <UsersCell />

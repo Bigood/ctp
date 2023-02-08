@@ -1,4 +1,4 @@
-import EditUserCell from 'src/components/User/EditUserCell'
+import EditUserCell from 'src/components/Admin/User/EditUserCell'
 
 type UserPageProps = {
   id: number
