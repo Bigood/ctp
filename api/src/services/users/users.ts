@@ -11,6 +11,17 @@ import { propagateMessage, OPERATIONS } from '../../lib/relay'
 export const users: QueryResolvers['users'] = () => {
   return db.user.findMany()
 }
+export const usersWithQuery: QueryResolvers['usersWithQuery'] = ({ query }) => {
+  return db.user.findMany({
+    where: {
+      OR: [
+        {name: {contains: query, mode: 'insensitive'}},
+        {surname: {contains: query, mode: 'insensitive'}},
+        {organization: { name: {contains: query, mode: 'insensitive'}}}
+      ]
+    }
+  })
+}
 
 export const user: QueryResolvers['user'] = ({ id }) => {
   return db.user.findUnique({

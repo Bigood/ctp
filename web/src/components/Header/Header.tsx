@@ -3,8 +3,8 @@ import { Link, routes } from "@redwoodjs/router"
 
 const menuItems = (isVertical) => (
 <>
-<li><Link to={routes.home()}>Initiatives</Link></li>
-<li><Link to={routes.home()}>Users</Link></li>
+<li><Link to={routes.explorer_initiatives()}>Initiatives</Link></li>
+<li><Link to={routes.explorer_users()}>Users</Link></li>
 <li tabIndex={0}>
   <Link to={routes.home()} className="justify-between">
     Project

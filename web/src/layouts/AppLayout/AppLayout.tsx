@@ -16,7 +16,7 @@ const AppLayout = ({
     <MetaTags title={title}/>
     <Header />
     <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-    <main className="rw-main">{children}</main>
+    <main>{children}</main>
   </>
 }
 

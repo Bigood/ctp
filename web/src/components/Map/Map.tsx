@@ -67,14 +67,14 @@ const Map = (props: MapProps) => {
     if (map.current) return // wait for map to initialize
     map.current = new mapboxgl.Map({
       container: mapContainerHTML.current,
-      style: 'mapbox://styles/mapbox/streets-v11',
+      style: 'mapbox://styles/mapbox/dark-v11',
       center: [defaultMapCenter.lng, defaultMapCenter.lat],
       zoom: defaultMapCenter.zoom,
     })
   }, [])
 
   useEffect(() => {
-    if (map.current && markers.length){
+    if (map.current && markers?.length){
       //Suprression manuelle des markers précédents, s'il y en a https://stackoverflow.com/a/55917076/1437016
       displayedMarkers.forEach((marker) => marker?.remove())
       setDisplayedMarkers(
