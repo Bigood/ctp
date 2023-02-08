@@ -19,9 +19,10 @@ const Routes = () => {
         <Private unauthenticated="auth">
           <Route path="/profile" page={UserEditProfilePage} name="profile" />
           <Route path="/explore/users" page={ExplorerPage} name="explorer_users" />
-          <Route path="/explore/initiatives" page={ExplorerPage} name="explorer_initiatives"  />
+          <Route path="/explore/initiatives" page={ExplorerPage} name="explorer_initiatives" />
         </Private>
         <Private unauthenticated="home" roles="admin">
+          <Route path="/admin" page={Admin} name="admin" />
           <Set wrap={AdminLayout} title="Practices" titleTo="practices" buttonLabel="New Practice" buttonTo="newPractice">
             <Route path="/admin/practices/new" page={PracticeNewPracticePage} name="newPractice" />
             <Route path="/admin/practices/{id:Int}/edit" page={PracticeEditPracticePage} name="editPractice" />
