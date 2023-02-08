@@ -13,6 +13,11 @@
     ]
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^6.3.0",
+    "@fortawesome/free-brands-svg-icons": "^6.3.0",
+    "@fortawesome/free-regular-svg-icons": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0",
+    "@fortawesome/react-fontawesome": "latest",
     "@redwoodjs/auth": "3.7.0",
     "@redwoodjs/forms": "^3.7.0",
     "@redwoodjs/router": "^3.7.0",
