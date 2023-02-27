@@ -3,7 +3,7 @@ import { db } from 'api/src/lib/db'
 export default async ({ args }) => {
   try {
     console.log(args)
-    const organization = await db.organization.create({ data: { name: "CTP" }, select: { id: true } })
+    const organization = await db.organization.create({ data: { name: "Campo" }, select: { id: true } })
     return console.log(`Organization created with id ${organization.id}`);
   }
   catch (err) {

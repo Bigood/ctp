@@ -34,7 +34,7 @@ const Header = () => {
             {menuItems(true)}
           </ul>
         </div>
-        <Link to={routes.home()} className="btn btn-ghost normal-case text-xl">CTP</Link>
+        <Link to={routes.home()} className="btn btn-ghost normal-case text-xl">CTP A</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
