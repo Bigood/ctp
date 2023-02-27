@@ -1,8 +1,7 @@
+import type { CellFailureProps, CellSuccessProps } from '@redwoodjs/web'
+import { toast } from '@redwoodjs/web/dist/toast'
+import { useEffect } from 'react'
 import type { ExploreUsersQuery } from 'types/graphql'
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-import { UsersMap } from 'src/components/Map/Map'
-import ExplorerSearch from 'src/components/ExplorerSearch/ExplorerSearch'
-import ExplorerSearchResults from 'src/components/ExplorerSearchResults/ExplorerSearchResults'
 
 export const beforeQuery = (props) => {
   return {
@@ -33,28 +32,38 @@ export const QUERY = gql`
   }
 `
 
-// export const Loading = () => <div>Loading...</div>
-
-
-export const Empty = (props) => {
+export const Loading = (props) => {
   return (
     <>
-      <ExplorerSearch />
-      <UsersMap {...props} />
+      <span>Loading…</span>
     </>
   )
 }
 
-export const Failure = ({ error }: CellFailureProps) => (
-  <div className="rw-cell-error">{error?.message}</div>
-)
+
+export const Empty = (props) => {
+  useEffect(() => {
+    props.setResults([])
+  }, [])
+  return ( <span>No results to show. Try something else?</span> )
+}
+
+export const Failure = ({ error }: CellFailureProps) => {
+  toast.error("An error occured with with your search, please try again later.")
+  console.error(error);
+  return (<></>);
+}
+
 
 export const Success = ({ usersWithQuery, ...props }: CellSuccessProps<ExploreUsersQuery>) => {
-  return <>
-    <ExplorerSearch />
-    <ExplorerSearchResults users={usersWithQuery} />
-    <UsersMap markers={usersWithQuery} {...props} />
-  </>
+  useEffect(()=> {
+    props.setResults(usersWithQuery);
+  }, [usersWithQuery])
+  return (
+    <span className="white">
+      Found {usersWithQuery.length} matching results
+    </span>
+  )
 }
 
 export const Updating = Success

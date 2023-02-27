@@ -37,5 +37,5 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ users, ...props }: CellSuccessProps<FindUsers>) => {
-  return <UsersMap markers={users} {...props}/>
+  return <UsersMap data={users} {...props}/>
 }

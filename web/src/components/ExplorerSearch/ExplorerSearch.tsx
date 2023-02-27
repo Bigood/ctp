@@ -1,11 +1,11 @@
 import { debounce } from 'lodash'
 import { useContext } from 'react'
 import QueryContext from 'src/providers/context/QueryContext'
-const ExplorerSearch = () => {
+const ExplorerSearch = (props) => {
   const {setQuery} = useContext(QueryContext)
   const _setQuery = debounce(setQuery, 1000)
   return (
-    <section className="absolute left-2 top-2 z-10">
+    <section className={props.className}>
       <div className="form-control">
         <div className="input-group">
           <input

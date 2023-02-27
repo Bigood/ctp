@@ -1,16 +1,18 @@
 import { Link, routes } from "@redwoodjs/router"
+import _ from "lodash"
 import { useContext } from "react"
 import QueryContext from "src/providers/context/QueryContext"
 
-const ExplorerSearchResults = ({users}) => {
-  const { query } = useContext(QueryContext)
-  if(!users || !query)
+const ExplorerSearchResults = (props) => {
+  const { query, results, focused } = useContext(QueryContext)
+
+  if(!results || !focused)
     return <></>
 
   return (
-    <section className="absolute left-2 top-14 z-10 bg-slate-800">
-      {users.map(user => (
-        <ExplorerSearchResult user={user}/>
+    <section className="bg-slate-800" {...props}>
+      {_.intersectionWith(results, focused, (res, feat) => (res.id == (feat.id || feat.properties.id))).map((user) => (
+        <ExplorerSearchResult user={user} key={user.id} />
       ))}
     </section>
   )
