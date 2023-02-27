@@ -31,6 +31,8 @@ export const clusterLayer: LayerProps = {
   paint: {
     'circle-color': [ 'step', ['get', 'point_count'], 'rgb(217,38,170)', 10, 'rgb(102,26,230)', 50, 'rgb(31,178,165)', ],
     'circle-radius': ['step', ['get', 'point_count'], 15, 10, 25, 50, 35],
+    'circle-stroke-width': [ 'case', ['boolean', ['feature-state', 'selected'], false], 2, 0 ],
+    'circle-stroke-color' : '#fff'
   },
 }
 
@@ -54,7 +56,7 @@ export const unclusteredPointLayer: LayerProps = {
   paint: {
     'circle-color': 'rgb(217,38,170)',
     'circle-radius': 5,
-    'circle-stroke-width': 1,
+    'circle-stroke-width': [ 'case', ['boolean', ['feature-state', 'selected'], false], 1, 0 ],
     'circle-stroke-color': '#fff',
   },
 }
@@ -67,6 +69,7 @@ const defaultMapCenter = {
 export default function ExploreMap(props) {
   const { ...rest} = props;
   const { results, setFocused } = useContext(QueryContext)
+  const [selectedMarkerId, setSelectedMarkerId] = useState(null);
 
   const [geojson, setGeojson] = useState(DEFAULT_GEOJSON)
 
@@ -85,9 +88,17 @@ export default function ExploreMap(props) {
 
     const clusterId = feature.properties.cluster_id
 
+    //Reset du statut selected sur le précédent marqueur
+    if(selectedMarkerId){
+      mapRef.current.setFeatureState({ source: 'items', id: selectedMarkerId }, { selected: false })
+    }
+
     //Si on clique sur un marqueur, et pas sur un cluster, on l'affiche direct
-    if(!clusterId)
+    if(!clusterId){
+      mapRef.current.setFeatureState({ source: 'items', id: feature.id }, { selected: true })
+      setSelectedMarkerId(feature.id)
       return setFocused([feature]);
+    }
 
     const mapboxSource = mapRef.current.getSource('items') as GeoJSONSource
 
@@ -112,8 +123,11 @@ export default function ExploreMap(props) {
         })
       }
       //Sinon, on affiche dans le panneau latéral
-      else
+      else{
+        mapRef.current.setFeatureState({ source: 'items', id: clusterId }, { selected: true })
+        setSelectedMarkerId(clusterId)
         setFocused(features)
+      }
     })
 
 
@@ -135,6 +149,7 @@ export default function ExploreMap(props) {
           id="items"
           type="geojson"
           data={geojson}
+          generateId={true}
           cluster={true}
           clusterMaxZoom={20}
           clusterRadius={50}
