@@ -38,6 +38,14 @@ previewFeatures = ["multiSchema"] //https://github.com/prisma/prisma/issues/1175
 
 *Note : for dev, consider using mailtrap.io on Supabase docker .env for mail sending.*
 
+## Import data from V1
+
+```bash
+yarn rw exec migrateFromV1
+  \ --usersPath=/Users/maen/Cloud/Work/Carto/2022/res/users.json
+  \ --lexiquesPath=/Users/maen/Cloud/Work/Carto/2022/res/lexiques.json
+```
+
 ## Faktory
 
 Run a docker instance with script *Docker: start faktory worker*, or this command:

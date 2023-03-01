@@ -24,8 +24,9 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  email String @unique
-  roles String @default("user") //user | admin
+  eppn  String? @unique
+  email String  @unique
+  roles String  @default("user") //user | admin
 
   image     String?
   name      String?
@@ -59,7 +60,7 @@ model Organization {
   author    User?    @relation("OrganizationAuthoring", fields: [authorId], references: [id])
   authorId  Int?
   users     User[]   @relation("OrganizationBelonging")
-  name      String
+  name      String   @unique
   address   String?
   logo      String? //Logo de l'établissement
 
