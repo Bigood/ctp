@@ -68,6 +68,12 @@ const readJsonFile = async (path) => {
 }
 
 const mapUserV1toUserV2 = (userV1: UserV1, practices) => {
+  const fullname = userV1.profile.name.split(" "),
+        surname = fullname.shift(),
+        name = fullname.join(" ");
+
+  const _practices = _.intersectionWith(practices, _.merge(userV1.profile.methods, userV1.profile.technics, userV1.profile.activities), (a,b) => (a.$oid == b.$oid)).map(practice => ({id:practice.id}))
+
   return {
     cuid: userV1._id.$oid,
     // cuid: String!,
@@ -76,8 +82,8 @@ const mapUserV1toUserV2 = (userV1: UserV1, practices) => {
     email: userV1.email,
     eppn: userV1.profile.eppn,
     image: userV1.profile.avatar,
-    name: userV1.profile.name,
-    surname: userV1.profile.name,
+    name: name,
+    surname: surname,
     phone: userV1.profile.phone,
     showEmail: !userV1.profile.hide_email,
     showPhone: userV1.profile.contact_mode == "phone",
@@ -100,8 +106,7 @@ const mapUserV1toUserV2 = (userV1: UserV1, practices) => {
       }
     },
     practices: {
-      connect: _.intersectionWith(practices, userV1.profile.methods, userV1.profile.technics, userV1.profile.activities, (a,b) => (a._id.$oid == b.$oid))
-      .map(practice => practice.id)
+      connect: _practices
     }
   }
 }
@@ -122,8 +127,8 @@ export default async ({ args }) => {
 
     //Fusion des lexiques V1 et pratiques actuelles
     var merged = _.merge(_.keyBy(practices, 'name'), _.keyBy(lexiques, 'title'));
-    var mapLexiquePractice = _.values(merged);
-    console.log(mapLexiquePractice);
+    var mapLexiquePractice = _.values(merged).map(practice => ({"id": practice.id, "$oid": practice._id.$oid}));
+    // console.log(mapLexiquePractice);
 
     const usersMapped = users.map(user => mapUserV1toUserV2(user, mapLexiquePractice))
     // console.log(usersMapped);
