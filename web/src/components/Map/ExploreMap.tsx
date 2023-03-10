@@ -97,7 +97,7 @@ export default function ExploreMap(props) {
     if(!clusterId){
       mapRef.current.setFeatureState({ source: 'items', id: feature.id }, { selected: true })
       setSelectedMarkerId(feature.id)
-      return setFocused([feature]);
+      return setFocused([feature.properties]); //Passage de l'user stocké dans les properties du marker
     }
 
     const mapboxSource = mapRef.current.getSource('items') as GeoJSONSource

@@ -57,6 +57,7 @@ export const Failure = ({ error }: CellFailureProps) => {
 
 export const Success = ({ usersWithQuery, ...props }: CellSuccessProps<ExploreUsersQuery>) => {
   useEffect(()=> {
+    //@ts-ignore
     props.setResults(usersWithQuery);
   }, [usersWithQuery])
   return (
