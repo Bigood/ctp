@@ -1,6 +1,9 @@
 import { db } from 'api/src/lib/db'
 import fs from 'fs/promises'
 import _ from 'lodash'
+import async from 'async';
+
+import {createClient} from '@supabase/supabase-js'
 
 interface LexiqueV1 {
     "_id": { "$oid": string },
@@ -75,8 +78,7 @@ const mapUserV1toUserV2 = (userV1: UserV1, practices) => {
   const _practices = _.intersectionWith(practices, _.merge(userV1.profile.methods, userV1.profile.technics, userV1.profile.activities), (a,b) => (a.$oid == b.$oid)).map(practice => ({id:practice.id}))
 
   return {
-    cuid: userV1._id.$oid,
-    // cuid: String!,
+    idv1: userV1._id.$oid,
     createdAt: userV1.createdAt?.$date || userV1.createdAt,
     updatedAt: userV1.updatedAt.$date,
     email: userV1.email,
@@ -132,8 +134,33 @@ export default async ({ args }) => {
 
     const usersMapped = users.map(user => mapUserV1toUserV2(user, mapLexiquePractice))
     // console.log(usersMapped);
-    const usersCreated = await Promise.all(usersMapped.map(userMapped => db.user.create({ data: userMapped })))
-    return console.log(`Users created ${usersCreated}`);
+
+    //Création du client supabase
+    console.log(`Creating supabase client with .env val : SUPABASE_URL and SUPABASE_SERVICE_KEY (service key with all rights)`);
+    const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, { auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false }})
+
+    async.mapLimit(usersMapped, 1, async (user) => {
+        const {data, error} = await supabase.auth.api.createUser({
+            email: user.email,
+            email_confirm: true,
+            // app_metadata: {provider: "email", providers: ["email"]},
+            // user_metadata: {}
+          })
+        if(error){
+          // console.error(error, user.email)
+          //https://github.com/caolan/async/issues/1480#issuecomment-334329832
+          throw {...error, email: user.email};
+        }
+        const User = await db.user.create({ data: {cuid: data.id, ...user} });
+        console.log("User created : ", user.email)
+        return User;
+        // supabase.auth.signUp({ email: user.email, password: "azerty" }).catch(err => console.error(err)).then(()=> callback(null, user) )
+
+    }, (err, results) => {
+      if (err) console.error(err)
+      // results is now an array of the response bodies
+      console.log(`Inserted ${results.length} users`)
+    })
   }
   catch (err) {
     console.error(err)

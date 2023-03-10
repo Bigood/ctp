@@ -7711,6 +7711,7 @@ __metadata:
   dependencies:
     "@redwoodjs/api": ^3.7.0
     "@redwoodjs/graphql-server": ^3.7.0
+    async: ^3.2.4
     cross-undici-fetch: ^0.4.14
     faktory-worker: ^4.5.1
     openid-client: ^5.3.0
@@ -8111,7 +8112,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"async@npm:^3.2.3":
+"async@npm:^3.2.3, async@npm:^3.2.4":
   version: 3.2.4
   resolution: "async@npm:3.2.4"
   checksum: b5d02fed64717edf49e35b2b156debd9cf524934ea670108fa5528e7615ed66a5e0bf6c65f832c9483b63aa7f0bffe3e588ebe8d58a539b833798d324516e1c9

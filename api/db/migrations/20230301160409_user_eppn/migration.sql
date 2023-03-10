@@ -1,5 +1,6 @@
 -- AlterTable
 ALTER TABLE "User"
+    ADD COLUMN "idv1" TEXT,
     ADD COLUMN "eppn" TEXT;
 
 -- CreateIndex
