@@ -1,13 +1,11 @@
 import type { FindUsers } from 'types/graphql'
 
-import { Link, routes } from '@redwoodjs/router'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
-import Users from 'src/components/User/Users'
-import Map, { UsersMap } from 'src/components/Map/Map'
+import { useEffect } from 'react'
 
 export const QUERY = gql`
-  query FindUsersForMap {
+  query Users {
     users {
       id
       name
@@ -29,7 +27,7 @@ export const QUERY = gql`
 export const Loading = () => <div>Loading...</div>
 
 export const Empty = (props) => {
-  return <UsersMap {...props} />
+  return <div>Empty</div>
 }
 
 export const Failure = ({ error }: CellFailureProps) => (
@@ -37,5 +35,8 @@ export const Failure = ({ error }: CellFailureProps) => (
 )
 
 export const Success = ({ users, ...props }: CellSuccessProps<FindUsers>) => {
-  return <UsersMap data={users} {...props}/>
+  useEffect(() => {
+    props.setResults(users)
+  }, [users])
+  return <div>Ok</div>
 }

@@ -1,12 +1,16 @@
 import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
+import { useState } from 'react'
 import Account from 'src/components/Account/Account'
 import Auth from 'src/components/Auth/Auth'
-import UsersMapCell from 'src/components/User/UsersMapCell'
+import QueryContext from 'src/providers/context/QueryContext'
+import ExploreMap from 'src/components/Map/ExploreMap'
+import HomeMapCell from 'src/components/User/HomeMapCell'
 
 const HomePage = () => {
   const { isAuthenticated } = useAuth()
+  const [results, setResults] = useState([])
 
   return (
     <>
@@ -14,7 +18,22 @@ const HomePage = () => {
 
       <section className="flex items-center">
         <div className="flex-1">
-          <UsersMapCell className="relative h-75vh max-h-screen" />
+          <Link to="/explore/users" >
+            <QueryContext.Provider
+              //@ts-ignore
+              value={{
+                setResults,
+                results,
+              }}
+            >
+              <ExploreMap
+                className="relative h-75vh max-h-screen"
+                style={{ width: '50vw', height: '75vh' }}
+              >
+                <HomeMapCell setResults={setResults} />
+              </ExploreMap>
+            </QueryContext.Provider>
+          </Link>
         </div>
         <div className="flex-1 p-2">
           <h1 className="mb-8 text-4xl">
@@ -90,9 +109,7 @@ const HomePage = () => {
           <div className="card w-96 bg-neutral text-neutral-content">
             <div className="card-body items-center text-center">
               <h1 className="card-title">Join the community</h1>
-              <p>
-                You have to be in a partner organization to join. Ready?
-              </p>
+              <p>You have to be in a partner organization to join. Ready?</p>
               <div className="card-actions">
                 <button className="btn-primary btn">Join</button>
               </div>
