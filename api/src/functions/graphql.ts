@@ -11,7 +11,7 @@ import { logger } from 'src/lib/logger'
 
 export const handler = createGraphQLHandler({
   getCurrentUser,
-  loggerConfig: { logger, options: {} },
+  loggerConfig: { logger, options: {data:false, level: "warn"} }, //Doesn't work : https://github.com/redwoodjs/redwood/issues/5120
   directives,
   sdls,
   services,
