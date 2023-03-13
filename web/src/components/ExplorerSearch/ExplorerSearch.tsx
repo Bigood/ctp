@@ -1,8 +1,10 @@
 import { debounce } from 'lodash'
 import { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import QueryContext from 'src/providers/context/QueryContext'
 const ExplorerSearch = (props) => {
   const {setQuery} = useContext(QueryContext)
+  const {t} = useTranslation()
   const _setQuery = debounce(setQuery, 1000)
   return (
     <section className={props.className}>
@@ -10,7 +12,7 @@ const ExplorerSearch = (props) => {
         <div className="input-group">
           <input
             type="text"
-            placeholder="Search…"
+            placeholder={t("search")}
             className="input-bordered input"
             onChange={(e) => _setQuery(e.target.value)}
           />

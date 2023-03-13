@@ -1,5 +1,6 @@
 import type { CellFailureProps, CellSuccessProps } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/dist/toast'
+import { t } from 'i18next'
 import { useEffect } from 'react'
 import type { ExploreUsersQuery } from 'types/graphql'
 
@@ -62,7 +63,7 @@ export const Success = ({ usersWithQuery, ...props }: CellSuccessProps<ExploreUs
   }, [usersWithQuery])
   return (
     <span className="white">
-      Found {usersWithQuery.length} matching results
+      {t('search-result-length', {length: usersWithQuery.length})}
     </span>
   )
 }

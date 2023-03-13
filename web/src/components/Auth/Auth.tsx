@@ -48,7 +48,8 @@ const Auth = () => {
         <div className="rw-scaffold rw-login-container">
           <div className="rw-segment">
             <header className="rw-segment-header">
-              <h2 className="rw-heading rw-heading-secondary">Authentification</h2>
+              <h2 className="rw-heading rw-heading-secondary">Welcome in the CTP</h2>
+              <h3 className="rw-heading rw-heading-secondary"></h3>
             </header>
 
             <div className="rw-segment-main">

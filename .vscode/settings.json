@@ -11,5 +11,9 @@
   "tailwindCSS.includeLanguages" : {
     "javascriptreact": "html",
     "typescriptreact": "html",
-  }
+  },
+  "i18n-ally.localesPaths": [
+    "web/src/locales"
+  ],
+  "i18n-ally.keystyle": "flat"
 }

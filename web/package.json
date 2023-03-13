@@ -24,9 +24,13 @@
     "@redwoodjs/web": "^3.7.0",
     "@supabase/supabase-js": "1.35.7",
     "humanize-string": "2.1.0",
+    "i18n": "^0.15.1",
+    "i18next": "^22.4.11",
+    "i18next-browser-languagedetector": "^7.0.1",
     "prop-types": "15.8.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-i18next": "^12.2.0",
     "react-map-gl": "^7.0.21"
   },
   "devDependencies": {

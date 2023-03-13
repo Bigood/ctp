@@ -1,0 +1,34 @@
+{
+  "HomePage": {
+    "info": "Trouve moi dans",
+    "link": "le lien vers moi avec",
+    "route": "Ma route par default se nomme",
+    "title": "Découvrez les initiatives et les utilisateurs de cette communauté"
+  },
+  "administration": "Administration",
+  "cgu": "CGU",
+  "contact": "Contact",
+  "english": "Anglais",
+  "footer": {
+    "community-site": "Site communautaire",
+    "connect-subtitle": "Pour être notifié, rendez-vous sur le site communautaire !",
+    "connect-with-ctp": "Connectez vous avec la CTP",
+    "legal": "Legal"
+  },
+  "french": "Français",
+  "info": "Ceci est votre fichier de traduction",
+  "initiatives": "Initiatives",
+  "login": "Connexion",
+  "logout": "Déconnexion",
+  "organizations": "Etablissements",
+  "personal-data": "Données personnelles",
+  "practices": "Pratiques",
+  "profile": "Profile",
+  "project": "Projet",
+  "search": "Rechercher",
+  "search-result-length": "",
+  "see": "https://www.i18next.com/translation-function/essentials",
+  "services": "Services",
+  "social": "Social",
+  "users": "Utilisateurs"
+}

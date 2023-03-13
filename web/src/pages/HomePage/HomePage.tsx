@@ -7,10 +7,12 @@ import Auth from 'src/components/Auth/Auth'
 import QueryContext from 'src/providers/context/QueryContext'
 import ExploreMap from 'src/components/Map/ExploreMap'
 import HomeMapCell from 'src/components/User/HomeMapCell'
+import { useTranslation } from 'react-i18next'
 
 const HomePage = () => {
   const { isAuthenticated } = useAuth()
   const [results, setResults] = useState([])
+  const { t } = useTranslation();
 
   return (
     <>
@@ -37,17 +39,17 @@ const HomePage = () => {
         </div>
         <div className="flex-1 p-2">
           <h1 className="mb-8 text-4xl">
-            Discover initiatives and users of this community
+            {t('HomePage.title')}
           </h1>
           <div>
             <Link to="/explore/users" className="btn-primary btn-md btn mr-2">
-              Users
+              {t('users')}
             </Link>
             <Link
               to="/explore/initiatives"
               className="btn-secondary btn-md btn mr-2"
             >
-              Initiatives
+              {t('initiatives')}
             </Link>
           </div>
         </div>

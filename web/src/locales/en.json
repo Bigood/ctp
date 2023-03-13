@@ -1,0 +1,34 @@
+{
+  "HomePage": {
+    "info": "Find me in",
+    "link": "link to me with",
+    "route": "My default route is named",
+    "title": "Discover initiatives and users of this community"
+  },
+  "administration": "Admin",
+  "cgu": "CGU",
+  "contact": "Contact",
+  "english": "English",
+  "footer": {
+    "community-site": "Community site",
+    "connect-subtitle": "To be updated, go on the community website and subscribe!",
+    "connect-with-ctp": "Connect with CTP",
+    "legal": "Legal"
+  },
+  "french": "French",
+  "info": "This is your English translation file",
+  "initiatives": "Initiatives",
+  "login": "Login",
+  "logout": "Logout",
+  "organizations": "Organizations",
+  "personal-data": "Personal data",
+  "practices": "Practices",
+  "profile": "Profile",
+  "project": "Project",
+  "search": "Search",
+  "search-result-length": "Found {{length}} matching results",
+  "see": "https://www.i18next.com/translation-function/essentials",
+  "services": "Services",
+  "social": "Social",
+  "users": "Users"
+}
