@@ -1,8 +1,9 @@
-import { navigate, routes } from '@redwoodjs/router'
+import { Link, navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
+import { useTranslation } from 'react-i18next'
 
-import UserForm from 'src/components/User/UserForm'
+import SignupForm from 'src/components/User/UserForm/SignupForm'
 
 import type { CreateUserInput } from 'types/graphql'
 
@@ -15,6 +16,7 @@ const CREATE_USER_MUTATION = gql`
 `
 
 const NewUser = ({values}) => {
+  const { t } = useTranslation();
   const [createUser, { loading, error }] = useMutation(
     CREATE_USER_MUTATION,
     {
@@ -33,12 +35,17 @@ const NewUser = ({values}) => {
   }
 
   return (
-    <div className="rw-segment">
-      <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">Nouvel utilisateur</h2>
-      </header>
-      <div className="rw-segment-main">
-        <UserForm onSave={onSave} loading={loading} error={error} user={values}/>
+    <div className="text-center">
+      <Link to={routes.home()} className="btn-ghost btn text-xl normal-case">
+        {t("site-title")}
+      </Link>
+      <div className="">
+        <SignupForm
+          onSave={onSave}
+          loading={loading}
+          error={error}
+          user={values}
+        />
       </div>
     </div>
   )

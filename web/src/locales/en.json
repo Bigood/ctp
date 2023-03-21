@@ -6,8 +6,14 @@
     "title": "Discover initiatives and users of this community"
   },
   "administration": "Admin",
+  "auth": {
+    "welcome": "Welcome to the community!",
+    "welcome-sub": "Inscriptions are for this instance member only."
+  },
   "cgu": "CGU",
+  "complete-your-profile": "Complete your profile",
   "contact": "Contact",
+  "continue": "Continue",
   "english": "English",
   "footer": {
     "community-site": "Community site",
@@ -15,9 +21,29 @@
     "connect-with-ctp": "Connect with CTP",
     "legal": "Legal"
   },
+  "form": {
+    "connect-with-shibboleth": "Connect with Shibboleth",
+    "department": "Department",
+    "email": "email",
+    "email-hide-label": "Hide your email on your profile",
+    "email-label": "Your e-mail address",
+    "email-required": "Your email is required",
+    "job": "Job",
+    "name": "Name",
+    "organization": "Organization",
+    "organization-placeholder": "Select an organization…",
+    "phone-hide-label": "Hide your phone on your profile",
+    "phone-label": "Your phone number",
+    "presentation": "Presentation",
+    "short-presentation": "Short presentation",
+    "support": "Support",
+    "surname": "Surname",
+    "teacher": "Teacher"
+  },
   "french": "French",
   "info": "This is your English translation file",
   "initiatives": "Initiatives",
+  "loading": "Loading…",
   "login": "Login",
   "logout": "Logout",
   "organizations": "Organizations",
@@ -25,10 +51,13 @@
   "practices": "Practices",
   "profile": "Profile",
   "project": "Project",
+  "save": "Save",
   "search": "Search",
   "search-result-length": "Found {{length}} matching results",
   "see": "https://www.i18next.com/translation-function/essentials",
   "services": "Services",
+  "site-title": "CTP A",
   "social": "Social",
+  "subjects": "Subjects",
   "users": "Users"
 }

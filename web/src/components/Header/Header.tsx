@@ -36,7 +36,7 @@ const Header = () => {
             {menuItems(t, true)}
           </ul>
         </div>
-        <Link to={routes.home()} className="btn btn-ghost normal-case text-xl">CTP A</Link>
+        <Link to={routes.home()} className="btn btn-ghost normal-case text-xl">{t('site-title')}</Link>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

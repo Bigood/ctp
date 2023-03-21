@@ -20,14 +20,14 @@ import OrganizationsSelectCell from 'src/components/Organization/OrganizationsSe
 
 type FormUser = NonNullable<EditUserById['user']>
 
-interface UserFormProps {
+interface AdminUserFormProps {
   user?: EditUserById['user']
   onSave: (data: UpdateUserInput, id?: FormUser['id']) => void
   error: RWGqlError
   loading: boolean
 }
 
-const UserForm = (props: UserFormProps) => {
+const AdminUserForm = (props: AdminUserFormProps) => {
   const onSubmit = (data: FormUser) => {
 
 
@@ -267,4 +267,4 @@ const UserForm = (props: UserFormProps) => {
   )
 }
 
-export default UserForm
+export default AdminUserForm

@@ -11,11 +11,13 @@ import { Set, Router, Route, Private } from '@redwoodjs/router'
 
 import AppLayout from './layouts/AppLayout'
 import AdminLayout from './layouts/AdminLayout/AdminLayout'
+import AuthLayout from './layouts/AuthLayout/AuthLayout'
+import AuthCallback from './components/Auth/AuthCallback'
 
 const Routes = () => {
   return (
     <Router>
-      <Set wrap={AppLayout} title="Users" titleTo="users" buttonLabel="New User" buttonTo="newUser">
+      <Set wrap={AppLayout} title="CTP">
         <Private unauthenticated="auth">
           <Route path="/profile" page={UserEditProfilePage} name="profile" />
         </Private>
@@ -43,10 +45,17 @@ const Routes = () => {
         <Route path="/explore/users" page={ExplorerPage} name="explorer_users" />
         <Route path="/explore/initiatives" page={ExplorerPage} name="explorer_initiatives" />
         <Route path="/user/{id:Int}" page={UserProfilePage} name="showUser" />
-        <Route path="/auth" page={LoginPage} name="auth" />
         <Route path="/" page={HomePage} name="home" />
         <Route notfound page={NotFoundPage} />
       </Set>
+      <Set wrap={AuthLayout} title="Authentication">
+        <Route path="/auth" page={LoginPage} name="auth" />
+        <Private unauthenticated="auth">
+          <Route path="/auth/callback" page={AuthCallback} name="authCallback" />
+          <Route path="/signup" page={SignupPage} name="signup" />
+        </Private>
+      </Set>
+      d
     </Router>
   )
 }

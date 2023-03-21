@@ -12,9 +12,11 @@ import {
 import { Link, navigate, Redirect, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 import { toast, Toaster } from '@redwoodjs/web/toast'
+import { useTranslation } from 'react-i18next'
 
 const Auth = () => {
   const { isAuthenticated, logIn } = useAuth()
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -43,45 +45,35 @@ const Auth = () => {
     <>
       <MetaTags title="Authentification" />
 
-      <main className="rw-main">
-        <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-        <div className="rw-scaffold rw-login-container">
-          <div className="rw-segment">
-            <header className="rw-segment-header">
-              <h2 className="rw-heading rw-heading-secondary">Welcome in the CTP</h2>
-              <h3 className="rw-heading rw-heading-secondary"></h3>
+      <main className="">
+        <div className="text-center">
+          <div className="mx-auto max-w-md mt-8 mb-8">
+            <header className="header">
+              <h1 className="text-2xl">{t('auth.welcome')}</h1>
+              <h2 className="text-lg">{t('auth.welcome-sub')}</h2>
             </header>
 
-            <div className="rw-segment-main">
-              <div className="rw-form-wrapper">
-                <Form onSubmit={onSubmit} className="rw-form-wrapper">
-                  <Label
-                    name="email"
-                    className="rw-label"
-                    errorClassName="rw-label rw-label-error"
-                  >
-                    Adresse e-mail
-                  </Label>
-                  <TextField
-                    name="email"
-                    className="rw-input"
-                    errorClassName="rw-input rw-input-error"
-                    ref={emailRef}
-                    validation={{
-                      required: {
-                        value: true,
-                        message: 'Votre adresse e-mail est nécessaire',
-                      },
-                    }}
-                  />
-
-                  <FieldError name="email" className="rw-field-error" />
-                  <div className="rw-button-group">
-                    <Submit className="rw-button rw-button-blue">Login</Submit>
-                  </div>
-                </Form>
+            <Form onSubmit={onSubmit} className="wrapper">
+              <div className="form-control mb-2">
+                <Label name="email" className="label" errorClassName="error">
+                  <span className="label-text">{t('form.email')}</span>
+                </Label>
+                <TextField
+                  name="email"
+                  className="input-bordered input"
+                  errorClassName="error"
+                  ref={emailRef}
+                  validation={{
+                    required: {
+                      value: true,
+                      message: t('form.email-required'),
+                    },
+                  }}
+                />
+                <FieldError name="email" className="error" />
               </div>
-            </div>
+              <Submit className="btn-primary btn">{t('login')}</Submit> or <Link className="btn btn-outline btn-secondary" to="#">{t('form.connect-with-shibboleth')}</Link>
+            </Form>
           </div>
         </div>
       </main>

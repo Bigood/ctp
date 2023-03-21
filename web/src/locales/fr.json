@@ -6,8 +6,14 @@
     "title": "Découvrez les initiatives et les utilisateurs de cette communauté"
   },
   "administration": "Administration",
+  "auth": {
+    "welcome": "Bienvenue dans la communauté des talents pédagogiques !",
+    "welcome-sub": "L'inscription est réservée au membre d'UNIT, et nous vous suggérons d'utiliser la fédération d'identité."
+  },
   "cgu": "CGU",
+  "complete-your-profile": "Complétez votre profil",
   "contact": "Contact",
+  "continue": "Continuer",
   "english": "Anglais",
   "footer": {
     "community-site": "Site communautaire",
@@ -15,9 +21,29 @@
     "connect-with-ctp": "Connectez vous avec la CTP",
     "legal": "Legal"
   },
+  "form": {
+    "connect-with-shibboleth": "Connexion avec Shibboleth",
+    "department": "Composante / département",
+    "email": "Adresse email",
+    "email-hide-label": "Masquer l'adresse dans votre profil",
+    "email-label": "Votre adresse e-mail",
+    "email-required": "Votre adresse e-mail est nécessaire",
+    "job": "Métier",
+    "name": "Nom",
+    "organization": "Etablissement",
+    "organization-placeholder": "Sélectionnez un établissement…",
+    "phone-hide-label": "Masquer votre téléphone dans votre profil",
+    "phone-label": "Votre numéro de téléphone",
+    "presentation": "Présentation",
+    "short-presentation": "Présentation courte",
+    "support": "Personnel d'appui",
+    "surname": "Prénom",
+    "teacher": "Chargé d'enseignement"
+  },
   "french": "Français",
   "info": "Ceci est votre fichier de traduction",
   "initiatives": "Initiatives",
+  "loading": "",
   "login": "Connexion",
   "logout": "Déconnexion",
   "organizations": "Etablissements",
@@ -25,10 +51,13 @@
   "practices": "Pratiques",
   "profile": "Profile",
   "project": "Projet",
+  "save": "Enregistrer",
   "search": "Rechercher",
   "search-result-length": "",
   "see": "https://www.i18next.com/translation-function/essentials",
   "services": "Services",
+  "site-title": "CTP A",
   "social": "Social",
+  "subjects": "Domaines disciplinaires",
   "users": "Utilisateurs"
 }

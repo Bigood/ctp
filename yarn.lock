@@ -17278,7 +17278,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"md5@npm:2.3.0":
+"md5@npm:2.3.0, md5@npm:^2.3.0":
   version: 2.3.0
   resolution: "md5@npm:2.3.0"
   dependencies:
@@ -24380,6 +24380,7 @@ __metadata:
     i18n: ^0.15.1
     i18next: ^22.4.11
     i18next-browser-languagedetector: ^7.0.1
+    md5: ^2.3.0
     postcss: ^8.4.21
     postcss-loader: ^7.0.2
     prop-types: 15.8.1
