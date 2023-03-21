@@ -45,7 +45,7 @@ const AdminLayout = ({
         </div>
         <div className="drawer-side">
           <label htmlFor="admin-sidebar" className="drawer-overlay"></label>
-          <ul className="menu w-80 bg-base-100 p-4 text-base-content">
+          <ul className="menu w-80 bg-base-200 p-4 text-base-content">
             <li>
               <Link to={routes.users()}>
                 <FontAwesomeIcon icon={faUser} />

@@ -2,6 +2,8 @@ import type { FindOrganizations } from 'types/graphql'
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 import { SelectField } from '@redwoodjs/forms'
 import { t } from "i18next"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faPlus } from "@fortawesome/free-solid-svg-icons"
 
 export const QUERY = gql`
   query FindOrganizationsQuery {
@@ -37,12 +39,13 @@ export const Success = ({
 const OrganizationsSelect = (props) => {
   const { organizations, defaultValue } = props;
   return (
-    <div className="flex flex-auto">
+    <div className="form-control">
+      <div className="input-group">
       <SelectField
         name="organizationId"
         defaultValue={defaultValue}
-        className="select-bordered select w-full"
-        errorClassName="select w-full select-error"
+        className="select-bordered select w-80"
+        errorClassName="select select-error w-80"
         validation={{ valueAsNumber: true }}
         // validation={{ required: true }}
       >
@@ -55,8 +58,8 @@ const OrganizationsSelect = (props) => {
           </option>
         ))}
       </SelectField>
-      <div className="ml-2">
-        <div className="btn btn-primary btn-circle">+</div>
+      <div className="btn btn-primary"><FontAwesomeIcon icon={faPlus}/>
+      </div>
       </div>
     </div>
   )

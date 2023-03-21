@@ -19,7 +19,8 @@ const Routes = () => {
     <Router>
       <Set wrap={AppLayout} title="CTP">
         <Private unauthenticated="auth">
-          <Route path="/profile" page={UserEditProfilePage} name="profile" />
+          <Route path="/profile" page={UserLoggedInProfilePage} name="profile" />
+          <Route path="/profile/edit" page={UserEditProfilePage} name="editProfile" />
         </Private>
         <Private unauthenticated="home" roles="admin">
           <Route path="/admin" page={Admin} name="admin" />

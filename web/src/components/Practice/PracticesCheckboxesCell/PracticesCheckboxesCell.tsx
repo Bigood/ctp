@@ -60,6 +60,7 @@ const ControlledCheckboxes = (props) => {
             <div key={practice.id}>
               <input
               name="practices"
+              className="checkbox checkbox-xs mr-1"
               id={practice.id}
               value={practice.id}
               title={practice.name}

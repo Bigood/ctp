@@ -54,7 +54,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <section className="hero bg-base-200">
+      <section className="hero bg-base-300">
         <div className="hero-content">
           <div className="max-w-lg">
             <h1 className="mb-4 p-12 text-center text-4xl font-bold">
@@ -72,7 +72,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <section className="hero bg-base-100">
+      <section className="hero bg-base-200">
         <div className="hero-content">
           <div className="max-w-xl">
             <h1 className="mb-4 p-12 text-center text-4xl font-bold">
@@ -106,7 +106,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <section className="hero bg-base-200">
+      <section className="hero bg-base-300">
         <div className="hero-content">
           <div className="card w-96 bg-neutral text-neutral-content">
             <div className="card-body items-center text-center">

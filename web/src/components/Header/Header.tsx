@@ -1,6 +1,7 @@
 import { useAuth } from "@redwoodjs/auth"
 import { Link, routes } from "@redwoodjs/router"
 import { useTranslation } from "react-i18next";
+import md5 from "md5";
 
 const menuItems = (t, isVertical) => (
 <>
@@ -22,59 +23,102 @@ const menuItems = (t, isVertical) => (
 </>
 )
 const Header = () => {
-  const { isAuthenticated, hasRole, logOut } = useAuth();
+  const { isAuthenticated, currentUser, hasRole, logOut } = useAuth();
   const {t} = useTranslation();
 
   return (
-    <div className="navbar bg-base-200">
+    <div className="navbar bg-base-100 shadow-md">
       <div className="navbar-start">
         <div className="dropdown">
-          <label tabIndex={0} className="btn btn-ghost lg:hidden">
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
+          <label tabIndex={0} className="btn-ghost btn lg:hidden">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M4 6h16M4 12h8m-8 6h16"
+              />
+            </svg>
           </label>
-          <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+          <ul
+            tabIndex={0}
+            className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
+          >
             {menuItems(t, true)}
           </ul>
         </div>
-        <Link to={routes.home()} className="btn btn-ghost normal-case text-xl">{t('site-title')}</Link>
+        <Link to={routes.home()} className="btn-ghost btn text-xl normal-case">
+          {t('site-title')}
+        </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          {menuItems(t, false)}
-        </ul>
+        <ul className="menu menu-horizontal px-1 bg-base-100">{menuItems(t, false)}</ul>
       </div>
       <div className="flex-none gap-2">
         <div className="form-control">
-          <input type="text" placeholder={t('search')} className="input input-bordered" />
+          <input
+            type="text"
+            placeholder={t('search')}
+            className="input-bordered input"
+          />
         </div>
         {isAuthenticated ? (
           <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+            <label tabIndex={0} className="btn-ghost btn-circle avatar btn">
               <div className="w-10 rounded-full">
-                <img src="https://placeimg.com/80/80" />
+                <img
+                  src={`https://www.gravatar.com/avatar/${md5( currentUser.email )}?d=identicon`}
+                />
               </div>
             </label>
-            <ul tabIndex={0} className="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu rounded-box menu-compact mt-3 w-52 bg-base-100 p-2 shadow"
+            >
               <li>
-                <Link to={routes.profile()} className="justify-between" >
+                <Link to={routes.profile()} className="justify-between">
                   {t('profile')}
                   {/* <span className="badge">new</span> */}
                 </Link>
+                <Link to={routes.editProfile()} className="justify-between">
+                  {t('edit-profile')}
+                  {/* <span className="badge">new</span> */}
+                </Link>
               </li>
-              <li onClick={logOut}><span>{t('logout')}</span></li>
-              {hasRole("admin") && (
+              <li onClick={logOut}>
+                <span>{t('logout')}</span>
+              </li>
+              {hasRole('admin') && (
                 <>
                   <li className="menu-title">
                     <span>{t('administration')}</span>
                   </li>
-                  <li><Link to={routes.users()}>{t('users')}</Link></li>
-                  <li><Link to={routes.organizations()}>{t('organizations')}</Link></li>
-                  <li><Link to={routes.practices()}>{t('practices')}</Link></li>
+                  <li>
+                    <Link to={routes.users()}>{t('users')}</Link>
+                  </li>
+                  <li>
+                    <Link to={routes.organizations()}>
+                      {t('organizations')}
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={routes.practices()}>{t('practices')}</Link>
+                  </li>
                 </>
               )}
             </ul>
           </div>
-        ) : <button className="btn btn-primary"><Link to={routes.auth()}>{t('login')}</Link></button>}
+        ) : (
+          <button className="btn-primary btn">
+            <Link to={routes.auth()}>{t('login')}</Link>
+          </button>
+        )}
       </div>
     </div>
   )

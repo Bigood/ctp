@@ -47,7 +47,7 @@ const Auth = () => {
 
       <main className="">
         <div className="text-center">
-          <div className="mx-auto max-w-md mt-8 mb-8">
+          <div className="mx-auto max-w-md py-8">
             <header className="header">
               <h1 className="text-2xl">{t('auth.welcome')}</h1>
               <h2 className="text-lg">{t('auth.welcome-sub')}</h2>
@@ -72,7 +72,7 @@ const Auth = () => {
                 />
                 <FieldError name="email" className="error" />
               </div>
-              <Submit className="btn-primary btn">{t('login')}</Submit> or <Link className="btn btn-outline btn-secondary" to="#">{t('form.connect-with-shibboleth')}</Link>
+              <Submit className="btn-primary btn">{t('login')}</Submit> {t('or')} <Link className="btn btn-outline btn-secondary" to="#">{t('form.connect-with-shibboleth')}</Link>
             </Form>
           </div>
         </div>

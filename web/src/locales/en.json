@@ -5,7 +5,9 @@
     "route": "My default route is named",
     "title": "Discover initiatives and users of this community"
   },
+  "about-this-user": "About this user",
   "administration": "Admin",
+  "at": "at",
   "auth": {
     "welcome": "Welcome to the community!",
     "welcome-sub": "Inscriptions are for this instance member only."
@@ -14,6 +16,7 @@
   "complete-your-profile": "Complete your profile",
   "contact": "Contact",
   "continue": "Continue",
+  "edit-profile": "Edit profile",
   "english": "English",
   "footer": {
     "community-site": "Community site",
@@ -43,9 +46,13 @@
   "french": "French",
   "info": "This is your English translation file",
   "initiatives": "Initiatives",
+  "like": "Like",
+  "likes": "likes",
   "loading": "Loading…",
   "login": "Login",
   "logout": "Logout",
+  "my-profile": "My profile",
+  "or": "or",
   "organizations": "Organizations",
   "personal-data": "Personal data",
   "practices": "Practices",
@@ -56,8 +63,11 @@
   "search-result-length": "Found {{length}} matching results",
   "see": "https://www.i18next.com/translation-function/essentials",
   "services": "Services",
+  "similar-users": "Similar users",
   "site-title": "CTP A",
   "social": "Social",
   "subjects": "Subjects",
-  "users": "Users"
+  "updated-at": "Updated at",
+  "users": "Users",
+  "views": "views"
 }

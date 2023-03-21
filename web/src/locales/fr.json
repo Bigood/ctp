@@ -5,7 +5,9 @@
     "route": "Ma route par default se nomme",
     "title": "Découvrez les initiatives et les utilisateurs de cette communauté"
   },
+  "about-this-user": "A propos",
   "administration": "Administration",
+  "at": "à",
   "auth": {
     "welcome": "Bienvenue dans la communauté des talents pédagogiques !",
     "welcome-sub": "L'inscription est réservée au membre d'UNIT, et nous vous suggérons d'utiliser la fédération d'identité."
@@ -14,6 +16,7 @@
   "complete-your-profile": "Complétez votre profil",
   "contact": "Contact",
   "continue": "Continuer",
+  "edit-profile": "Modifier mon profil",
   "english": "Anglais",
   "footer": {
     "community-site": "Site communautaire",
@@ -43,21 +46,28 @@
   "french": "Français",
   "info": "Ceci est votre fichier de traduction",
   "initiatives": "Initiatives",
-  "loading": "",
+  "like": "Favori",
+  "likes": "likes",
+  "loading": "Chargement…",
   "login": "Connexion",
   "logout": "Déconnexion",
+  "my-profile": "Mon profil",
+  "or": "ou",
   "organizations": "Etablissements",
   "personal-data": "Données personnelles",
   "practices": "Pratiques",
-  "profile": "Profile",
+  "profile": "Profil",
   "project": "Projet",
   "save": "Enregistrer",
   "search": "Rechercher",
   "search-result-length": "",
   "see": "https://www.i18next.com/translation-function/essentials",
   "services": "Services",
+  "similar-users": "Utilisateurs similaires",
   "site-title": "CTP A",
   "social": "Social",
   "subjects": "Domaines disciplinaires",
-  "users": "Utilisateurs"
+  "updated-at": "Mis à jour le",
+  "users": "Utilisateurs",
+  "views": "vues"
 }

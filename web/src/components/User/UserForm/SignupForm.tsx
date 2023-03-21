@@ -192,6 +192,24 @@ const SignupForm = (props: SignupFormProps) => {
             <div className="flex flex-auto">
               <div className="mr-2">
                 <Label
+                  name="surname"
+                  className="label"
+                  errorClassName="label label-error"
+                >
+                  {t('form.surname')}
+                </Label>
+
+                <TextField
+                  name="surname"
+                  defaultValue={props.user?.surname}
+                  className="input-bordered input w-36"
+                  errorClassName="input input-error w-36"
+                  validation={{ required: true }}
+                />
+                <FieldError name="surname" className="rw-field-error" />
+              </div>
+              <div className="mr-2">
+                <Label
                   name="name"
                   className="label"
                   errorClassName="label label-error"
@@ -208,24 +226,6 @@ const SignupForm = (props: SignupFormProps) => {
                 />
 
                 <FieldError name="name" className="rw-field-error" />
-              </div>
-              <div className="mr-2">
-                <Label
-                  name="surname"
-                  className="label"
-                  errorClassName="label label-error"
-                >
-                  {t('form.surname')}
-                </Label>
-
-                <TextField
-                  name="surname"
-                  defaultValue={props.user?.surname}
-                  className="input-bordered input w-36"
-                  errorClassName="input input-error w-36"
-                  validation={{ required: true }}
-                />
-                <FieldError name="surname" className="rw-field-error" />
               </div>
               <div className="mr-2">
                 <Label

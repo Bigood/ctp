@@ -1,22 +1,39 @@
+import { useTranslation } from "react-i18next"
 import Map from 'src/components/Map/Map'
 import type { FindProfileQuery } from 'types/graphql'
+import md5 from 'md5'
+import { useAuth } from "@redwoodjs/auth"
+
 const Profile = ({ user }: FindProfileQuery) => {
+  const { t } = useTranslation()
+  const { isAuthenticated } = useAuth();
+
   return (
-    <div className="container mx-auto grid grid-cols-6 gap-3">
-      <main className="col-span-4">
-        <section className="bg-zinc-800">
-          <div className="flex bg-zinc-900 p-4">
+    <div className="container mx-auto grid min-h-screen grid-cols-6 gap-3">
+      <main className="col-span-4 my-4">
+        <section className="w-full rounded-md bg-base-100 text-base-content shadow-xl">
+          <div className="flex p-4">
             <div className="avatar mr-2 flex-none">
-              <div className="w-24 rounded-full">
-                <img src={user.image || '//placekitten.com/200/200'} />
+              <div className="mask mask-squircle w-24">
+                <img
+                  src={
+                    user.image ||
+                    `https://www.gravatar.com/avatar/${md5(
+                      user.email
+                    )}?d=identicon`
+                  }
+                />
               </div>
             </div>
-            <div className="flex-1">
+            <div className="flex-1 lg:ml-2">
               <h1 className="text-2xl">
                 {user.surname} {user.name}
               </h1>
               <h2 className="text-lg">
-                {user.job} at {user.organization?.name} - {user.department}
+                {user.job &&
+                  t(`form.${user.job.toLowerCase()}`) + ` ${t('at')} `}{' '}
+                {user.organization?.name}
+                {user.department && ` - ${user.department}`}
               </h2>
             </div>
           </div>
@@ -24,9 +41,9 @@ const Profile = ({ user }: FindProfileQuery) => {
             <p className="italic">{user.shortPresentation}</p>
           </div>
           <div className="flex gap-2 p-4">
-            <div className="btn-primary btn gap-2">Contact</div>
+            <div className="btn-primary btn gap-2">{t('contact')}</div>
             <div className="btn-secondary btn gap-2">
-              Like
+              {t('like')}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6"
@@ -44,17 +61,10 @@ const Profile = ({ user }: FindProfileQuery) => {
             </div>
           </div>
         </section>
-        <section className="mt-4 bg-zinc-800 p-4">
-          {user.presentation && (
-            <div className="mb-4">
-              <h2 className="mb-2 text-xl">Presentation</h2>
-              <p className="whitespace-pre-line">{user.presentation}</p>
-            </div>
-          )}
-
+        <section className="mt-4 rounded-md bg-base-100  p-4 shadow-xl">
           {user.practices && (
             <div className="mb-4">
-              <h2 className="mb-2 text-xl">Practices</h2>
+              <h2 className="mb-2 text-xl">{t('practices')}</h2>
               <div>
                 {user.practices.map((practice) => (
                   <div className="badge-outline badge mr-2" key={practice.id}>
@@ -64,28 +74,43 @@ const Profile = ({ user }: FindProfileQuery) => {
               </div>
             </div>
           )}
-
+        </section>
+        <section className="mt-4 rounded-md bg-base-100  p-4 shadow-xl">
+          {user.presentation && (
+            <div className="mb-4">
+              <h2 className="mb-2 text-xl">{t('form.presentation')}</h2>
+              <p className="whitespace-pre-line">{user.presentation}</p>
+            </div>
+          )}
           {user.subjects && (
             <div className="mb-4">
-              <h2 className="mb-2 text-xl">Subjects</h2>
+              <h2 className="mb-2 text-xl">{t('subjects')}</h2>
               <p className="whitespace-pre-line">{user.subjects}</p>
             </div>
           )}
         </section>
       </main>
-      <aside className="col-span-2">
+      <aside className="col-span-2 my-4  rounded-md bg-base-100 p-4 shadow-xl">
+        {isAuthenticated && (
+          <section className="mb-2">
+            <h1 className="mb-2 text-xl">{t('my-profile')}</h1>
+            <div className="btn-secondary btn">{t('edit-profile')}</div>
+          </section>
+        )}
         <section className="mb-2">
-          <h1 className="mb-2 text-xl">About this user</h1>
-          <p className="text-sm">Updated at {user.updatedAt}</p>
-          <p className="text-sm">XX views</p>
-          <p className="text-sm">XX likes</p>
+          <h1 className="mb-2 text-xl">{t('about-this-user')}</h1>
+          <p className="text-sm">
+            {t('updated-at')} {user.updatedAt}
+          </p>
+          <p className="text-sm">XX {t('views')}</p>
+          <p className="text-sm">XX {t('likes')}</p>
         </section>
         <section>
-          <h1 className="mb-2 text-xl">Organization</h1>
-          <img
-            src={user.organization.logo || 'https://placekitten.com/500/400'}
-            className="mb-2 aspect-auto"
-          />
+          <h1 className="mb-2 text-xl">{t('form.organization')}</h1>
+          {user.organization.name}
+          {user.organization.logo && (
+            <img src={user.organization.logo} className="mb-2 aspect-auto" />
+          )}
           <Map
             markers={[user.organization]}
             zoomLevel={7}
@@ -94,7 +119,7 @@ const Profile = ({ user }: FindProfileQuery) => {
           />
         </section>
         <section>
-          <h1 className="mb-2 text-xl">Similar users</h1>
+          <h1 className="mb-2 text-xl">{t('similar-users')}</h1>
         </section>
       </aside>
     </div>
