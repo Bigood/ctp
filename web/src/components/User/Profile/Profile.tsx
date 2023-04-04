@@ -3,6 +3,8 @@ import Map from 'src/components/Map/Map'
 import type { FindProfileQuery } from 'types/graphql'
 import md5 from 'md5'
 import { useAuth } from "@redwoodjs/auth"
+import { Link } from "@redwoodjs/router"
+import { routes } from "@redwoodjs/router"
 
 const Profile = ({ user }: FindProfileQuery) => {
   const { t } = useTranslation()
@@ -94,7 +96,9 @@ const Profile = ({ user }: FindProfileQuery) => {
         {isAuthenticated && (
           <section className="mb-2">
             <h1 className="mb-2 text-xl">{t('my-profile')}</h1>
-            <div className="btn-secondary btn">{t('edit-profile')}</div>
+            <Link to={routes.editProfile()}>
+              <div className="btn-secondary btn">{t('edit-profile')}</div>
+            </Link>
           </section>
         )}
         <section className="mb-2">

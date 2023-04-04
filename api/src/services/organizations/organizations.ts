@@ -46,6 +46,16 @@ export const updateOrganization: MutationResolvers['updateOrganization'] = async
   return organization;
 }
 
+export const upsertOrganization:  MutationResolvers['createOrganization'] | MutationResolvers['updateOrganization'] = async ({ id, input, }) => {
+  const organization = await db.organization.upsert({
+    create: input,
+    update: input,
+    where: { id },
+  })
+  propagateMessage(OPERATIONS.UPDATE, "organization", organization);
+  return organization;
+}
+
 export const deleteOrganization: MutationResolvers['deleteOrganization'] = async ({ id, }) => {
   const organization = await db.organization.delete({
     where: { id },

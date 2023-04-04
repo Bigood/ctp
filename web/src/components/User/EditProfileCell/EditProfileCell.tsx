@@ -8,7 +8,7 @@ import { toast } from '@redwoodjs/web/toast'
 import EditForm from 'src/components/User/UserForm/EditForm'
 
 export const QUERY = gql`
-  query EditUserById($id: Int!) {
+  query EditProfile($id: Int!) {
     user: user(id: $id) {
       id
       createdAt

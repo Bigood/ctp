@@ -12,6 +12,7 @@
     "welcome": "Bienvenue dans la communauté des talents pédagogiques !",
     "welcome-sub": "L'inscription est réservée au membre d'UNIT, et nous vous suggérons d'utiliser la fédération d'identité."
   },
+  "cancel": "Annuler",
   "cgu": "CGU",
   "complete-your-profile": "Complétez votre profil",
   "contact": "Contact",
@@ -26,6 +27,7 @@
     "legal": "Legal"
   },
   "form": {
+    "address": "Adresse",
     "connect-with-shibboleth": "Connexion avec Shibboleth",
     "department": "Composante / département",
     "email": "Adresse email",
@@ -44,7 +46,8 @@
     "short-presentation": "Présentation courte",
     "support": "Personnel d'appui",
     "surname": "Prénom",
-    "teacher": "Chargé d'enseignement"
+    "teacher": "Chargé d'enseignement",
+    "url": "Adresse du site web"
   },
   "french": "Français",
   "info": "Ceci est votre fichier de traduction",

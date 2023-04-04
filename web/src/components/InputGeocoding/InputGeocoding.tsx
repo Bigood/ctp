@@ -38,6 +38,7 @@ const InputGeocoding = (props:InputProps) => {
         className="global-search"
         style={{ width: '100%' }}
         dataSource={dataSource}
+        defaultValue={props.value}
         value={props.value}
         resultKey="place_name_fr"
         onSelect={props.onSelect}

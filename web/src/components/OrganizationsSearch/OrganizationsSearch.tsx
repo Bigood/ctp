@@ -5,11 +5,13 @@ import { faPlus, faSearch } from "@fortawesome/free-solid-svg-icons"
 import OrganizationsSelectCell from "../Organization/OrganizationsSelectCell"
 import { useState } from "react"
 import { debounce } from "lodash"
+import OrganizationModalCell from '../OrganizationModalCell'
 
 const OrganizationsSearch = (props) => {
   const { defaultValue } = props;
   const [query, setQuery] = useState(defaultValue?.name || "")
   const [dropdownVisible, setDropdownVisible] = useState(false)
+  const [modalVisible, setModalVisible] = useState(false)
   const [organization, setOrganization] = useState(defaultValue)
 
   const handleSearch = (event) => {
@@ -30,7 +32,9 @@ const OrganizationsSearch = (props) => {
             type="text"
             className="input-bordered input w-full pr-12"
             placeholder={t('form.organization-search')}
-            value={!dropdownVisible && organization ? organization.name : undefined}
+            value={
+              !dropdownVisible && organization ? organization.name : undefined
+            }
             onChange={_handleSearch}
             onFocus={() => setDropdownVisible(true)}
             // onBlur={() => setDropdownVisible(false)}
@@ -44,7 +48,7 @@ const OrganizationsSearch = (props) => {
             }`}
           />
         </div>
-        <div className="btn-primary btn btn-circle grow-0 ml-2">
+        <div className="btn-primary btn-circle btn ml-2 grow-0" onClick={()=> setModalVisible(true)}>
           <FontAwesomeIcon icon={faPlus} />
         </div>
       </div>
@@ -62,6 +66,12 @@ const OrganizationsSearch = (props) => {
           onSelect={onSelect}
         />
       </ul>
+
+      <OrganizationModalCell
+        visible={modalVisible}
+        setVisible={setModalVisible}
+        id={organization?.id}
+      />
     </div>
   )
 }

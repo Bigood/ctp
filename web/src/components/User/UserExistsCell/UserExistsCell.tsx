@@ -3,7 +3,7 @@ import type { CellFailureProps, CellSuccessProps } from '@redwoodjs/web'
 
 
 export const QUERY = gql`
-  query UserExistsQuery {
+  query UserExistsQuery($id: Int!) {
     user: user(id: $id) {
       id
     }

@@ -12,6 +12,7 @@
     "welcome": "Welcome to the community!",
     "welcome-sub": "Inscriptions are for this instance member only."
   },
+  "cancel": "Cancel",
   "cgu": "CGU",
   "complete-your-profile": "Complete your profile",
   "contact": "Contact",
@@ -26,6 +27,7 @@
     "legal": "Legal"
   },
   "form": {
+    "address": "Address",
     "connect-with-shibboleth": "Connect with Shibboleth",
     "department": "Department",
     "email": "email",
@@ -44,7 +46,8 @@
     "short-presentation": "Short presentation",
     "support": "Support",
     "surname": "Surname",
-    "teacher": "Teacher"
+    "teacher": "Teacher",
+    "url": "URL of the website"
   },
   "french": "French",
   "info": "This is your English translation file",

@@ -64,6 +64,7 @@ model Organization {
   users     User[]   @relation("OrganizationBelonging")
   name      String   @unique
   address   String?
+  url       String?
   logo      String? //Logo de l'établissement
 
   instance   Instance? @relation("OrganizationsFromInstance", fields: [instanceId], references: [id])

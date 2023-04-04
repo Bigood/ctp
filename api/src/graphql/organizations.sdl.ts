@@ -9,6 +9,7 @@ export const schema = gql`
     users: [User]!
     name: String!
     address: String
+    url: String
     logo: String
     latitude: Float
     longitude: Float
@@ -26,6 +27,7 @@ export const schema = gql`
     logo: String
     latitude: Float
     longitude: Float
+    url: String
   }
 
   input UpdateOrganizationInput {
@@ -35,12 +37,17 @@ export const schema = gql`
     logo: String
     latitude: Float
     longitude: Float
+    url: String
   }
 
   type Mutation {
     createOrganization(input: CreateOrganizationInput!): Organization!
       @requireAuth
     updateOrganization(
+      id: Int!
+      input: UpdateOrganizationInput!
+    ): Organization! @requireAuth
+    upsertOrganization(
       id: Int!
       input: UpdateOrganizationInput!
     ): Organization! @requireAuth
