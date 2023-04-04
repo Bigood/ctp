@@ -15,13 +15,13 @@ import type { EditUserById, UpdateUserInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 import PracticesCheckboxesCell from 'src/components/Practice/PracticesCheckboxesCell'
-import OrganizationsSelectCell from 'src/components/Organization/OrganizationsSelectCell'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import md5 from 'md5'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLock } from "@fortawesome/free-solid-svg-icons"
+import OrganizationsSearch from "src/components/OrganizationsSearch/OrganizationsSearch"
 
 type FormUser = NonNullable<EditUserById['user']>
 
@@ -278,7 +278,7 @@ const SignupForm = (props: SignupFormProps) => {
               />
               <FieldError name="department" className="rw-field-error" />
             </div>
-            <div>
+            <div className="text-left grow">
               <Label
                 name="organizationId"
                 className="label"
@@ -286,9 +286,8 @@ const SignupForm = (props: SignupFormProps) => {
               >
                 {t('form.organization')}
               </Label>
-              <OrganizationsSelectCell
-                defaultValue={props.user?.organizationId}
-              />
+
+              <OrganizationsSearch />
               <FieldError name="organizationId" className="rw-field-error" />
             </div>
           </div>

@@ -7,8 +7,20 @@ import type {
 import { db } from 'src/lib/db'
 import { OPERATIONS, propagateMessage } from 'src/lib/relay'
 
-export const organizations: QueryResolvers['organizations'] = () => {
-  return db.organization.findMany()
+export const organizations: QueryResolvers['organizations'] = ({ query, limit = 10}) => {
+
+  if(query)
+    return db.organization.findMany({
+      where: {
+        OR: [
+          {name: {contains: query, mode: 'insensitive'}},
+          {address: {contains: query, mode: 'insensitive'}},
+        ]
+      },
+      take: limit
+    })
+  else
+    return db.organization.findMany({take: limit})
 }
 
 export const organization: QueryResolvers['organization'] = ({ id }) => {

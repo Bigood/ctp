@@ -25,7 +25,10 @@ export const QUERY = gql`
       shortPresentation
       presentation
       subjects
-      organizationId
+      organization {
+        id
+        name
+      }
       practices {
         id
       }

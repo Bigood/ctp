@@ -15,7 +15,7 @@ export const schema = gql`
   }
 
   type Query {
-    organizations: [Organization!]! @requireAuth
+    organizations(query: String, limit: Int): [Organization!]! @requireAuth
     organization(id: Int!): Organization @requireAuth
   }
 

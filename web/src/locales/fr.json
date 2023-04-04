@@ -18,6 +18,7 @@
   "continue": "Continuer",
   "edit-profile": "Modifier mon profil",
   "english": "Anglais",
+  "fetch-error": "Une erreur est survenue lors de la récupération",
   "footer": {
     "community-site": "Site communautaire",
     "connect-subtitle": "Pour être notifié, rendez-vous sur le site communautaire !",
@@ -34,7 +35,9 @@
     "job": "Métier",
     "name": "Nom",
     "organization": "Etablissement",
+    "organization-empty": "Aucun établissement trouvé. En créer un ?",
     "organization-placeholder": "Sélectionnez un établissement…",
+    "organization-search": "Rechercher un établissement…",
     "phone-hide-label": "Masquer votre téléphone dans votre profil",
     "phone-label": "Votre numéro de téléphone",
     "presentation": "Présentation",

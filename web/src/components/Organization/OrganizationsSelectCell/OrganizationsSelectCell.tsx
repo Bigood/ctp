@@ -1,27 +1,35 @@
-import type { FindOrganizations } from 'types/graphql'
-import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
-import { SelectField } from '@redwoodjs/forms'
-import { t } from "i18next"
+import { faSpinner } from "@fortawesome/free-solid-svg-icons"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faPlus } from "@fortawesome/free-solid-svg-icons"
+import type { CellFailureProps, CellSuccessProps } from '@redwoodjs/web'
+import { t } from "i18next"
+import type { FindOrganizations } from 'types/graphql'
 
 export const QUERY = gql`
-  query FindOrganizationsQuery {
-    organizations {
+  query FindOrganizationsQuery($query: String, $limit: Int) {
+    organizations(query: $query, limit: $limit) {
       id
       name
+      address
     }
   }
 `
 
-export const Loading = () => <div className="animate-pulse input ">{t('loading')}</div>
+export const Loading = () => (
+  <li className="border-b border-base-200 bg-base-100 p-2">
+    <FontAwesomeIcon icon={faSpinner} className="animate-spin" />
+  </li>
+)
 
-export const Empty = () => <div>Empty</div>
+export const Empty = () => (
+  <li className="cursor-pointer border-b border-base-200 bg-base-100 p-2 hover:text-primary">
+    {t('form.organization-empty')}
+  </li>
+)
 
-export const Failure = ({
-  error,
-}: CellFailureProps<FindOrganizations>) => (
-  <div style={{ color: 'red' }}>Error: {error?.message}</div>
+export const Failure = ({ error }: CellFailureProps<FindOrganizations>) => (
+  <li className=" border-b border-base-200 bg-base-100 p-2 italic">
+    {t('fetch-error')}
+  </li>
 )
 
 interface OrganizationsSelect extends FindOrganizations {
@@ -37,30 +45,19 @@ export const Success = ({
 
 
 const OrganizationsSelect = (props) => {
-  const { organizations, defaultValue } = props;
+  const { organizations, onSelect } = props
   return (
-    <div className="form-control">
-      <div className="input-group">
-      <SelectField
-        name="organizationId"
-        defaultValue={defaultValue}
-        className="select-bordered select w-80"
-        errorClassName="select select-error w-80"
-        validation={{ valueAsNumber: true }}
-        // validation={{ required: true }}
-      >
-        <option disabled selected>
-          {t('form.organization-placeholder')}
-        </option>
-        {organizations?.map((organization) => (
-          <option key={organization.id} value={organization.id}>
-            {organization.name}
-          </option>
-        ))}
-      </SelectField>
-      <div className="btn btn-primary"><FontAwesomeIcon icon={faPlus}/>
-      </div>
-      </div>
-    </div>
+    <>
+      {organizations.map((organization) => (
+        <li
+          key={organization.id}
+          className="border-b border-base-200 p-2 hover:text-primary bg-base-100 cursor-pointer"
+          onClick={() => onSelect(organization)}
+        >
+          <h3 className="text-sm font-medium">{organization.name}</h3>
+          <p className="text-xs">{organization.address}</p>
+        </li>
+      ))}
+    </>
   )
 }

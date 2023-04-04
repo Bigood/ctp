@@ -18,6 +18,7 @@
   "continue": "Continue",
   "edit-profile": "Edit profile",
   "english": "English",
+  "fetch-error": "An error occurred while fetching",
   "footer": {
     "community-site": "Community site",
     "connect-subtitle": "To be updated, go on the community website and subscribe!",
@@ -34,7 +35,9 @@
     "job": "Job",
     "name": "Name",
     "organization": "Organization",
+    "organization-empty": "No organization found. Create one?",
     "organization-placeholder": "Select an organization…",
+    "organization-search": "Search for an organization…",
     "phone-hide-label": "Hide your phone on your profile",
     "phone-label": "Your phone number",
     "presentation": "Presentation",

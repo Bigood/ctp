@@ -22,6 +22,7 @@ import { useTranslation } from 'react-i18next'
 import md5 from 'md5'
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faLock } from "@fortawesome/free-solid-svg-icons"
+import OrganizationsSearch from "src/components/OrganizationsSearch/OrganizationsSearch"
 
 type FormUser = NonNullable<EditUserById['user']>
 
@@ -152,7 +153,7 @@ const SignupForm = (props: SignupFormProps) => {
                 />
                 <FieldError name="department" className="rw-field-error" />
               </div>
-              <div>
+              <div className="grow">
                 <Label
                   name="organizationId"
                   className="label uppercase"
@@ -160,8 +161,8 @@ const SignupForm = (props: SignupFormProps) => {
                 >
                   {t('form.organization')}
                 </Label>
-                <OrganizationsSelectCell
-                  defaultValue={props.user?.organizationId}
+                <OrganizationsSearch
+                  defaultValue={props.user?.organization}
                 />
                 <FieldError name="organizationId" className="rw-field-error" />
               </div>
