@@ -28,6 +28,7 @@ export const QUERY = gql`
       organization {
         id
         name
+        authorId
       }
       practices {
         id

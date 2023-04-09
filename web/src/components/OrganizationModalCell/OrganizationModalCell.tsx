@@ -25,7 +25,7 @@ export const QUERY = gql`
 `
 
 const UPSERT_ORGANIZATION_MUTATION = gql`
-  mutation UpsertOrganizationMutation($id: Int!, $input: UpdateOrganizationInput!) {
+  mutation UpsertOrganizationMutation($id: Int, $input: UpdateOrganizationInput!) {
     upsertOrganization(id: $id, input: $input) {
       id
       name
@@ -46,7 +46,7 @@ const UPSERT_ORGANIZATION_MUTATION = gql`
 
 export const Loading = () => <div>Loading...</div>
 
-export const Empty = () => <div>Empty</div>
+// export const Empty = () => <div>Empty</div>
 
 export const Failure = ({
   error,

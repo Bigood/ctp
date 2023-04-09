@@ -105,15 +105,17 @@ const Map = (props: MapProps) => {
             .addTo(map.current)
         })
       )
+
       //Focus on marker if provided in props
-      if(centerOnMarkers){
+      if(centerOnMarkers && markers?.length){
         //Get all markers to fit in screen
         if (markers.length > 1)
           map.current.fitBounds(map.current.getBounds())
         //Only one marker, no bounds
         else{
           const firstMarker = markers[0]
-          map.current.setCenter({lng: firstMarker.longitude, lat: firstMarker.latitude})
+          if(firstMarker.longitude && firstMarker.latitude)
+            map.current.setCenter({lng: firstMarker.longitude, lat: firstMarker.latitude})
         }
       }
     }

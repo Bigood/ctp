@@ -149,12 +149,12 @@ const OrganizationModal = ({ visible, setVisible, organization, onSave, error, l
 
             <Map
               centerOnMarkers
-              markers={[
+              markers={(watchCoords || organization) ? [
                 {
                   latitude: watchCoords[0] || organization?.latitude,
                   longitude: watchCoords[1] || organization?.longitude,
                 },
-              ]}
+              ] : []}
             />
             <NumberField
               name="latitude"

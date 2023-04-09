@@ -48,7 +48,7 @@ export const schema = gql`
       input: UpdateOrganizationInput!
     ): Organization! @requireAuth
     upsertOrganization(
-      id: Int!
+      id: Int
       input: UpdateOrganizationInput!
     ): Organization! @requireAuth
     deleteOrganization(id: Int!): Organization! @requireAuth

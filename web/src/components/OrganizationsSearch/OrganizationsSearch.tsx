@@ -6,6 +6,8 @@ import OrganizationsSelectCell from "../Organization/OrganizationsSelectCell"
 import { useState } from "react"
 import { debounce } from "lodash"
 import OrganizationModalCell from '../OrganizationModalCell'
+import { faEdit } from "@fortawesome/free-regular-svg-icons"
+import { useAuth } from "@redwoodjs/auth"
 
 const OrganizationsSearch = (props) => {
   const { defaultValue } = props;
@@ -13,6 +15,7 @@ const OrganizationsSearch = (props) => {
   const [dropdownVisible, setDropdownVisible] = useState(false)
   const [modalVisible, setModalVisible] = useState(false)
   const [organization, setOrganization] = useState(defaultValue)
+  const { currentUser, hasRole } = useAuth()
 
   const handleSearch = (event) => {
     setQuery(event.target.value)
@@ -48,9 +51,26 @@ const OrganizationsSearch = (props) => {
             }`}
           />
         </div>
-        <div className="btn-primary btn-circle btn ml-2 grow-0" onClick={()=> setModalVisible(true)}>
-          <FontAwesomeIcon icon={faPlus} />
-        </div>
+        {!dropdownVisible && organization &&
+          (organization?.authorId == currentUser.id || hasRole('admin')) && (
+            <div
+              className="btn-secondary btn-circle btn ml-2 grow-0"
+              onClick={() => setModalVisible(true)}
+            >
+              <FontAwesomeIcon icon={faEdit} />
+            </div>
+          )}
+        {(!organization || dropdownVisible) && (
+          <div
+            className="btn-primary btn-circle btn ml-2 grow-0"
+            onClick={() => {
+              setOrganization(null)
+              setModalVisible(true)
+            }}
+          >
+            <FontAwesomeIcon icon={faPlus} />
+          </div>
+        )}
       </div>
       <ul
         className={`absolute mt-2 max-h-56 overflow-y-auto transition-all	ease-out ${
@@ -70,7 +90,7 @@ const OrganizationsSearch = (props) => {
       <OrganizationModalCell
         visible={modalVisible}
         setVisible={setModalVisible}
-        id={organization?.id}
+        id={organization?.id || 0}
       />
     </div>
   )
