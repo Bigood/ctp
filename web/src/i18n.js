@@ -38,7 +38,17 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    interpolation: { escapeValue: false }, // React already does escaping
+    interpolation: {
+      // React already does escaping
+      escapeValue: false,
+      // eslint-disable-next-line no-unused-vars
+      format: function (value, format, lng) {
+        if (format === 'uppercase') return value.toUpperCase();
+        if (format === 'lowercase') return value.toLowerCase();
+        if (format === 'capitalize') return `${value.substr(0, 1).toUpperCase()}${value.substr(1)}`;
+        return value;
+      },
+    },
     fallbackLng: 'fr',
     resources: {
       en: {

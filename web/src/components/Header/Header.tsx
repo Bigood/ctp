@@ -2,25 +2,39 @@ import { useAuth } from "@redwoodjs/auth"
 import { Link, routes } from "@redwoodjs/router"
 import { useTranslation } from "react-i18next";
 import md5 from "md5";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faCaretDown, faCaretRight } from "@fortawesome/free-solid-svg-icons";
+import i18next from "i18next";
 
 const menuItems = (t, isVertical) => (
-<>
-<li><Link to={routes.explorer_initiatives()}>{t('initiatives')}</Link></li>
-<li><Link to={routes.explorer_users()}>{t('users')}</Link></li>
-<li tabIndex={0}>
-  <Link to={routes.home()} className="justify-between">
-    {t('project')}
-    {isVertical
-    ? <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"/></svg>
-    : <svg className="fill-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z"/></svg>
-    }
-  </Link>
-  <ul className="p-2">
-    <li><Link to={routes.home()}>Why</Link></li>
-    <li><Link to={routes.home()}>Who</Link></li>
-  </ul>
-</li>
-</>
+  <>
+    <li>
+      <Link to={routes.explorer_initiatives()}>
+        {t('initiative', { count: 2 })}
+      </Link>
+    </li>
+    <li>
+      <Link to={routes.explorer_users()}>{t('user', { count: 2 })}</Link>
+    </li>
+    <li tabIndex={0}>
+      <Link to={routes.home()} className="justify-between">
+        {t('project')}
+        {isVertical ? (
+          <FontAwesomeIcon icon={faCaretRight} />
+        ) : (
+          <FontAwesomeIcon icon={faCaretDown} />
+        )}
+      </Link>
+      <ul className="p-2">
+        <li>
+          <Link to={routes.home()}>Why</Link>
+        </li>
+        <li>
+          <Link to={routes.home()}>Who</Link>
+        </li>
+      </ul>
+    </li>
+  </>
 )
 const Header = () => {
   const { isAuthenticated, currentUser, hasRole, logOut } = useAuth();
@@ -31,20 +45,7 @@ const Header = () => {
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn-ghost btn lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16"
-              />
-            </svg>
+            <FontAwesomeIcon icon={faBars} />
           </label>
           <ul
             tabIndex={0}
@@ -58,7 +59,9 @@ const Header = () => {
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1 bg-base-100">{menuItems(t, false)}</ul>
+        <ul className="menu menu-horizontal bg-base-100 px-1">
+          {menuItems(t, false)}
+        </ul>
       </div>
       <div className="flex-none gap-2">
         <div className="form-control">
@@ -73,7 +76,9 @@ const Header = () => {
             <label tabIndex={0} className="btn-ghost btn-circle avatar btn">
               <div className="w-10 rounded-full">
                 <img
-                  src={`https://www.gravatar.com/avatar/${md5( currentUser.email )}?d=identicon`}
+                  src={`https://www.gravatar.com/avatar/${md5(
+                    currentUser.email
+                  )}?d=identicon`}
                 />
               </div>
             </label>
@@ -83,12 +88,11 @@ const Header = () => {
             >
               <li>
                 <Link to={routes.profile()} className="justify-between">
-                  {t('profile')}
+                  {t('my')} {i18next.format(t('profile'), "lowercase")}
                   {/* <span className="badge">new</span> */}
                 </Link>
-                <Link to={routes.editProfile()} className="justify-between">
-                  {t('edit-profile')}
-                  {/* <span className="badge">new</span> */}
+                <Link to={routes.initiatives()} className="justify-between">
+                  {t('my', {count: 2})} {i18next.format(t('initiative', {count: 2}), "lowercase")}
                 </Link>
               </li>
               <li onClick={logOut}>
@@ -100,15 +104,15 @@ const Header = () => {
                     <span>{t('administration')}</span>
                   </li>
                   <li>
-                    <Link to={routes.users()}>{t('users')}</Link>
+                    <Link to={routes.users()}>{t('user', { count: 2 })}</Link>
                   </li>
                   <li>
-                    <Link to={routes.organizations()}>
-                      {t('organizations')}
+                    <Link to={routes.adminInitiatives()}>
+                      {t('initiative', { count: 2 })}
                     </Link>
                   </li>
                   <li>
-                    <Link to={routes.practices()}>{t('practices')}</Link>
+                    <Link to={routes.admin()}>{t('administration')}</Link>
                   </li>
                 </>
               )}

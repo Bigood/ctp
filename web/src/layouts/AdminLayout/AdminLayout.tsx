@@ -2,6 +2,7 @@ import { faBuilding, faFile, faLightbulb, faUser } from '@fortawesome/free-regul
 import { faA, faBook, faCircleNodes, faDollarSign, faGraduationCap, faList, faTags } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { Link, routes } from '@redwoodjs/router'
+import { useTranslation } from "react-i18next"
 
 type LayoutProps = {
   title: string
@@ -18,6 +19,7 @@ const AdminLayout = ({
   buttonTo,
   children,
 }: LayoutProps) => {
+  const { t } = useTranslation()
   return (
     <div>
       <div className="drawer-mobile drawer">
@@ -44,72 +46,17 @@ const AdminLayout = ({
         <div className="drawer-side">
           <label htmlFor="admin-sidebar" className="drawer-overlay"></label>
           <ul className="menu w-80 bg-base-200 p-4 text-base-content">
-            <li>
-              <Link to={routes.users()}>
-                <FontAwesomeIcon icon={faUser} className="w-5"/>
-                <span>Users</span>
-              </Link>
-            </li>
-            <li>
-              <Link to={routes.organizations()}>
-                <FontAwesomeIcon icon={faBuilding} className="w-5"/>
-                <span>Organization</span>
-              </Link>
-            </li>
-            <li>
-              <Link to={routes.practices()}>
-                <FontAwesomeIcon icon={faList} className="w-5"/>
-                <span>Practices</span>
-              </Link>
-            </li>
-            <li>
-              <Link to={routes.adminInitiatives()}>
-                <FontAwesomeIcon icon={faLightbulb} className="w-5"/>
-                <span>Initiatives</span>
-              </Link>
-            </li>
-            <li>
-              <Link to={routes.adminNetworks()}>
-                <FontAwesomeIcon icon={faCircleNodes} className="w-5"/>
-                <span>Networks</span>
-              </Link>
-            </li>
-            <li>
-              <Link to={routes.adminCompetences()}>
-                <FontAwesomeIcon icon={faBook} className="w-5"/>
-                <span>Competences</span>
-              </Link>
-            </li>
-            <li>
-              <Link to={routes.adminResources()}>
-                <FontAwesomeIcon icon={faFile} className="w-5"/>
-                <span>Resources</span>
-              </Link>
-            </li>
-            <li>
-              <Link to={routes.adminSponsors()}>
-                <FontAwesomeIcon icon={faDollarSign} className="w-5"/>
-                <span>Sponsors</span>
-              </Link>
-            </li>
-            <li>
-              <Link to={routes.adminSubjects()}>
-                <FontAwesomeIcon icon={faA} className="w-5"/>
-                <span>Subjects</span>
-              </Link>
-            </li>
-            <li>
-              <Link to={routes.adminLevels()}>
-                <FontAwesomeIcon icon={faGraduationCap} className="w-5"/>
-                <span>Levels</span>
-              </Link>
-            </li>
-            <li>
-              <Link to={routes.adminTags()}>
-                <FontAwesomeIcon icon={faTags} className="w-5"/>
-                <span>Tags</span>
-              </Link>
-            </li>
+            <MenuItem to={routes.users()} icon={faUser} text={t("user", {count: 2})}/>
+            <MenuItem to={routes.organizations()} icon={faBuilding} text={t("organization", {count: 2})}/>
+            <MenuItem to={routes.practices()} icon={faList} text={t("practice", {count: 2})}/>
+            <MenuItem to={routes.adminInitiatives()} icon={faLightbulb} text={t("initiative", {count: 2})}/>
+            <MenuItem to={routes.adminNetworks()} icon={faCircleNodes} text={t("network", {count: 2})}/>
+            <MenuItem to={routes.adminCompetences()} icon={faBook} text={t("competence", {count: 2})}/>
+            <MenuItem to={routes.adminResources()} icon={faFile} text={t("resource", {count: 2})}/>
+            <MenuItem to={routes.adminSponsors()} icon={faDollarSign} text={t("sponsor", {count: 2})}/>
+            <MenuItem to={routes.adminSubjects()} icon={faA} text={t("subject", {count: 2})}/>
+            <MenuItem to={routes.adminLevels()} icon={faGraduationCap} text={t("level", {count: 2})}/>
+            <MenuItem to={routes.adminTags()} icon={faTags} text={t("tag", {count: 2})}/>
           </ul>
         </div>
       </div>
@@ -117,4 +64,12 @@ const AdminLayout = ({
   )
 }
 
+const MenuItem = ({to, icon, text}) => (
+  <li>
+    <Link to={to}>
+      <FontAwesomeIcon icon={icon} className="w-5" />
+      <span>{text}</span>
+    </Link>
+  </li>
+)
 export default AdminLayout

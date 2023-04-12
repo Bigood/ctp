@@ -17,6 +17,7 @@ import AuthCallback from './components/Auth/AuthCallback'
 const Routes = () => {
   return (
     <Router>
+      <Route path="/initiatives" page={InitiativesPage} name="initiatives" />
       <Set wrap={AppLayout} title="CTP">
         <Private unauthenticated="auth">
           <Route path="/profile" page={UserLoggedInProfilePage} name="profile" />

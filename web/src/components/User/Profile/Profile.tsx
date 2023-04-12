@@ -5,6 +5,7 @@ import md5 from 'md5'
 import { useAuth } from "@redwoodjs/auth"
 import { Link } from "@redwoodjs/router"
 import { routes } from "@redwoodjs/router"
+import i18next from "i18next"
 
 const Profile = ({ user }: FindProfileQuery) => {
   const { t } = useTranslation()
@@ -95,7 +96,7 @@ const Profile = ({ user }: FindProfileQuery) => {
       <aside className="col-span-2 my-4  rounded-md bg-base-100 p-4 shadow-xl">
         {isAuthenticated && (
           <section className="mb-2">
-            <h1 className="mb-2 text-xl">{t('my-profile')}</h1>
+            <h1 className="mb-2 text-xl">{t('my')} {i18next.format(t('profile'), "lowercase")}</h1>
             <Link to={routes.editProfile()}>
               <div className="btn-secondary btn">{t('edit-profile')}</div>
             </Link>
