@@ -38,9 +38,9 @@ const User = ({ user }: Props) => {
 
   return (
     <>
-      <div className="rw-segment">
-        <header className="rw-segment-header">
-          <h2 className="rw-heading rw-heading-secondary">
+      <div className="">
+        <header className="mb-4">
+          <h2 className="text-lg">
             User {user.id} Detail
           </h2>
         </header>

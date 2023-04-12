@@ -47,6 +47,9 @@ model User {
   organizationId Int
 
   organizationsAuthored Organization[] @relation("OrganizationAuthoring")
+  networkAuthored       Network[]      @relation("NetworkAuthoring")
+  initiativesAuthored   Initiative[]   @relation("InitiativeAuthoring")
+  initiativesMembered   Initiative[]   @relation("InitiativeUsers")
 
   practices Practice[] @relation("UserPractices")
 
@@ -70,21 +73,24 @@ model Organization {
   instance   Instance? @relation("OrganizationsFromInstance", fields: [instanceId], references: [id])
   instanceId Int?
 
+  initiatives Initiative[] @relation("InitiativeOrganizations")
+
   latitude  Float?
   longitude Float?
 }
 
 model Practice {
-  id               Int      @id @default(autoincrement())
-  cuid             String   @unique @default(cuid())
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  id               Int          @id @default(autoincrement())
+  cuid             String       @unique @default(cuid())
+  createdAt        DateTime     @default(now())
+  updatedAt        DateTime     @updatedAt
   name             String
   synonym          String[]
   description      String?
   shortDescription String?
   sources          String[]
-  users            User[]   @relation("UserPractices")
+  users            User[]       @relation("UserPractices")
+  initiatives      Initiative[] @relation("InitiativePractices")
 
   instance   Instance? @relation("PracticesFromInstance", fields: [instanceId], references: [id])
   instanceId Int?
@@ -104,7 +110,101 @@ model Instance {
   practices     Practice[]     @relation("PracticesFromInstance")
 }
 
+model Initiative {
+  id   Int     @id @default(autoincrement())
+  cuid String  @unique @default(cuid())
+  idv1 String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  image        String?
+  title        String?
+  outsideUsers String?
+  contact      String?
+
+  descriptionMD     String?
+  conditionsMD      String?
+  evaluationMD      String?
+  strengthsMD       String?
+  transferabilityMD String?
+
+  tags        Tag[]
+  subjects    Subject[]
+  levels      Level[]
+  resources   Resource[]
+  competences Competence[]
+  networks    Network[]
+  sponsors    Sponsor[]
+
+  users         User[]         @relation("InitiativeUsers")
+  organizations Organization[] @relation("InitiativeOrganizations")
+
+  author   User @relation("InitiativeAuthoring", fields: [authorId], references: [id])
+  authorId Int
+
+  practices Practice[] @relation("InitiativePractices")
+}
+
+model Tag {
+  id          Int          @id @default(autoincrement())
+  name        String
+  initiatives Initiative[]
+}
+
+model Subject {
+  id          Int          @id @default(autoincrement())
+  name        String
+  initiatives Initiative[]
+}
+
+model Level {
+  id          Int          @id @default(autoincrement())
+  name        String
+  initiatives Initiative[]
+}
+
+model Sponsor {
+  id          Int          @id @default(autoincrement())
+  name        String
+  url         String?
+  logo        String?
+  initiatives Initiative[]
+}
+
+model Resource {
+  id          Int          @id @default(autoincrement())
+  name        String
+  url         String?
+  filename    String?
+  description String?
+  initiatives Initiative[]
+}
+
+model Competence {
+  id          Int            @id @default(autoincrement())
+  name        String
+  url         String?
+  type        TypeCompetence
+  initiatives Initiative[]
+}
+
+model Network {
+  id          Int          @id @default(autoincrement())
+  name        String
+  url         String?
+  logo        String?
+  author      User?        @relation("NetworkAuthoring", fields: [authorId], references: [id])
+  authorId    Int?
+  initiatives Initiative[]
+}
+
 enum Metier {
   TEACHER
   SUPPORT
+}
+
+enum TypeCompetence {
+  DISCIPLINARY
+  TRANSVERSAL
 }

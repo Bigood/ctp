@@ -15,7 +15,7 @@ import type { EditUserById, UpdateUserInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
 
 import PracticesCheckboxesCell from 'src/components/Practice/PracticesCheckboxesCell'
-import OrganizationsSelectCell from 'src/components/Organization/OrganizationsSelectCell'
+import OrganizationsSelectCell from 'src/components/Admin/Organization/OrganizationsSelectCell'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 

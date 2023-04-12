@@ -94,11 +94,11 @@ export const Success = ({ user }: CellSuccessProps<EditUserById>) => {
   }
 
   return (
-    <div className="rw-segment">
-      <header className="rw-segment-header">
-        <h2 className="rw-heading rw-heading-secondary">Edit User {user?.id}</h2>
+    <div className="">
+      <header className="mb-4">
+        <h2 className="text-lg">Edit User {user?.id}</h2>
       </header>
-      <div className="rw-segment-main">
+      <div className="">
         <AdminUserForm user={user} onSave={onSave} error={error} loading={loading} />
       </div>
     </div>
