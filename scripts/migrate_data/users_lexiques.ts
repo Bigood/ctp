@@ -74,11 +74,12 @@ const mapUserV1toUserV2 = (userV1: UserV1, practices) => {
   const fullname = userV1.profile.name.split(" "),
         surname = fullname.shift(),
         name = fullname.join(" ");
-
+  //@ts-expect-error
   const _practices = _.intersectionWith(practices, _.merge(userV1.profile.methods, userV1.profile.technics, userV1.profile.activities), (a,b) => (a.$oid == b.$oid)).map(practice => ({id:practice.id}))
 
   return {
     idv1: userV1._id.$oid,
+    //@ts-expect-error
     createdAt: userV1.createdAt?.$date || userV1.createdAt,
     updatedAt: userV1.updatedAt.$date,
     email: userV1.email,
@@ -137,6 +138,7 @@ export default async ({ args }) => {
 
     //Création du client supabase
     console.log(`Creating supabase client with .env val : SUPABASE_URL and SUPABASE_SERVICE_KEY (service key with all rights)`);
+    //@ts-expect-error
     const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, { auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false }})
 
     async.mapLimit(usersMapped, 1, async (user) => {
