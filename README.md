@@ -40,12 +40,25 @@ previewFeatures = ["multiSchema"] //https://github.com/prisma/prisma/issues/1175
 
 ## Import data from V1
 
+
+Migrate all the data by specifying paths on *.env* var `CTP_MIGRATE_PATHS`, and execute `yarn rw exec migrate_data/all`.
+
+Or migrate specific models by specifying paths:
+
 ### Users and lexique
 
 ```bash
 yarn rw exec migrate_data/users_lexiques
   \ --usersPath=/Users/maen/Cloud/Work/Carto/2022/res/users.json
-  \ --lexiquesPath=/Users/maen/Cl oud/Work/Carto/2022/res/lexiques.json
+  \ --lexiquesPath=/Users/maen/Cloud/Work/Carto/2022/res/lexiques.json
+```
+
+### Competences
+
+```bash
+yarn rw exec migrate_data/competences
+  \ --competencesDisciplinairesPath=/Users/maen/Dev/CTP/backup/json_v1_120423/competence.json
+  \ --competencesTransversalesPath=/Users/maen/Dev/CTP/backup/json_v1_120423/competencetransversales.json
 ```
 
 ## Faktory
