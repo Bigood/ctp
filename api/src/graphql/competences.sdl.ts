@@ -3,13 +3,8 @@ export const schema = gql`
     id: Int!
     name: String!
     url: String
-    type: TypeCompetence!
+    type: String!
     initiatives: [Initiative]!
-  }
-
-  enum TypeCompetence {
-    DISCIPLINARY
-    TRANSVERSAL
   }
 
   type Query {
@@ -20,13 +15,13 @@ export const schema = gql`
   input CreateCompetenceInput {
     name: String!
     url: String
-    type: TypeCompetence!
+    type: String!
   }
 
   input UpdateCompetenceInput {
     name: String
     url: String
-    type: TypeCompetence
+    type: String
   }
 
   type Mutation {

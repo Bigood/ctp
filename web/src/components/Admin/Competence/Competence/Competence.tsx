@@ -3,8 +3,6 @@ import { Link, routes, navigate } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
-import { formatEnum,  } from 'src/lib/formatters'
-
 import type { DeleteCompetenceMutationVariables, FindCompetenceById } from 'types/graphql'
 
 const DELETE_COMPETENCE_MUTATION = gql`
@@ -57,7 +55,7 @@ const Competence = ({ competence }: Props) => {
               <td>{competence.url}</td>
             </tr><tr>
               <th>Type</th>
-              <td>{formatEnum(competence.type)}</td>
+              <td>{competence.type}</td>
             </tr>
           </tbody>
         </table>

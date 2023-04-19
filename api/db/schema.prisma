@@ -148,24 +148,28 @@ model Initiative {
 
 model Tag {
   id          Int          @id @default(autoincrement())
+  idv1        String?
   name        String
   initiatives Initiative[]
 }
 
 model Subject {
   id          Int          @id @default(autoincrement())
+  idv1        String?
   name        String
   initiatives Initiative[]
 }
 
 model Level {
   id          Int          @id @default(autoincrement())
+  idv1        String?
   name        String
   initiatives Initiative[]
 }
 
 model Sponsor {
   id          Int          @id @default(autoincrement())
+  idv1        String?
   name        String
   url         String?
   logo        String?
@@ -174,6 +178,7 @@ model Sponsor {
 
 model Resource {
   id          Int          @id @default(autoincrement())
+  idv1        String?
   name        String
   url         String?
   filename    String?
@@ -182,15 +187,17 @@ model Resource {
 }
 
 model Competence {
-  id          Int            @id @default(autoincrement())
+  id          Int          @id @default(autoincrement())
+  idv1        String?
   name        String
   url         String?
-  type        TypeCompetence
+  type        String
   initiatives Initiative[]
 }
 
 model Network {
   id          Int          @id @default(autoincrement())
+  idv1        String?
   name        String
   url         String?
   logo        String?
@@ -202,9 +209,4 @@ model Network {
 enum Metier {
   TEACHER
   SUPPORT
-}
-
-enum TypeCompetence {
-  DISCIPLINARY
-  TRANSVERSAL
 }

@@ -1,15 +1,14 @@
 import {
+  FieldError,
   Form,
   FormError,
-  FieldError,
   Label,
-  TextField,
-  RadioField,
   Submit,
+  TextField
 } from '@redwoodjs/forms'
 
-import type { EditCompetenceById, UpdateCompetenceInput } from 'types/graphql'
 import type { RWGqlError } from '@redwoodjs/forms'
+import type { EditCompetenceById, UpdateCompetenceInput } from 'types/graphql'
 
 
 
@@ -25,16 +24,16 @@ interface CompetenceFormProps {
 
 const CompetenceForm = (props: CompetenceFormProps) => {
   const onSubmit = (data: FormCompetence) => {
-  
-    
-    
-  
-    
-    
-  
-    
-    
-  
+
+
+
+
+
+
+
+
+
+
     props.onSave(data, props?.competence?.id)
   }
 
@@ -47,7 +46,7 @@ const CompetenceForm = (props: CompetenceFormProps) => {
           titleClassName="rw-form-error-title"
           listClassName="rw-form-error-list"
         />
-      
+
         <Label
           name="name"
           className="rw-label"
@@ -55,15 +54,14 @@ const CompetenceForm = (props: CompetenceFormProps) => {
         >
           Name
         </Label>
-        
-          <TextField
-            name="name"
-            defaultValue={props.competence?.name}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-            validation={{ required: true }}
-          />
-        
+
+        <TextField
+          name="name"
+          defaultValue={props.competence?.name}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
         <FieldError name="name" className="rw-field-error" />
 
@@ -74,14 +72,13 @@ const CompetenceForm = (props: CompetenceFormProps) => {
         >
           Url
         </Label>
-        
-          <TextField
-            name="url"
-            defaultValue={props.competence?.url}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-          />
-        
+
+        <TextField
+          name="url"
+          defaultValue={props.competence?.url}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
 
         <FieldError name="url" className="rw-field-error" />
 
@@ -92,46 +89,17 @@ const CompetenceForm = (props: CompetenceFormProps) => {
         >
           Type
         </Label>
-        
-          
-          
-        <div className="rw-check-radio-items">
-          <RadioField
-            id="competence-type-0"
-            name="type"
-            defaultValue="DISCIPLINARY"
-            defaultChecked={props.competence?.type?.includes('DISCIPLINARY')}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-          />
-          <div>
-            Disciplinary
-          </div>
-        </div>
-          
-        <div className="rw-check-radio-items">
-          <RadioField
-            id="competence-type-1"
-            name="type"
-            defaultValue="TRANSVERSAL"
-            defaultChecked={props.competence?.type?.includes('TRANSVERSAL')}
-            className="rw-input"
-            errorClassName="rw-input rw-input-error"
-          />
-          <div>
-            Transversal
-          </div>
-        </div>
-          
-        
+        <TextField
+          name="type"
+          defaultValue={props.competence?.type}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+        />
 
         <FieldError name="type" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit
-            disabled={props.loading}
-            className="rw-button rw-button-blue"
-          >
+          <Submit disabled={props.loading} className="rw-button rw-button-blue">
             Save
           </Submit>
         </div>

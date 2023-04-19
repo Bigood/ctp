@@ -25,6 +25,7 @@ CREATE TABLE "Initiative" (
 -- CreateTable
 CREATE TABLE "Tag" (
     "id" SERIAL NOT NULL,
+    "idv1" TEXT,
     "name" TEXT NOT NULL,
 
     CONSTRAINT "Tag_pkey" PRIMARY KEY ("id")
@@ -33,6 +34,7 @@ CREATE TABLE "Tag" (
 -- CreateTable
 CREATE TABLE "Subject" (
     "id" SERIAL NOT NULL,
+    "idv1" TEXT,
     "name" TEXT NOT NULL,
 
     CONSTRAINT "Subject_pkey" PRIMARY KEY ("id")
@@ -41,6 +43,7 @@ CREATE TABLE "Subject" (
 -- CreateTable
 CREATE TABLE "Level" (
     "id" SERIAL NOT NULL,
+    "idv1" TEXT,
     "name" TEXT NOT NULL,
 
     CONSTRAINT "Level_pkey" PRIMARY KEY ("id")
@@ -49,6 +52,7 @@ CREATE TABLE "Level" (
 -- CreateTable
 CREATE TABLE "Sponsor" (
     "id" SERIAL NOT NULL,
+    "idv1" TEXT,
     "name" TEXT NOT NULL,
     "url" TEXT,
     "logo" TEXT,
@@ -59,6 +63,7 @@ CREATE TABLE "Sponsor" (
 -- CreateTable
 CREATE TABLE "Resource" (
     "id" SERIAL NOT NULL,
+    "idv1" TEXT,
     "name" TEXT NOT NULL,
     "url" TEXT,
     "filename" TEXT,
@@ -70,9 +75,10 @@ CREATE TABLE "Resource" (
 -- CreateTable
 CREATE TABLE "Competence" (
     "id" SERIAL NOT NULL,
+    "idv1" TEXT,
     "name" TEXT NOT NULL,
     "url" TEXT,
-    "type" "TypeCompetence" NOT NULL,
+    "type" TEXT NOT NULL,
 
     CONSTRAINT "Competence_pkey" PRIMARY KEY ("id")
 );
@@ -80,6 +86,7 @@ CREATE TABLE "Competence" (
 -- CreateTable
 CREATE TABLE "Network" (
     "id" SERIAL NOT NULL,
+    "idv1" TEXT,
     "name" TEXT NOT NULL,
     "url" TEXT,
     "logo" TEXT,

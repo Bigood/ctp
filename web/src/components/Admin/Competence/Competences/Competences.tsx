@@ -3,7 +3,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 
 import { QUERY } from 'src/components/Admin/Competence/CompetencesCell'
-import { formatEnum, truncate } from 'src/lib/formatters'
+import { truncate } from 'src/lib/formatters'
 
 import type { DeleteCompetenceMutationVariables, FindCompetences } from 'types/graphql'
 
@@ -54,7 +54,7 @@ const CompetencesList = ({ competences }: FindCompetences) => {
               <td>{truncate(competence.id)}</td>
               <td>{truncate(competence.name)}</td>
               <td>{truncate(competence.url)}</td>
-              <td>{formatEnum(competence.type)}</td>
+              <td>{truncate(competence.type)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link
