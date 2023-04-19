@@ -40,10 +40,12 @@ previewFeatures = ["multiSchema"] //https://github.com/prisma/prisma/issues/1175
 
 ## Import data from V1
 
+### Users and lexique
+
 ```bash
-yarn rw exec migrateFromV1
+yarn rw exec migrate_data/users_lexiques
   \ --usersPath=/Users/maen/Cloud/Work/Carto/2022/res/users.json
-  \ --lexiquesPath=/Users/maen/Cloud/Work/Carto/2022/res/lexiques.json
+  \ --lexiquesPath=/Users/maen/Cl oud/Work/Carto/2022/res/lexiques.json
 ```
 
 ## Faktory
