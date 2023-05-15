@@ -5,10 +5,10 @@
 #   Destroy:        docker compose -f docker-compose.yml -f ./dev/docker-compose.dev.yml down -v --remove-orphans
 
 version: "3.8"
-
+name: "ctp"
 services:
   studio:
-    container_name: supabase-studio
+    container_name: ${COMPOSE_PROJECT_NAME}-supabase-studio
     image: supabase/studio:20221214-4eecc99
     restart: unless-stopped
     ports:
@@ -28,7 +28,7 @@ services:
       SUPABASE_SERVICE_KEY: ${SERVICE_ROLE_KEY}
 
   kong:
-    container_name: supabase-kong
+    container_name: ${COMPOSE_PROJECT_NAME}-supabase-kong
     image: kong:2.8.1
     restart: unless-stopped
     ports:
@@ -46,7 +46,7 @@ services:
       - ./volumes/api:/var/lib/kong:ro
 
   auth:
-    container_name: supabase-auth
+    container_name: ${COMPOSE_PROJECT_NAME}-supabase-auth
     image: supabase/gotrue:v2.40.1
     depends_on:
       db: # Disable this if you are using an external Postgres database
@@ -90,7 +90,7 @@ services:
       MFA_ENABLED: ${MFA_ENABLED}
 
   rest:
-    container_name: supabase-rest
+    container_name: ${COMPOSE_PROJECT_NAME}-supabase-rest
     image: postgrest/postgrest:v9.0.1.20220717
     depends_on:
       db: # Disable this if you are using an external Postgres database
@@ -104,7 +104,7 @@ services:
       PGRST_DB_USE_LEGACY_GUCS: "false"
 
   realtime:
-    container_name: realtime-dev.supabase-realtime
+    container_name: ${COMPOSE_PROJECT_NAME}-realtime-dev.supabase-realtime
     image: supabase/realtime:v2.0.2
     depends_on:
       db: # Disable this if you are using an external Postgres database
@@ -130,7 +130,7 @@ services:
       sh -c "/app/bin/migrate && /app/bin/realtime eval 'Realtime.Release.seeds(Realtime.Repo)' && /app/bin/server"
 
   storage:
-    container_name: supabase-storage
+    container_name: ${COMPOSE_PROJECT_NAME}-supabase-storage
     image: supabase/storage-api:v0.26.1
     depends_on:
       db: # Disable this if you are using an external Postgres database
@@ -157,7 +157,7 @@ services:
       - ./volumes/storage:/var/lib/storage
 
   imgproxy:
-    container_name: supabase-imgproxy
+    container_name: ${COMPOSE_PROJECT_NAME}-supabase-imgproxy
     image: darthsim/imgproxy:v3.11
     environment:
       IMGPROXY_BIND: ":5001"
@@ -167,7 +167,7 @@ services:
       - ./volumes/storage:/var/lib/storage
 
   meta:
-    container_name: supabase-meta
+    container_name: ${COMPOSE_PROJECT_NAME}-supabase-meta
     image: supabase/postgres-meta:v0.52.1
     depends_on:
       db: # Disable this if you are using an external Postgres database
@@ -183,7 +183,7 @@ services:
 
   # Comment out everything below this point if you are using an external Postgres database
   db:
-    container_name: supabase-db
+    container_name: ${COMPOSE_PROJECT_NAME}-supabase-db
     image: supabase/postgres:14.1.0.89
     healthcheck:
       test: pg_isready -U postgres -h localhost
