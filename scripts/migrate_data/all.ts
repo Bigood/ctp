@@ -3,10 +3,16 @@ import competences from "./competences"
 import subjects from "./subjects";
 
 export default async function(){
-  const paths = process.env.CTP_MIGRATION_PATHS;
+  let paths = process.env.CTP_MIGRATION_PATHS;
   if(!paths)
     throw "No CTP_MIGRATION_PATHS JSON object found"
-  console.log("Paths : ", process.env.CTP_MIGRATION_PATHS)
+  try{
+    paths = JSON.parse(paths);
+  }
+  catch(e) {
+    throw e;
+  }
+  console.log("Paths : ", paths)
 
   await users_lexiques({args:paths})
   await competences({args:paths})
