@@ -229,3 +229,11 @@ Then create a user using the standard flow on **/auth**, and give it admin role 
 ```bash
 yarn rw exec setUserAdmin --email mjuganaikloo@gmail.com
 ```
+
+# Reverse proxy
+
+If you are behind a reverse proxy for local dev, and would like to use webpack dev server, you'll find that WS connection are made to the wrong port. Instead of rewriting webpack.config.js, use [forward as docs states](https://redwoodjs.com/docs/webpack-configuration):
+
+```bash
+yarn rw dev  --forward="--allowed-hosts mac-b.cartotalents.com --client-web-socket-url wss://mac-b.cartotalents.com/ws"
+```
