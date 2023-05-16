@@ -61,6 +61,22 @@ yarn rw exec migrate_data/competences
   \ --competencesTransversalesPath=/Users/maen/Dev/CTP/backup/json_v1_120423/competencetransversales.json
 ```
 
+### Resources
+
+```bash
+yarn rw exec migrate_data/resources
+  \ --resourcesPath=/Users/maen/Dev/CTP/backup/json_v1_120423/ressources.json
+```
+
+Troubleshoot :
+>{
+>  statusCode: '500',
+>  error: 'Error',
+>  message: 'The file system does not support extended attributes or has the feature disabled.'
+>}
+
+https://github.com/supabase/supabase/issues/10977#issuecomment-1466263361
+
 ## Faktory
 
 Run a docker instance with script *Docker: start faktory worker*, or this command:
