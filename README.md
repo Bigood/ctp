@@ -51,13 +51,14 @@ Or migrate specific models by specifying paths:
 yarn rw exec migrate_data/users_lexiques
   \ --usersPath=/Users/maen/Cloud/Work/Carto/2022/res/users.json
   \ --lexiquesPath=/Users/maen/Cloud/Work/Carto/2022/res/lexiques.json
+  \ --pedagosPath=/Users/maen/Dev/CTP/backup/json_v1_120423/pedagos.json
 ```
 
 ### Competences
 
 ```bash
 yarn rw exec migrate_data/competences
-  \ --competencesDisciplinairesPath=/Users/maen/Dev/CTP/backup/json_v1_120423/competence.json
+  \ --competencesDisciplinairesPath=/Users/maen/Dev/CTP/backup/json_v1_120423/competences.json
   \ --competencesTransversalesPath=/Users/maen/Dev/CTP/backup/json_v1_120423/competencetransversales.json
 ```
 
