@@ -3,6 +3,7 @@
 .env
 .netlify
 .redwood
+scripts/migrate_data/error.log
 dev.db*
 dist
 dist-babel

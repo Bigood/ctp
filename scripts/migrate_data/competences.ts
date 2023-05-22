@@ -2,7 +2,7 @@ import { db } from 'api/src/lib/db'
 import fs from 'fs/promises'
 import _ from 'lodash'
 import async from 'async';
-
+import { readJsonFile } from "./_common";
 
 interface CompetenceV1 {
   "_id": {
@@ -13,15 +13,6 @@ interface CompetenceV1 {
   "type": string,
   "referentiel": string,
   "url": string,
-}
-
-const readJsonFile = async (path) => {
-  const file = await fs.open(path);
-  console.log(`Found file at path. Reading file…`)
-  const fileContent = await file.readFile({encoding: 'utf-8'});
-  const json = JSON.parse(fileContent);
-  console.log(`Found ${json.length} items on file.`)
-  return json
 }
 
 const mapCompetence = (competenceV1: CompetenceV1) => {
@@ -45,13 +36,13 @@ export default async ({ args }) => {
     const competencesTransversales: [CompetenceV1] = await readJsonFile(args.competencesTransversalesPath);
 
     //Fusion des lexiques V1 et pratiques actuelles
-    var competences = _.values(_.merge(_.keyBy(competencesDisciplinaires, 'title'), _.keyBy(competencesTransversales, 'title')));
+    var competences = _.values(_.merge(_.keyBy(competencesDisciplinaires, '_id.$oid'), _.keyBy(competencesTransversales, '_id.$oid')));
     // console.log(mapLexiquePractice);
 
     const competencesMapped = competences.map(mapCompetence)
     // console.log(competencesMapped);
 
-    async.mapLimit(competencesMapped, 10, async (competence) => {
+    async.mapLimit(competencesMapped, 1, async (competence) => {
         const Competence = await db.competence.create({ data: competence });
         console.log("Competence : ", competence.name)
         return Competence;

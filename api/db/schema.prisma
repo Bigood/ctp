@@ -148,29 +148,28 @@ model Initiative {
 
 model Tag {
   id          Int          @id @default(autoincrement())
-  idv1        String?
-  name        String
+  name        String       @unique
   initiatives Initiative[]
 }
 
 model Subject {
   id          Int          @id @default(autoincrement())
-  idv1        String?
-  name        String
+  idv1        String?      @unique
+  name        String       @unique
   initiatives Initiative[]
 }
 
 model Level {
   id          Int          @id @default(autoincrement())
-  idv1        String?
-  name        String
+  idv1        String?      @unique
+  name        String       @unique
   initiatives Initiative[]
 }
 
 model Sponsor {
   id          Int          @id @default(autoincrement())
-  idv1        String?
-  name        String
+  idv1        String?      @unique
+  name        String       @unique
   url         String?
   logo        String?
   initiatives Initiative[]
@@ -178,7 +177,7 @@ model Sponsor {
 
 model Resource {
   id          Int          @id @default(autoincrement())
-  idv1        String?
+  idv1        String?      @unique
   name        String
   url         String?
   filename    String?
@@ -188,7 +187,7 @@ model Resource {
 
 model Competence {
   id          Int          @id @default(autoincrement())
-  idv1        String?
+  idv1        String?      @unique
   name        String
   url         String?
   type        String
@@ -197,8 +196,8 @@ model Competence {
 
 model Network {
   id          Int          @id @default(autoincrement())
-  idv1        String?
-  name        String
+  idv1        String?      @unique
+  name        String       @unique
   url         String?
   logo        String?
   author      User?        @relation("NetworkAuthoring", fields: [authorId], references: [id])

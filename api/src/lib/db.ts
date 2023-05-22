@@ -19,3 +19,15 @@ handlePrismaLogging({
   logger,
   logLevels: ['info', 'warn', 'error'],
 })
+
+/**
+ * Set Redwood's logger's logLevels to print nothing.
+ * @param db Previously retrieved PrismaClient
+ */
+export const removePrismaLogging = (db) => {
+  handlePrismaLogging({
+    db,
+    logger,
+    logLevels: [],
+  })
+}

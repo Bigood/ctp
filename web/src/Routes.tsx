@@ -17,11 +17,11 @@ import AuthCallback from './components/Auth/AuthCallback'
 const Routes = () => {
   return (
     <Router>
-      <Route path="/initiatives" page={InitiativesPage} name="initiatives" />
       <Set wrap={AppLayout} title="CTP">
         <Private unauthenticated="auth">
           <Route path="/profile" page={UserLoggedInProfilePage} name="profile" />
           <Route path="/profile/edit" page={UserEditProfilePage} name="editProfile" />
+          <Route path="/initiatives" page={InitiativesPage} name="initiatives" />
         </Private>
         <Private unauthenticated="home" roles="admin">
           <Route path="/admin" page={Admin} name="admin" />
@@ -105,7 +105,6 @@ const Routes = () => {
           <Route path="/signup" page={SignupPage} name="signup" />
         </Private>
       </Set>
-      d
     </Router>
   )
 }

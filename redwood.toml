@@ -6,12 +6,12 @@
 # https://redwoodjs.com/docs/app-configuration-redwood-toml
 
 [web]
-  title = "CTP Mac A"
-  port = 8910
-  host = "mac-a.cartotalents.com"
+  title = "CTP Mac B"
+  port = 8914
+  host = "mac-b.cartotalents.com"
   apiUrl = "/.redwood/functions" # you can customise graphql and dbauth urls individually too: see https://redwoodjs.com/docs/app-configuration-redwood-toml#api-paths
   includeEnvironmentVariables = ["SUPABASE_URL", "SUPABASE_KEY"]
 [api]
-  port = 8911
+  port = 8915
 [browser]
   open = true
