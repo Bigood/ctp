@@ -10,13 +10,14 @@ const DEFAULT_GEOJSON = {
       "features": []
 
 }
-const dataToGeoJson = (data: any[]) => {
+const dataToGeoJson = (data: any[], pathToCoordinates = "organization") => {
   let geojson = _.clone(DEFAULT_GEOJSON)
   geojson.features = data.map((item) => ({
     type: 'Feature',
     geometry: {
       type: 'Point',
-      coordinates: [item.organization.longitude, item.organization.latitude],
+      //Access the coordinates based on the type (author.organization for an initiative, organization for an user). Given in props
+      coordinates: [_.get(item, `${pathToCoordinates}.longitude`), _.get(item, `${pathToCoordinates}.latitude`)],
     },
     properties: item,
   }))
@@ -74,7 +75,7 @@ export default function ExploreMap(props) {
   const [geojson, setGeojson] = useState(DEFAULT_GEOJSON)
 
   useEffect(() => {
-    setGeojson(dataToGeoJson(results));
+    setGeojson(dataToGeoJson(results, props.pathToCoordinates));
   }, [results])
 
   const mapRef = useRef<MapRef>(null)

@@ -21,7 +21,6 @@ const Routes = () => {
         <Private unauthenticated="auth">
           <Route path="/profile" page={UserLoggedInProfilePage} name="profile" />
           <Route path="/profile/edit" page={UserEditProfilePage} name="editProfile" />
-          <Route path="/initiatives" page={InitiativesPage} name="initiatives" />
         </Private>
         <Private unauthenticated="home" roles="admin">
           <Route path="/admin" page={Admin} name="admin" />
@@ -92,9 +91,9 @@ const Routes = () => {
             <Route path="/admin/tags" page={AdminTagTagsPage} name="adminTags" />
           </Set>
         </Private>
-        <Route path="/explore/users" page={ExplorerPage} name="explorer_users" />
-        <Route path="/explore/initiatives" page={ExplorerPage} name="explorer_initiatives" />
+        <Route path="/explore/{type}" page={ExplorerPage} name="explorer" />
         <Route path="/user/{id:Int}" page={UserProfilePage} name="showUser" />
+        <Route path="/initiative/{id:Int}" page={InitiativeInitiativePage} name="showInitiative" />
         <Route path="/" page={HomePage} name="home" />
         <Route notfound page={NotFoundPage} />
       </Set>

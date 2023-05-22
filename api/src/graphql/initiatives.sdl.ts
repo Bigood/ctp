@@ -29,8 +29,9 @@ export const schema = gql`
   }
 
   type Query {
-    initiatives: [Initiative!]! @requireAuth
-    initiative(id: Int!): Initiative @requireAuth
+    initiatives: [Initiative!]! @skipAuth
+    initiativesWithQuery(query: String): [Initiative!]! @skipAuth
+    initiative(id: Int!): Initiative @skipAuth
   }
 
   input CreateInitiativeInput {

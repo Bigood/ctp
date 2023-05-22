@@ -9,12 +9,12 @@ import i18next from "i18next";
 const menuItems = (t, isVertical) => (
   <>
     <li>
-      <Link to={routes.explorer_initiatives()}>
+      <Link to={routes.explorer({type: "initiatives"})}>
         {t('initiative', { count: 2 })}
       </Link>
     </li>
     <li>
-      <Link to={routes.explorer_users()}>{t('user', { count: 2 })}</Link>
+      <Link to={routes.explorer({type: "users"})}>{t('user', { count: 2 })}</Link>
     </li>
     <li tabIndex={0}>
       <Link to={routes.home()} className="justify-between">

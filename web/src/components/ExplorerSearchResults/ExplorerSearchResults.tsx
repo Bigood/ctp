@@ -11,8 +11,12 @@ const ExplorerSearchResults = (props) => {
 
   return (
     <section className="max-h-screen overflow-scroll" {...props}>
-      {_.intersectionWith(results, focused, (res, feat) => (res.id == (feat.id || feat.properties.id))).map((user) => (
-        <ExplorerSearchResult user={user} key={user.id} />
+      {_.intersectionWith(results, focused, (res, feat) => (res.id == (feat.id || feat.properties.id))).map((result) => (
+        (props.type == "user" ?
+          <ExplorerSearchResultUser user={result} key={result.id} />
+          :
+          <ExplorerSearchResultInitiative initiative={result} key={result.id} />
+        )
       ))}
     </section>
   )
@@ -20,7 +24,7 @@ const ExplorerSearchResults = (props) => {
 
 export default ExplorerSearchResults
 
-const ExplorerSearchResult = ({user}) => {
+const ExplorerSearchResultUser = ({user}) => {
   return (
     <Link
       to={routes.showUser({ id: user.id })}
@@ -37,6 +41,25 @@ const ExplorerSearchResult = ({user}) => {
             {user.surname} {user.name}
           </h2>
           <h3 className="text-xs">{user.organization?.name}</h3>
+        </div>
+      </div>
+    </Link>
+  )
+}
+
+const ExplorerSearchResultInitiative = ({initiative}) => {
+  return (
+    <Link
+      to={routes.showInitiative({ id: initiative.id })}
+      title={'Show initiative ' + initiative.id + ' detail'}
+    >
+      <div className="btn-block btn mb-1 flex overflow-hidden p-0">
+        <div className="flex-1 p-1 text-left">
+          <h2 className="text-sm">
+            {initiative.title}
+          </h2>
+          <h3 className="text-xs">{initiative.author?.name} {initiative.author?.surname}</h3>
+          {/* <h3 className="text-xs">{initiative.author?.organization?.name}</h3> */}
         </div>
       </div>
     </Link>

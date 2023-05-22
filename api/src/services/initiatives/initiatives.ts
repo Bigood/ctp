@@ -10,6 +10,19 @@ export const initiatives: QueryResolvers['initiatives'] = () => {
   return db.initiative.findMany()
 }
 
+export const initiativesWithQuery: QueryResolvers['initiativesWithQuery'] = ({ query }) => {
+  return db.initiative.findMany({
+    where: {
+      OR: [
+        {title: {contains: query, mode: 'insensitive'}},
+        {contact: {contains: query, mode: 'insensitive'}},
+        {descriptionMD: {contains: query, mode: 'insensitive'}},
+        {author: { name: {contains: query, mode: 'insensitive'}}}
+      ]
+    }
+  })
+}
+
 export const initiative: QueryResolvers['initiative'] = ({ id }) => {
   return db.initiative.findUnique({
     where: { id },
