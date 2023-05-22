@@ -78,6 +78,7 @@ const mapInitiative = (initiativeV1: InitiativeV1) => {
     contact : initiativeV1.contact,
 
     descriptionMD : initiativeV1.description,
+    resourcesMD : initiativeV1.ressources_text,
     conditionsMD : initiativeV1.flow,
     evaluationMD : initiativeV1.evaluation,
     strengthsMD : initiativeV1.strong_points,

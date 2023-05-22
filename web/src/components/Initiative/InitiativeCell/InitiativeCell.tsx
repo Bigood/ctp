@@ -1,11 +1,11 @@
-import type { FindInitiativeById } from 'types/graphql'
+import type { FindCompleteInitiativeById } from 'types/graphql'
 
 import type { CellSuccessProps, CellFailureProps } from '@redwoodjs/web'
 
 import Initiative from 'src/components/Admin/Initiative/Initiative'
 
 export const QUERY = gql`
-  query FindInitiativeById($id: Int!) {
+  query FindCompleteInitiativeById($id: Int!) {
     initiative: initiative(id: $id) {
       id
       cuid
@@ -16,12 +16,80 @@ export const QUERY = gql`
       title
       outsideUsers
       contact
+
       descriptionMD
       conditionsMD
       evaluationMD
       strengthsMD
       transferabilityMD
-      authorId
+
+      resources {
+        id
+        filename
+        url
+        name
+        description
+      }
+
+      tags {
+        id
+        name
+      }
+
+      practices {
+        id
+        name
+      }
+      subjects {
+        id
+        name
+      }
+      levels {
+        id
+        name
+      }
+      competences {
+        id
+        type
+        name
+      }
+      sponsors {
+        id
+        name
+        url
+        logo
+      }
+      author {
+        id
+        name
+        surname
+        email
+        job
+        organization {
+          id
+          name
+          longitude
+          latitude
+          logo
+        }
+      }
+
+      users {
+        id
+        name
+        surname
+        organization {
+          id
+          name
+        }
+      }
+
+      networks {
+        id
+        name
+        logo
+        url
+      }
     }
   }
 `
@@ -34,6 +102,6 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error?.message}</div>
 )
 
-export const Success = ({ initiative }: CellSuccessProps<FindInitiativeById>) => {
+export const Success = ({ initiative }: CellSuccessProps<FindCompleteInitiativeById>) => {
   return <Initiative initiative={initiative} />
 }

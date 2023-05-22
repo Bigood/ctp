@@ -98,5 +98,18 @@
   "updated-at": "Updated at",
   "user_one": "User",
   "user_other": "Users",
-  "views": "views"
+  "views": "views",
+  "similar": "similars",
+  "more-informations": "More informations",
+  "resourcesMD": "Resources",
+  "conditionsMD": "Conditions",
+  "evaluationMD": "Evaluation",
+  "strengthsMD": "Strengths",
+  "transferabilityMD": "Transferability",
+  "team": "Team",
+  "team-members": "Members of this community",
+  "contacts": "Other contacts",
+  "initiative-shared-by": "Initiative shared by",
+  "download": "Download",
+  "competences": "Skills"
 }

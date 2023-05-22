@@ -100,5 +100,18 @@
   "updated-at": "Mis à jour le",
   "user_one": "Utilisateur",
   "user_other": "Utilisateurs",
-  "views": "vues"
+  "similar": "similaires",
+  "views": "vues",
+  "more-informations": "Informations supplémentaires",
+  "resourcesMD": "Ressources",
+  "conditionsMD": "Déroulement",
+  "evaluationMD": "Évaluation",
+  "strengthsMD": "Points forts",
+  "transferabilityMD": "Transférabilité",
+  "team": "L'équipe",
+  "team-members": "Membres de la CTP",
+  "contacts": "Contacts",
+  "initiative-shared-by": "Initiative partagée par",
+  "download": "Télécharger",
+  "competences": "Compétences"
 }
