@@ -65,6 +65,12 @@ export const QUERY = gql`
         surname
         email
         job
+
+        practices {
+          id
+          name
+        }
+
         organization {
           id
           name

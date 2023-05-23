@@ -28,6 +28,7 @@ export const schema = gql`
   type Query {
     users: [User!]! @skipAuth
     usersWithQuery(query: String): [User!]! @skipAuth
+    similarUsers(id: Int!): [User!]! @skipAuth
     user(id: Int!): User @skipAuth
   }
 

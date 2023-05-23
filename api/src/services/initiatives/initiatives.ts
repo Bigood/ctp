@@ -30,9 +30,6 @@ export const initiative: QueryResolvers['initiative'] = ({ id }) => {
 }
 
 export const similarInitiatives: QueryResolvers['similarInitiatives'] = async ({ id }) => {
-  // const initiative = await db.initiative.findUnique({
-  //   where: { id },
-  // })
   return db.$queryRaw`
     SELECT *
     FROM public."Initiative"
@@ -46,16 +43,6 @@ export const similarInitiatives: QueryResolvers['similarInitiatives'] = async ({
     ) DESC
     LIMIT 5 -- Limiter le nombre de similarités retournées
   `;
-
-  // return similarInitiatives
-  // return db.initiative.findMany({
-  //   where: {
-  //     NOT: {id: initiative.id},
-  //     OR: [
-  //       {competences: {contains: query, mode: 'insensitive'}},
-  //     ]
-  //   },
-  // })
 }
 
 export const createInitiative: MutationResolvers['createInitiative'] = ({

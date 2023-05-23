@@ -6,8 +6,9 @@ import { useAuth } from "@redwoodjs/auth"
 import { Link } from "@redwoodjs/router"
 import { routes } from "@redwoodjs/router"
 import i18next from "i18next"
+import UserCard from "../UserCard/UserCard"
 
-const Profile = ({ user }: FindProfileQuery) => {
+const Profile = ({ user, similarUsers }: FindProfileQuery) => {
   const { t } = useTranslation()
   const { isAuthenticated } = useAuth();
 
@@ -40,9 +41,9 @@ const Profile = ({ user }: FindProfileQuery) => {
               </h2>
             </div>
           </div>
-          <div className="p-4">
+          {/* <div className="p-4">
             <p className="italic">{user.shortPresentation}</p>
-          </div>
+          </div> */}
           <div className="flex gap-2 p-4">
             <div className="btn-primary btn gap-2">{t('contact')}</div>
             <div className="btn-secondary btn gap-2">
@@ -70,7 +71,7 @@ const Profile = ({ user }: FindProfileQuery) => {
               <h2 className="mb-2 text-xl">{t('practices')}</h2>
               <div>
                 {user.practices.map((practice) => (
-                  <div className="badge-outline badge mr-2" key={practice.id}>
+                  <div className="badge-outline badge badge-lg mr-2" key={practice.id}>
                     {practice.name}
                   </div>
                 ))}
@@ -125,6 +126,7 @@ const Profile = ({ user }: FindProfileQuery) => {
         </section>
         <section>
           <h1 className="mb-2 text-xl">{t('similar-users')}</h1>
+          {similarUsers?.map(user => (<UserCard user={user} className="mb-4"/>))}
         </section>
       </aside>
     </div>

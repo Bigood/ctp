@@ -36,6 +36,23 @@ export const QUERY = gql`
         host
       }
     }
+    similarUsers(id:$id) {
+      id
+      name
+      surname
+      job
+      department
+      email
+
+      organization {
+        name
+      }
+
+      practices {
+        id
+        name
+      }
+    }
   }
 `
 
@@ -51,6 +68,7 @@ export const Failure = ({
 
 export const Success = ({
   user,
+  similarUsers
 }: CellSuccessProps<FindProfileQuery, FindProfileQueryVariables>) => {
-  return <Profile user={user}/>
+  return <Profile user={user} similarUsers={similarUsers}/>
 }

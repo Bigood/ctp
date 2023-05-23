@@ -28,7 +28,21 @@ export const user: QueryResolvers['user'] = ({ id }) => {
     where: { id },
   })
 }
-
+export const similarUsers: QueryResolvers['similarUsers'] = async ({ id }) => {
+  return db.$queryRaw`
+    SELECT *
+    FROM public."User"
+    WHERE id != ${id} -- Exclure l'user actuel
+    ORDER BY (
+      SELECT COUNT(*)
+      FROM public."_UserPractices" AS up1
+      JOIN public."_UserPractices" AS up2 ON up1."A" = up2."A" -- Attention, l'ordre des relations est inversé dans prisma, who knows
+      WHERE up1."B" = public."User"."id"
+      AND up2."B" = ${id} -- ID de l'user actuel
+    ) DESC
+    LIMIT 5 -- Limiter le nombre de similarités retournées
+  `;
+}
 export const createUser: MutationResolvers['createUser'] = async ({ input }) => {
   const {practices, ...data} = input;
   const user = await db.user.create({
