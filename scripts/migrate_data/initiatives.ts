@@ -68,6 +68,10 @@ const mapInitiative = (initiativeV1: InitiativeV1) => {
   const authorId = (initiativeV1.user || initiativeV1.pedago)?.$oid,
         authorBestMatch = {where: authorId ? {idv1 : authorId} : {email: initiativeV1.email}}
 
+  //Push other_public for creation or connection by Prisma, as other levels
+  if(initiativeV1.other_public)
+    initiativeV1.publics.push(initiativeV1.other_public)
+
   return {
     idv1: initiativeV1._id.$oid,
     updatedAt: initiativeV1?.updatedAt.$date,
@@ -91,7 +95,7 @@ const mapInitiative = (initiativeV1: InitiativeV1) => {
       connect: initiativeV1.domaines_disciplinaires.map(domaine => ({ idv1: domaine.$oid }))
     },
     levels: {
-      connectOrCreate: initiativeV1.keywords.map(tag => ({ create: { name: tag, }, where: { name: tag } }))
+      connectOrCreate: initiativeV1.publics.map(_public => ({ create: { name: _public, }, where: { name: _public } }))
     },
     resources: {
       connect: initiativeV1.ressources.map(ressource => ({ idv1: ressource.$oid  }))
