@@ -45,6 +45,13 @@ Migrate all the data by specifying paths on *.env* var `CTP_MIGRATE_PATHS`, and 
 
 Or migrate specific models by specifying paths:
 
+### Lexiques
+
+```bash
+yarn rw exec migrate_data/lexiques
+  \ --lexiquesPath=/Users/maen/Dev/CTP/backup/json_v1_120423/lexiques.json
+```
+
 ### Users and lexique
 
 ```bash
@@ -67,6 +74,13 @@ yarn rw exec migrate_data/competences
 ```bash
 yarn rw exec migrate_data/resources
   \ --resourcesPath=/Users/maen/Dev/CTP/backup/json_v1_120423/ressources.json
+```
+
+### Initiatives
+
+```bash
+yarn rw exec migrate_data/initiatives
+  \ --initiativesPath=/Users/maen/Dev/CTP/backup/json_v1_120423/initiatives.json
 ```
 
 Troubleshoot :

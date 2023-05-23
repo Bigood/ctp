@@ -1,5 +1,6 @@
 import {createClient} from '@supabase/supabase-js'
 import fs from 'fs/promises'
+import cliProgress from 'cli-progress';
 
 export const initSupabaseClient = async (bucket, clearIfExists = false, isBucketPublic = true) => {
   if(!bucket)
@@ -66,4 +67,10 @@ export const readJsonFile = async (path) => {
 export const logErrorOnFile = async (data, path = "./scripts/migrate_data/error.log") => {
   const file = await fs.appendFile(path, JSON.stringify(data,null,2));
   // console.log(`Found file at path. Reading file…`)
+}
+
+export const createProgressBar = () => {
+  // create a new progress bar instance and use shades_classic theme
+  const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
+  return bar;
 }
