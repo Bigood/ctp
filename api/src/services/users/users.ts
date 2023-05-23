@@ -93,6 +93,21 @@ export const User: UserRelationResolvers = {
       .findUnique({ where: { id: root?.id } })
       .organizationsAuthored()
   },
+  initiativesAuthored: (_obj, { root }) => {
+    return db.user
+      .findUnique({ where: { id: root?.id } })
+      .initiativesAuthored()
+  },
+  initiativesMembered: (_obj, { root }) => {
+    return db.user
+      .findUnique({ where: { id: root?.id } })
+      .initiativesMembered()
+  },
+  networkAuthored: (_obj, { root }) => {
+    return db.user
+      .findUnique({ where: { id: root?.id } })
+      .networkAuthored()
+  },
   practices: (_obj, { root }) => {
     return db.user.findUnique({ where: { id: root?.id } }).practices()
   },

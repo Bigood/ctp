@@ -5,8 +5,9 @@ import md5 from 'md5'
 import { useAuth } from "@redwoodjs/auth"
 import { Link } from "@redwoodjs/router"
 import { routes } from "@redwoodjs/router"
-import i18next from "i18next"
+import i18next, { init } from "i18next"
 import UserCard from "../UserCard/UserCard"
+import InitiativeCard from "src/components/Initiative/InitiativeCard/InitiativeCard"
 
 const Profile = ({ user, similarUsers }: FindProfileQuery) => {
   const { t } = useTranslation()
@@ -93,7 +94,19 @@ const Profile = ({ user, similarUsers }: FindProfileQuery) => {
             </div>
           )}
         </section>
+        {!!user.initiatives &&
+        <section className="mt-4 rounded-md bg-base-100  p-4 shadow-xl">
+          <h2 className="mb-2 text-xl">{t('initiatives')}</h2>
+          <div className="grid grid-cols-3 gap-3">
+          {user.initiatives.map(initiative => (
+            <InitiativeCard initiative={initiative} className=""/>
+          ))}
+          </div>
+        </section>
+        }
       </main>
+
+
       <aside className="col-span-2 my-4  rounded-md bg-base-100 p-4 shadow-xl">
         {isAuthenticated && (
           <section className="mb-2">

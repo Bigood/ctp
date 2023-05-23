@@ -23,6 +23,9 @@ export const schema = gql`
     practices: [Practice]!
     instance: Instance
     instanceId: Int
+    initiativesAuthored: [Initiative]!
+    initiativesMembered: [Initiative]!
+    networkAuthored: [Initiative]!
   }
 
   type Query {

@@ -35,6 +35,15 @@ export const QUERY = gql`
         id
         host
       }
+      initiatives: initiativesAuthored {
+        id
+        title
+        image
+        tags {
+          id
+          name
+        }
+      }
     }
     similarUsers(id:$id) {
       id
