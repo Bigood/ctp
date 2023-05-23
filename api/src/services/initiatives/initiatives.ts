@@ -29,6 +29,35 @@ export const initiative: QueryResolvers['initiative'] = ({ id }) => {
   })
 }
 
+export const similarInitiatives: QueryResolvers['similarInitiatives'] = async ({ id }) => {
+  // const initiative = await db.initiative.findUnique({
+  //   where: { id },
+  // })
+  return db.$queryRaw`
+    SELECT *
+    FROM public."Initiative"
+    WHERE id != ${id} -- Exclure l'initiative actuelle
+    ORDER BY (
+      SELECT COUNT(*)
+      FROM public."_InitiativePractices" AS ip1
+      JOIN public."_InitiativePractices" AS ip2 ON ip1."B" = ip2."B"
+      WHERE ip1."A" = public."Initiative"."id"
+      AND ip2."A" = ${id} -- ID de l'initiative actuelle
+    ) DESC
+    LIMIT 5 -- Limiter le nombre de similarités retournées
+  `;
+
+  // return similarInitiatives
+  // return db.initiative.findMany({
+  //   where: {
+  //     NOT: {id: initiative.id},
+  //     OR: [
+  //       {competences: {contains: query, mode: 'insensitive'}},
+  //     ]
+  //   },
+  // })
+}
+
 export const createInitiative: MutationResolvers['createInitiative'] = ({
   input,
 }) => {

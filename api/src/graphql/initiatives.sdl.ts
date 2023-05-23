@@ -32,6 +32,7 @@ export const schema = gql`
   type Query {
     initiatives: [Initiative!]! @skipAuth
     initiativesWithQuery(query: String): [Initiative!]! @skipAuth
+    similarInitiatives(id: Int!): [Initiative!]! @skipAuth
     initiative(id: Int!): Initiative @skipAuth
   }
 

@@ -91,6 +91,16 @@ export const QUERY = gql`
         url
       }
     }
+    similarInitiatives(id: $id) {
+      id
+      image
+      title
+
+      tags {
+        id
+        name
+      }
+    }
   }
 `
 
@@ -102,6 +112,6 @@ export const Failure = ({ error }: CellFailureProps) => (
   <div className="rw-cell-error">{error?.message}</div>
 )
 
-export const Success = ({ initiative }: CellSuccessProps<FindCompleteInitiativeById>) => {
-  return <Initiative initiative={initiative} />
+export const Success = ({ initiative, similarInitiatives }: CellSuccessProps<FindCompleteInitiativeById>) => {
+  return <Initiative initiative={initiative} similarInitiatives={similarInitiatives} />
 }
