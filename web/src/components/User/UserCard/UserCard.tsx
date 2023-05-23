@@ -23,8 +23,8 @@ const UserCard = ({user, className}) => {
             {user.department && ` - ${user.department}`}
           </h2>
           <div>
-            {user.practices.slice(0,3).map((practice) => (
-              <div className="badge-outline badge badge-lg mr-2 mb-1" key={practice.id}>
+            {user?.practices?.slice(0,3).map((practice) => (
+              <div className="badge-outline badge badge-lg mr-2 mb-1 text-ellipsis overflow-hidden items-start justify-start" key={practice.id}>
                 {practice.name}
               </div>
             ))}

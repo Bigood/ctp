@@ -30,8 +30,8 @@ const ExplorerPage = () => {
           style={{ width: '100vw', height: '100vh' }}
           pathToCoordinates={type == "users" ? "organization" : "author.organization"}
         >
-          <div className="absolute left-2 top-2 ">
-            <ExplorerSearch className="z-10" />
+          <div className="absolute left-2 top-2 min-w-min w-1/4">
+            <ExplorerSearch className="z-10 w-full block" />
             {type == "users" && (
               <ExploreUsersCell query={query} setResults={setResults} />
             )}

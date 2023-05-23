@@ -29,6 +29,10 @@ export const QUERY = gql`
       instance {
         id
       }
+      practices {
+        id
+        name
+      }
     }
   }
 `

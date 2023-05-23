@@ -32,6 +32,10 @@ export const QUERY = gql`
           id
         }
       }
+      tags {
+        id
+        name
+      }
     }
   }
 `
