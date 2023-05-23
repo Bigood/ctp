@@ -8,11 +8,10 @@ const ExplorerSearchResults = (props) => {
 
   if(!results || !focused)
     return <></>
-
   return (
     <section className="max-h-screen overflow-scroll" {...props}>
       {_.intersectionWith(results, focused, (res, feat) => (res.id == (feat.id || feat.properties.id))).map((result) => (
-        (props.type == "user" ?
+        (result.__typename == "User" ?
           <ExplorerSearchResultUser user={result} key={result.id} />
           :
           <ExplorerSearchResultInitiative initiative={result} key={result.id} />
