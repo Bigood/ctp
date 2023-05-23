@@ -91,9 +91,9 @@ const Header = () => {
                   {t('my')} {i18next.format(t('profile'), "lowercase")}
                   {/* <span className="badge">new</span> */}
                 </Link>
-                <Link to={routes.initiatives()} className="justify-between">
+                {/* <Link to={routes.initiatives()} className="justify-between">
                   {t('my', {count: 2})} {i18next.format(t('initiative', {count: 2}), "lowercase")}
-                </Link>
+                </Link> */}
               </li>
               <li onClick={logOut}>
                 <span>{t('logout')}</span>
