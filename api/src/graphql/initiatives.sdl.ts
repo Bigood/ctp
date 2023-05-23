@@ -9,6 +9,7 @@ export const schema = gql`
     title: String
     outsideUsers: String
     contact: String
+    resourcesMD: String
     descriptionMD: String
     conditionsMD: String
     evaluationMD: String

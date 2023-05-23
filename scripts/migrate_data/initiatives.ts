@@ -1,11 +1,10 @@
 
 import { PrismaClient } from '@prisma/client'
-// import { db, removePrismaLogging } from 'api/src/lib/db'
+// import { db } from 'api/src/lib/db'
 import _ from 'lodash'
 import async from 'async';
 import cliProgress from 'cli-progress';
-import {createLogger} from '@redwoodjs/api/logger'
-import { initSupabaseClient, readJsonFile, downloadToSupabase, logErrorOnFile } from './_common'
+import { initSupabaseBucket, readJsonFile, downloadToSupabase, logErrorOnFile } from './_common'
 
 export const db = new PrismaClient({
   log: [],
@@ -88,6 +87,9 @@ const mapInitiative = (initiativeV1: InitiativeV1) => {
     strengthsMD : initiativeV1.strong_points,
     transferabilityMD : initiativeV1.more_details,
 
+    practices: {
+      connect: initiativeV1.typologies.map(practice => ({ cuid: practice.$oid }))
+    },
     tags: {
       connectOrCreate: initiativeV1.keywords.map(tag => ({ create: { name: tag, }, where: { name: tag } }))
     },
@@ -115,47 +117,49 @@ const mapInitiative = (initiativeV1: InitiativeV1) => {
  * args :
  * - initiativesPath : path/to/initiatives.json
  */
-export default async ({ args }) => {
-  try {
-    console.log(args)
+export default ({ args }) => {
+  //Timeout pour laisser les logs de Redwood s'afficher sans chambouler la barre de progression
+  setTimeout(async() =>{
+    try {
+      console.log(args)
 
-    const initiatives: [InitiativeV1] = await readJsonFile(args.initiativesPath);
-    const supabase = await initSupabaseClient(process.env.CTP_SUPABASE_INITIATIVE_BUCKET, true)
+      const initiatives: [InitiativeV1] = await readJsonFile(args.initiativesPath);
+      const supabase = await initSupabaseBucket(process.env.CTP_SUPABASE_INITIATIVE_BUCKET, true)
 
-    // create a new progress bar instance and use shades_classic theme
-    const bar1 = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
-    // start the progress bar with a total value of 200 and start value of 0
-    bar1.start(initiatives.length, 0);
+      // create a new progress bar instance and use shades_classic theme
+      const bar1 = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
+      // start the progress bar with a total value of 200 and start value of 0
+      bar1.start(initiatives.length, 0);
 
-    async.mapLimit(initiatives, 1, async (initiative) => {
-      try{
-        // update the current value in your application..
-        bar1.increment()
-        let _initiative = mapInitiative(initiative);
-        //https://dev.to/antoine_m/upload-media-to-supabase-from-remote-url-with-nodejs-5h45
-        _initiative.image = await downloadToSupabase(initiative.photo_header, supabase, process.env.CTP_SUPABASE_INITIATIVE_BUCKET).catch(error => {throw error});
+      async.mapLimit(initiatives, 1, async (initiative) => {
+        try{
+          bar1.increment()
+          let _initiative = mapInitiative(initiative);
+          //https://dev.to/antoine_m/upload-media-to-supabase-from-remote-url-with-nodejs-5h45
+          _initiative.image = await downloadToSupabase(initiative.photo_header, supabase, process.env.CTP_SUPABASE_INITIATIVE_BUCKET).catch(error => {throw error});
 
-        // console.log("Creating initiative : ", _initiative.idv1)
-        let db_initiative = await db.initiative.create({ data: _initiative}).catch(error => {throw error});
+          // console.log("Creating initiative : ", _initiative.idv1)
+          let db_initiative = await db.initiative.create({ data: _initiative})
 
-        return db_initiative
-      }
-      catch(error) {
-        return {isError: true, initiative, error};
-      }
-    }, (err, results) => {
-      // stop the progress bar
-      bar1.stop();
-      // if (err) console.error(err)
-      // results is now an array of the response bodies
-      const errors = results.filter(result => result.isError);
-      console.log(`Inserted ${results.length - errors.length} initiatives with ${errors.length} errors`)
+          return db_initiative
+        }
+        catch(error) {
+          return {isError: true, initiative: initiative, error};
+        }
+      }, (err, results) => {
+        // stop the progress bar
+        bar1.stop();
+        if (err) return console.error(err)
+        // results is now an array of the response bodies
+        const errors = results.filter(result => result.isError);
+        console.log(`Inserted ${results.length - errors.length} initiatives with ${errors.length} errors`)
 
-      logErrorOnFile(errors)
-      // errors.map(error => console.error({initiative: error.initiative._id, error: error.error}))
-    })
-  }
-  catch (err) {
-    console.error(err)
-  }
+        logErrorOnFile(errors)
+        // errors.map(error => console.error({initiative: error.initiative._id, error: error.error}))
+      })
+    }
+    catch (err) {
+      console.error(err)
+    }
+  }, 1000)
 }

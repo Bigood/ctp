@@ -124,6 +124,7 @@ model Initiative {
   contact      String?
 
   descriptionMD     String?
+  resourcesMD       String?
   conditionsMD      String?
   evaluationMD      String?
   strengthsMD       String?

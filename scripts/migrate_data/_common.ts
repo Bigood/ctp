@@ -11,7 +11,7 @@ export const createSupabaseClient = () => {
   //@ts-expect-error
   return createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, { auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false }})
 }
-export const initSupabaseClient = async (bucket, clearIfExists = false, isBucketPublic = true) => {
+export const initSupabaseBucket = async (bucket, clearIfExists = false, isBucketPublic = true) => {
   if(!bucket)
     throw "No bucket passed"
 
@@ -34,7 +34,7 @@ export const initSupabaseClient = async (bucket, clearIfExists = false, isBucket
   return supabaseClient;
 }
 export const downloadToSupabase = async (url, supabaseClient, bucket) => {
-  const urlMatch = url.match(/^(\/uploads\/)|http(s)?\:\/\/(?:www\.)?cartotalents\.fr/)
+  const urlMatch = url?.match(/^(\/uploads\/)|http(s)?\:\/\/(?:www\.)?cartotalents\.fr/)
   if(urlMatch){
     //Si l'URL est relative, on append le nom de domaine
     const urlToFetch = `${urlMatch[0] == "/uploads/" ? "https://www.cartotalents.fr":""}${url}`
@@ -54,9 +54,6 @@ export const downloadToSupabase = async (url, supabaseClient, bucket) => {
     const { publicURL } = supabaseClient.storage.from(bucket).getPublicUrl(filename)
     // console.log("Public Url : ", publicURL)
     return publicURL
-  }
-  else {
-    console.error("Image is not the property of cartotalents")
   }
 }
 export const readJsonFile = async (path) => {

@@ -95,11 +95,11 @@ const Initiative = ({ initiative }: Props) => {
           )}
 
           {!!initiative.practices?.length && (
-            <div className="mb-4">
+            <div className="p-4">
               <h2 className="mb-2 text-xl">{t('practices')}</h2>
               <div>
                 {initiative.practices.map((practice) => (
-                  <div className="badge-outwrap badge mr-2" key={practice.id}>
+                  <div className="badge-outline badge badge-lg mr-2" key={practice.id}>
                     {practice.name}
                   </div>
                 ))}
