@@ -2,14 +2,20 @@ import {createClient} from '@supabase/supabase-js'
 import fs from 'fs/promises'
 import cliProgress from 'cli-progress';
 
+/**
+ * Création du client supabase
+ * @returns supabase : client supabase js
+ */
+export const createSupabaseClient = () => {
+  console.log(`Creating supabase client with .env val : SUPABASE_URL and SUPABASE_SERVICE_KEY (service key with all rights)`);
+  //@ts-expect-error
+  return createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, { auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false }})
+}
 export const initSupabaseClient = async (bucket, clearIfExists = false, isBucketPublic = true) => {
   if(!bucket)
     throw "No bucket passed"
 
-  //Création du client supabase
-  console.log(`Creating supabase client with .env val : SUPABASE_URL and SUPABASE_SERVICE_KEY (service key with all rights)`);
-  //@ts-expect-error
-  const supabaseClient = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, { auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false }})
+  const supabaseClient = createSupabaseClient()
 
   const { data, error } = await supabaseClient.storage.createBucket(bucket, {public: isBucketPublic})
   //@ts-ignore { message: 'The resource already exists', status: 400 }

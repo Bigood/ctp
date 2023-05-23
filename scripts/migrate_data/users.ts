@@ -3,20 +3,7 @@ import fs from 'fs/promises'
 import _ from 'lodash'
 import async from 'async';
 
-import {createClient} from '@supabase/supabase-js'
-
-interface LexiqueV1 {
-    "_id": { "$oid": string },
-    "__v": number,
-    "id": number,
-    "title": string
-    "synonym": string
-    "description": string
-    "short_description": string
-    "weight": number,
-    "sources": [ string ],
-    "type": string
-}
+import { createProgressBar, createSupabaseClient, logErrorOnFile, readJsonFile } from "./_common";
 
 interface UserV1 {
   "_id": {
@@ -101,21 +88,12 @@ interface PedagoV1 {
   passwordResetExpires: Date,
 }
 
-const readJsonFile = async (path) => {
-  const file = await fs.open(path);
-  console.log(`Found file at path. Reading file…`)
-  const fileContent = await file.readFile({encoding: 'utf-8'});
-  const json = JSON.parse(fileContent);
-  console.log(`Found ${json.length} items on file.`)
-  return json
-}
-
 const mapUserV1toUserV2 = (userV1: UserV1, practices) => {
   const fullname = userV1.profile.name.split(" "),
         surname = fullname.shift(),
         name = fullname.join(" ");
-  //@ts-expect-error
-  const _practices = _.intersectionWith(practices, _.merge(userV1.profile.methods, userV1.profile.technics, userV1.profile.activities), (a,b) => (a.$oid == b.$oid)).map(practice => ({id:practice.id}))
+
+  const _practices = _.merge(userV1.profile.methods, userV1.profile.technics, userV1.profile.activities)
 
   return {
     idv1: userV1._id.$oid,
@@ -149,7 +127,7 @@ const mapUserV1toUserV2 = (userV1: UserV1, practices) => {
       }
     },
     practices: {
-      connect: _practices
+      connect: _practices.map(practice => ({cuid: practice.$oid}))
     }
   }
 }
@@ -158,8 +136,8 @@ const mapPedagoV1toUserV2 = (pedagoV1: PedagoV1, practices) => {
   const fullname = pedagoV1.name.split(" "),
         surname = fullname.shift(),
         name = fullname.join(" ");
-  //@ts-expect-error
-  const _practices = _.intersectionWith(practices, _.merge(pedagoV1.methods, pedagoV1.technics, pedagoV1.activities), (a,b) => (a.$oid == b.$oid)).map(practice => ({id:practice.id}))
+
+  const _practices = _.merge(pedagoV1.methods, pedagoV1.technics, pedagoV1.activities)
 
   return {
     idv1: pedagoV1._id.$oid,
@@ -192,7 +170,7 @@ const mapPedagoV1toUserV2 = (pedagoV1: PedagoV1, practices) => {
       }
     },
     practices: {
-      connect: _practices
+      connect: _practices.map(practice => ({cuid: practice.$oid}))
     }
   }
 }
@@ -200,60 +178,63 @@ const mapPedagoV1toUserV2 = (pedagoV1: PedagoV1, practices) => {
  * args :
  * - usersPath : path/to/users.json
  * - pedagosPath : path/to/pedagos.json
- * - lexiquesPath : path/to/lexiques.json
  */
-export default async ({ args }) => {
-  try {
-    console.log(args)
+export default ({ args }) => {
+  //Timeout pour laisser les logs de Redwood s'afficher sans chambouler la barre de progression
+  setTimeout(async ()=> {
+    try {
+      console.log(args)
 
-    // const users: [UserV1] = await readJsonFile(args.usersPath);
-    const lexiques: [LexiqueV1] = await readJsonFile(args.lexiquesPath);
-    const pedagos: [PedagoV1] = await readJsonFile(args.pedagosPath);
-    const practices = await db.practice.findMany({});
+      const users: [UserV1] = await readJsonFile(args.usersPath);
+      const pedagos: [PedagoV1] = await readJsonFile(args.pedagosPath);
 
-    // const mapLexiquePractice = _.intersectionWith(practices, lexiques, (a, b) => (a.name == b.title));
+      let usersMapped = [
+        ...users.map(mapUserV1toUserV2),
+        ...pedagos.map(mapPedagoV1toUserV2)
+      ]
+      // console.log(usersMapped);
 
-    //Fusion des lexiques V1 et pratiques actuelles
-    var merged = _.merge(_.keyBy(practices, 'name'), _.keyBy(lexiques, 'title'));
-    var mapLexiquePractice = _.values(merged).map(practice => ({"id": practice.id, "$oid": practice._id.$oid}));
-    // console.log(mapLexiquePractice);
+      const supabase = createSupabaseClient()
+      const _bar = createProgressBar()
+      _bar.start(usersMapped.length, 0);
 
-    let usersMapped = [
-      ...users.map(user => mapUserV1toUserV2(user, mapLexiquePractice)),
-      ...pedagos.map(pedago => mapPedagoV1toUserV2(pedago, mapLexiquePractice))
-    ]
-    // console.log(usersMapped);
-
-    //Création du client supabase
-    console.log(`Creating supabase client with .env val : SUPABASE_URL and SUPABASE_SERVICE_KEY (service key with all rights)`);
-    //@ts-expect-error
-    const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, { auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false }})
-
-    async.mapLimit(usersMapped, 1, async (user) => {
-        const {data, error} = await supabase.auth.api.createUser({
+      async.mapLimit(usersMapped, 1, async (user) => {
+        try{
+          _bar.increment()
+          const {data, error} = await supabase.auth.api.createUser({
             email: user.email,
             email_confirm: true,
             // app_metadata: {provider: "email", providers: ["email"]},
             // user_metadata: {}
-          })
-        if(error){
-          // console.error(error, user.email)
-          //https://github.com/caolan/async/issues/1480#issuecomment-334329832
-          return {...error, email: user.email};
-        }
-        const User = await db.user.create({ data: {cuid: data.id, ...user} });
-        console.log("User created : ", user.email)
-        return User;
-        // supabase.auth.signUp({ email: user.email, password: "azerty" }).catch(err => console.error(err)).then(()=> callback(null, user) )
+          }).catch(error => {throw error});
 
-    }, (err, results) => {
-      if (err) console.error(err)
-      // results is now an array of the response bodies
-      console.log(`Inserted ${results.length} users`)
-      results.filter(result => result.status).map(console.error)
-    })
-  }
-  catch (err) {
-    console.error(err)
-  }
+          if(error){
+            // console.error(error, user.email)
+            //https://github.com/caolan/async/issues/1480#issuecomment-334329832
+            return {isError:true, ...error, email: user};
+          }
+          const User = await db.user.create({ data: {cuid: data.id, ...user} }).catch(error => {throw error});
+
+          return User;
+          // supabase.auth.signUp({ email: user.email, password: "azerty" }).catch(err => console.error(err)).then(()=> callback(null, user) )
+        }
+        catch (e) {
+          return {isError:true, e, user}
+        }
+      }, (err, results) => {
+        _bar.stop();
+        if(err)
+          console.error(err);
+        //Generated errors
+        const errors = results.filter(result => result.isError);
+        if(errors)
+          logErrorOnFile(errors)
+
+        console.log(`Inserted ${results.length - errors.length} users with ${errors.length} errors`)
+      })
+    }
+    catch (err) {
+      console.error(err)
+    }
+  }, 1000)
 }

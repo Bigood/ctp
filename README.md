@@ -52,12 +52,11 @@ yarn rw exec migrate_data/lexiques
   \ --lexiquesPath=/Users/maen/Dev/CTP/backup/json_v1_120423/lexiques.json
 ```
 
-### Users and lexique
+### Users and pedagos
 
 ```bash
-yarn rw exec migrate_data/users_lexiques
-  \ --usersPath=/Users/maen/Cloud/Work/Carto/2022/res/users.json
-  \ --lexiquesPath=/Users/maen/Cloud/Work/Carto/2022/res/lexiques.json
+yarn rw exec migrate_data/users
+  \ --usersPath=/Users/maen/Dev/CTP/backup/json_v1_120423/users.json
   \ --pedagosPath=/Users/maen/Dev/CTP/backup/json_v1_120423/pedagos.json
 ```
 
