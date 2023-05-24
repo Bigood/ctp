@@ -3,6 +3,8 @@ import { useContext, useEffect, useRef, useState } from "react"
 import { GeoJSONSource, Layer, LayerProps, Map, MapRef, Source } from "react-map-gl"
 import QueryContext from "src/providers/context/QueryContext"
 import '../../../../node_modules/mapbox-gl/dist/mapbox-gl.css'
+import { MAPBOX_STYLES } from "./Map"
+import { LOCALSTORAGE_KEY } from "../ThemeSwap/ThemeSwap"
 
 const DEFAULT_GEOJSON = {
       "type": "FeatureCollection",
@@ -73,10 +75,15 @@ export default function ExploreMap(props) {
   const [selectedMarkerId, setSelectedMarkerId] = useState(null);
 
   const [geojson, setGeojson] = useState(DEFAULT_GEOJSON)
+  const [mapboxTheme, setMapboxTheme] = useState(localStorage.getItem(LOCALSTORAGE_KEY))
 
   useEffect(() => {
     setGeojson(dataToGeoJson(results, props.pathToCoordinates));
   }, [results])
+
+  useEffect(() => {
+    setMapboxTheme(MAPBOX_STYLES[localStorage.getItem(LOCALSTORAGE_KEY)])
+  }, [])
 
   const mapRef = useRef<MapRef>(null)
 
@@ -138,7 +145,7 @@ export default function ExploreMap(props) {
     <>
       <Map
         initialViewState={defaultMapCenter}
-        mapStyle="mapbox://styles/mapbox/dark-v9"
+        mapStyle={mapboxTheme}
         mapboxAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         interactiveLayerIds={[clusterLayer.id, unclusteredPointLayer.id]}
         onClick={onClick}
