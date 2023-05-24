@@ -34,10 +34,10 @@ export const initSupabaseBucket = async (bucket, clearIfExists = false, isBucket
   return supabaseClient;
 }
 export const downloadToSupabase = async (url, supabaseClient, bucket) => {
-  const urlMatch = url?.match(/^(\/uploads\/)|http(s)?\:\/\/(?:www\.)?cartotalents\.fr/)
+  const urlMatch = url?.match(/^(\/uploads\/)|(\/avatars\/)|http(s)?\:\/\/(?:www\.)?cartotalents\.fr/)
   if(urlMatch){
     //Si l'URL est relative, on append le nom de domaine
-    const urlToFetch = `${urlMatch[0] == "/uploads/" ? "https://www.cartotalents.fr":""}${url}`
+    const urlToFetch = `${urlMatch[0].match(/(uploads)|(avatars)/) ? "https://www.cartotalents.fr":""}${url}`
     const filename = url.match(/(?:.*)\/(.*)$/)?.[1]
 
     // console.log(`Fetching ${urlToFetch}`)
@@ -55,13 +55,14 @@ export const downloadToSupabase = async (url, supabaseClient, bucket) => {
     // console.log("Public Url : ", publicURL)
     return publicURL
   }
+  return null
 }
 export const readJsonFile = async (path) => {
   const file = await fs.open(path);
-  console.log(`Found file at path. Reading file…`)
+  // console.log(`Found file at path. Reading file…`)
   const fileContent = await file.readFile({encoding: 'utf-8'});
   const json = JSON.parse(fileContent);
-  console.log(`Found ${json.length} items on file.`)
+  // console.log(`Found ${json.length} items on file.`)
   file.close();
   return json
 }
@@ -72,8 +73,25 @@ export const logErrorOnFile = async (data, path = "./scripts/migrate_data/error.
   // console.log(`Found file at path. Reading file…`)
 }
 
-export const createProgressBar = () => {
+export const createProgressBar = (name = "Items") => {
   // create a new progress bar instance and use shades_classic theme
-  const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
+  const bar = new cliProgress.SingleBar({
+    format: ` {bar} | ${name} {value}/{total}`,
+  }, cliProgress.Presets.shades_classic);
   return bar;
+}
+
+export const PromisifyScript = (script) => {
+  return new Promise((resolve, reject) => {
+    //Timeout pour laisser les logs de Redwood s'afficher sans chambouler la barre de progression
+    setTimeout(async ()=> {
+      try {
+        script(resolve, reject)
+      }
+      catch (err) {
+        console.error(err)
+        reject(err)
+      }
+    }, 1000)
+  });
 }

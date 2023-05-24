@@ -2,6 +2,7 @@ import { db } from 'api/src/lib/db'
 import fs from 'fs/promises'
 import _ from 'lodash'
 import async from 'async';
+import { PromisifyScript, createProgressBar, readJsonFile } from "./_common";
 
 
 interface SubjectV1 {
@@ -12,14 +13,6 @@ interface SubjectV1 {
   "title": string
 }
 
-const readJsonFile = async (path) => {
-  const file = await fs.open(path);
-  console.log(`Found file at path. Reading file…`)
-  const fileContent = await file.readFile({encoding: 'utf-8'});
-  const json = JSON.parse(fileContent);
-  console.log(`Found ${json.length} items on file.`)
-  return json
-}
 
 const mapSubject = (domaineV1: SubjectV1) => {
   return {
@@ -32,24 +25,25 @@ const mapSubject = (domaineV1: SubjectV1) => {
  * - domainesDisciplinairesPath : path/to/domaines.json
  */
 export default async ({ args }) => {
-  try {
-    console.log(args)
+  return PromisifyScript(async (resolve, reject) => {
 
     const domainesDisciplinaires: [SubjectV1] = await readJsonFile(args.domainesDisciplinairesPath);
 
+    const _bar = createProgressBar("Subjects")
+    _bar.start(domainesDisciplinaires.length, 0);
 
     async.mapLimit(domainesDisciplinaires, 10, async (domaine) => {
-        const subject = mapSubject(domaine);
-        const Subject = await db.subject.create({ data: subject });
-        console.log("Subject : ", subject.name)
-        return Subject;
+      _bar.increment();
+      const subject = mapSubject(domaine);
+      const Subject = await db.subject.create({ data: subject });
+      // console.log("Subject : ", subject.name)
+      return Subject;
     }, (err, results) => {
+      _bar.stop();
       if (err) console.error(err)
       // results is now an array of the response bodies
       console.log(`Inserted ${results.length} domaines`)
+      resolve({results})
     })
-  }
-  catch (err) {
-    console.error(err)
-  }
+  });
 }

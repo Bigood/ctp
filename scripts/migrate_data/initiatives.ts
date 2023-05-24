@@ -4,7 +4,7 @@ import { PrismaClient } from '@prisma/client'
 import _ from 'lodash'
 import async from 'async';
 import cliProgress from 'cli-progress';
-import { initSupabaseBucket, readJsonFile, downloadToSupabase, logErrorOnFile } from './_common'
+import { initSupabaseBucket, readJsonFile, downloadToSupabase, logErrorOnFile, createProgressBar, PromisifyScript } from './_common'
 
 export const db = new PrismaClient({
   log: [],
@@ -118,48 +118,41 @@ const mapInitiative = (initiativeV1: InitiativeV1) => {
  * - initiativesPath : path/to/initiatives.json
  */
 export default ({ args }) => {
-  //Timeout pour laisser les logs de Redwood s'afficher sans chambouler la barre de progression
-  setTimeout(async() =>{
-    try {
-      console.log(args)
+  return PromisifyScript(async (resolve, reject) => {
 
-      const initiatives: [InitiativeV1] = await readJsonFile(args.initiativesPath);
-      const supabase = await initSupabaseBucket(process.env.CTP_SUPABASE_INITIATIVE_BUCKET, true)
+    const initiatives: [InitiativeV1] = await readJsonFile(args.initiativesPath);
+    const supabase = await initSupabaseBucket(process.env.CTP_SUPABASE_INITIATIVE_BUCKET, true)
 
-      // create a new progress bar instance and use shades_classic theme
-      const bar1 = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
-      // start the progress bar with a total value of 200 and start value of 0
-      bar1.start(initiatives.length, 0);
+    const _bar = createProgressBar("Initiatives")
+    _bar.start(initiatives.length, 0);
 
-      async.mapLimit(initiatives, 1, async (initiative) => {
-        try{
-          bar1.increment()
-          let _initiative = mapInitiative(initiative);
-          //https://dev.to/antoine_m/upload-media-to-supabase-from-remote-url-with-nodejs-5h45
-          _initiative.image = await downloadToSupabase(initiative.photo_header, supabase, process.env.CTP_SUPABASE_INITIATIVE_BUCKET).catch(error => {throw error});
+    async.mapLimit(initiatives, 1, async (initiative) => {
+      try{
+        _bar.increment()
+        let _initiative = mapInitiative(initiative);
+        //https://dev.to/antoine_m/upload-media-to-supabase-from-remote-url-with-nodejs-5h45
+        _initiative.image = await downloadToSupabase(initiative.photo_header, supabase, process.env.CTP_SUPABASE_INITIATIVE_BUCKET).catch(error => {throw error});
 
-          // console.log("Creating initiative : ", _initiative.idv1)
-          let db_initiative = await db.initiative.create({ data: _initiative})
+        // console.log("Creating initiative : ", _initiative.idv1)
+        let db_initiative = await db.initiative.create({ data: _initiative}).catch(error => {if(error.meta) throw error});
 
-          return db_initiative
-        }
-        catch(error) {
-          return {isError: true, initiative: initiative, error};
-        }
-      }, (err, results) => {
-        // stop the progress bar
-        bar1.stop();
-        if (err) return console.error(err)
-        // results is now an array of the response bodies
-        const errors = results.filter(result => result.isError);
-        console.log(`Inserted ${results.length - errors.length} initiatives with ${errors.length} errors`)
+        return db_initiative
+      }
+      catch(error) {
+        // throw error
+        return {isError: true, initiative: initiative, error};
+      }
+    }, (err, results) => {
+      // stop the progress bar
+      _bar.stop();
+      if (err) return console.error(err)
+      // results is now an array of the response bodies
+      const errors = results.filter(result => result?.isError);
+      console.log(`Inserted ${results.length - errors.length} initiatives with ${errors.length} errors`)
 
-        logErrorOnFile(errors)
-        // errors.map(error => console.error({initiative: error.initiative._id, error: error.error}))
-      })
-    }
-    catch (err) {
-      console.error(err)
-    }
-  }, 1000)
+      logErrorOnFile(errors)
+      resolve({results, errors})
+      // errors.map(error => console.error({initiative: error.initiative._id, error: error.error}))
+    })
+  });
 }

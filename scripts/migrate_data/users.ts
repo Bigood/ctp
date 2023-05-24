@@ -3,7 +3,7 @@ import fs from 'fs/promises'
 import _ from 'lodash'
 import async from 'async';
 
-import { createProgressBar, createSupabaseClient, logErrorOnFile, readJsonFile } from "./_common";
+import { PromisifyScript, createProgressBar, createSupabaseClient, downloadToSupabase, initSupabaseBucket, logErrorOnFile, readJsonFile } from "./_common";
 
 interface UserV1 {
   "_id": {
@@ -108,7 +108,7 @@ const mapUserV1toUserV2 = (userV1: UserV1, practices) => {
     phone: userV1.profile.phone,
     showEmail: !userV1.profile.hide_email,
     showPhone: userV1.profile.contact_mode == "phone",
-    job: `Enseignant depuis ${userV1.profile.teaching_years} années`,
+    job: "teacher", //`Enseignant depuis ${userV1.profile.teaching_years} années`,
     department: "",
     shortPresentation: userV1.profile.free_description,
     presentation: userV1.profile.free_description,
@@ -151,8 +151,8 @@ const mapPedagoV1toUserV2 = (pedagoV1: PedagoV1, practices) => {
     phone: pedagoV1.phone,
     showEmail: pedagoV1.contact_mode == "email",
     showPhone: pedagoV1.contact_mode == "phone",
-    job: pedagoV1.job_title,
-    department: "",
+    job: "support",
+    department: pedagoV1.job_title,
     shortPresentation: pedagoV1.free_description,
     presentation: pedagoV1.free_description,
     // subjects: pedagoV1.teaching_specialities,
@@ -180,10 +180,7 @@ const mapPedagoV1toUserV2 = (pedagoV1: PedagoV1, practices) => {
  * - pedagosPath : path/to/pedagos.json
  */
 export default ({ args }) => {
-  //Timeout pour laisser les logs de Redwood s'afficher sans chambouler la barre de progression
-  setTimeout(async ()=> {
-    try {
-      console.log(args)
+  return PromisifyScript(async (resolve, reject) => {
 
       const users: [UserV1] = await readJsonFile(args.usersPath);
       const pedagos: [PedagoV1] = await readJsonFile(args.pedagosPath);
@@ -194,8 +191,8 @@ export default ({ args }) => {
       ]
       // console.log(usersMapped);
 
-      const supabase = createSupabaseClient()
-      const _bar = createProgressBar()
+      const supabase = await initSupabaseBucket(process.env.CTP_SUPABASE_AVATAR_BUCKET)
+      const _bar = createProgressBar("Users")
       _bar.start(usersMapped.length, 0);
 
       async.mapLimit(usersMapped, 1, async (user) => {
@@ -207,6 +204,10 @@ export default ({ args }) => {
             // app_metadata: {provider: "email", providers: ["email"]},
             // user_metadata: {}
           }).catch(error => {throw error});
+
+          const avatarPublicUrl = await downloadToSupabase(user.image, supabase, process.env.CTP_SUPABASE_AVATAR_BUCKET)
+          if(avatarPublicUrl)
+            user.image = avatarPublicUrl;
 
           if(error){
             // console.error(error, user.email)
@@ -231,10 +232,7 @@ export default ({ args }) => {
           logErrorOnFile(errors)
 
         console.log(`Inserted ${results.length - errors.length} users with ${errors.length} errors`)
+        resolve({errors, results})
       })
-    }
-    catch (err) {
-      console.error(err)
-    }
-  }, 1000)
+  });
 }

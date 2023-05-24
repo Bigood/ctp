@@ -5,6 +5,7 @@ import async from 'async';
 import {fetch} from 'undici'
 
 import {createClient} from '@supabase/supabase-js'
+import { PromisifyScript, createProgressBar, initSupabaseBucket, readJsonFile } from "./_common";
 
 interface ResourceV1 {
   "_id": {
@@ -18,16 +19,6 @@ interface ResourceV1 {
   "titre": string,
   "url_thumbnail": string, //"https://podcast.mines-nantes.fr/cartographie_beta/uploads/1490877768779_CRS-E-Entite-v-FR.thumbnail.png",
   "url": string, //"https://podcast.mines-nantes.fr/cartographie_beta/uploads/1490877768756_CRS-E-Entite-v-FR.pdf",
-}
-
-const readJsonFile = async (path) => {
-  const file = await fs.open(path);
-  console.log(`Found file at path. Reading file…`)
-  const fileContent = await file.readFile({encoding: 'utf-8'});
-  const json = JSON.parse(fileContent);
-  console.log(`Found ${json.length} items on file.`)
-  file.close();
-  return json
 }
 
 const mapResource = (resourceV1: ResourceV1) => {
@@ -46,40 +37,26 @@ const mapResource = (resourceV1: ResourceV1) => {
  * - resourcesPath : path/to/resources.json
  */
 export default async ({ args }) => {
-  try {
+  return PromisifyScript(async (resolve, reject) => {
     console.log(args)
 
     const resources: [ResourceV1] = await readJsonFile(args.resourcesPath);
-    //Création du client supabase
-    console.log(`Creating supabase client with .env val : SUPABASE_URL and SUPABASE_SERVICE_KEY (service key with all rights)`);
-    //@ts-expect-error
-    const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_SERVICE_KEY, { auth: { autoRefreshToken: false, persistSession: false, detectSessionInUrl: false }})
-    if(!process.env.CTP_SUPABASE_RESOURCE_BUCKET)
-      throw "No CTP_SUPABASE_RESOURCE_BUCKET in .env"
 
-    const BUCKET = process.env.CTP_SUPABASE_RESOURCE_BUCKET;
+    const supabase = await initSupabaseBucket(process.env.CTP_SUPABASE_RESOURCE_BUCKET, true)
 
-    const { data, error } = await supabase.storage.createBucket(BUCKET)
-    //@ts-ignore { message: 'The resource already exists', status: 400 }
-    if(error.status == 400){
-      console.log("Bucket already exists");
-      const { data, error } = await supabase.storage.emptyBucket(BUCKET)
-      console.log("Bucket cleared");
-    }
-    else if(error) {
-      throw error;
-    }
-    else console.log("Bucket created : ", data);
+    const _bar = createProgressBar("Resources")
+    _bar.start(resources.length, 0);
 
     async.mapLimit(resources, 4, async (resource) => {
       try{
+        _bar.increment();
         let _resource = mapResource(resource);
         //https://dev.to/antoine_m/upload-media-to-supabase-from-remote-url-with-nodejs-5h45
         const urlMatch = _resource.url.match(/^(\/uploads\/)|http(s)?\:\/\/(?:www\.)?cartotalents\.fr/)
         if(urlMatch){
           //Si l'URL est relative, on append le nom de domaine
           const urlToFetch = `${urlMatch[0] == "/uploads/" ? "https://www.cartotalents.fr":""}${_resource.url}`
-          console.log(`Fetching ${urlToFetch}`)
+          // console.log(`Fetching ${urlToFetch}`)
           const res = await fetch(urlToFetch).catch(error => {throw error})
           if(!res)
               return "URL invalid"
@@ -87,11 +64,11 @@ export default async ({ args }) => {
           // console.log("File : ", file)
 
           //@ts-expect-error File is a blob
-          const { data, error } = await supabase.storage.from(BUCKET).upload(_resource.filename, file)
+          const { data, error } = await supabase.storage.from(process.env.CTP_SUPABASE_RESOURCE_BUCKET).upload(_resource.filename, file)
           if(error)
             return error;
 
-          const { publicURL } = supabase.storage.from(BUCKET).getPublicUrl(_resource.filename)
+          const { publicURL } = supabase.storage.from(process.env.CTP_SUPABASE_RESOURCE_BUCKET).getPublicUrl(_resource.filename)
           // console.log("Public Url : ", publicURL)
           _resource.url = publicURL
         }
@@ -104,12 +81,11 @@ export default async ({ args }) => {
         return e
       }
     }, (err, results) => {
+      _bar.stop();
       if (err) console.error(err)
       // results is now an array of the response bodies
       console.log(`Inserted ${results.length} resources`)
+      resolve({results})
     })
-  }
-  catch (err) {
-    console.error(err)
-  }
+  });
 }

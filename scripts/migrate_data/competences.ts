@@ -2,7 +2,7 @@ import { db } from 'api/src/lib/db'
 import fs from 'fs/promises'
 import _ from 'lodash'
 import async from 'async';
-import { readJsonFile } from "./_common";
+import { PromisifyScript, createProgressBar, readJsonFile } from "./_common";
 
 interface CompetenceV1 {
   "_id": {
@@ -26,12 +26,10 @@ const mapCompetence = (competenceV1: CompetenceV1) => {
 /**
  * args :
  * - competencesDisciplinairesPath : path/to/competences.json
- * - competencesTransversalesPath : path/to/lexiques.json
+ * - competencesTransversalesPath : path/to/competencesTransversales.json
  */
 export default async ({ args }) => {
-  try {
-    console.log(args)
-
+  return PromisifyScript(async (resolve, reject) => {
     const competencesDisciplinaires: [CompetenceV1] = await readJsonFile(args.competencesDisciplinairesPath);
     const competencesTransversales: [CompetenceV1] = await readJsonFile(args.competencesTransversalesPath);
 
@@ -41,18 +39,20 @@ export default async ({ args }) => {
 
     const competencesMapped = competences.map(mapCompetence)
     // console.log(competencesMapped);
+    const _bar = createProgressBar("Competences")
+    _bar.start(competences.length, 0);
 
     async.mapLimit(competencesMapped, 1, async (competence) => {
-        const Competence = await db.competence.create({ data: competence });
-        console.log("Competence : ", competence.name)
-        return Competence;
+      _bar.increment()
+      const Competence = await db.competence.create({ data: competence });
+      // console.log("Competence : ", competence.name)
+      return Competence;
     }, (err, results) => {
+      _bar.stop()
       if (err) console.error(err)
       // results is now an array of the response bodies
       console.log(`Inserted ${results.length} competences`)
+      resolve({results})
     })
-  }
-  catch (err) {
-    console.error(err)
-  }
+  });
 }
