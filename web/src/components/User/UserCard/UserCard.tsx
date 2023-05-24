@@ -6,7 +6,7 @@ const UserCard = ({user, className}) => {
   const { t } = useTranslation()
   return (
     <Link to={routes.showUser({id: user.id})}>
-      <div className={`flex p-4 bg-base-200 rounded-md  transition hover:bg-base-300 active:scale-95 ${className}`}>
+      <div className={`flex p-4 bg-base-200 rounded-md  transition hover:bg-base-300 active:scale-95 items-start ${className}`}>
         <div className="avatar mr-2 flex-none">
           <div className="mask mask-squircle w-24">
             <img src={ user.image || `https://www.gravatar.com/avatar/${md5( user.email)}?d=identicon` } />

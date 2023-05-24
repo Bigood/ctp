@@ -19,7 +19,7 @@ const Profile = ({ user, similarUsers }: FindProfileQuery) => {
         <section className="w-full rounded-md bg-base-100 text-base-content shadow-xl">
           <div className="flex p-4">
             <div className="avatar mr-2 flex-none">
-              <div className="mask mask-squircle w-24">
+              <div className="mask mask-squircle w-32">
                 <img
                   src={
                     user.image ||
@@ -31,14 +31,15 @@ const Profile = ({ user, similarUsers }: FindProfileQuery) => {
               </div>
             </div>
             <div className="flex-1 lg:ml-2">
-              <h1 className="text-2xl">
+              <h1 className="text-3xl mb-2">
                 {user.surname} {user.name}
               </h1>
+              <h2 className="text-xl">
+                {user.job && t(`form.${user.job.toLowerCase()}`)}
+                {user?.department && <span className=""> - {user?.department}</span>}
+              </h2>
               <h2 className="text-lg">
-                {user.job &&
-                  t(`form.${user.job.toLowerCase()}`) + ` ${t('at')} `}{' '}
                 {user.organization?.name}
-                {user.department && ` - ${user.department}`}
               </h2>
             </div>
           </div>

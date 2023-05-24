@@ -49,6 +49,7 @@ export const QUERY = gql`
       id
       name
       surname
+      image
       job
       department
       email
