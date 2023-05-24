@@ -213,3 +213,23 @@ services:
       - ./volumes/db/roles.sql:/docker-entrypoint-initdb.d/roles.sql
       - ./volumes/db/data:/var/lib/postgresql/data
     #profiles: ["demo"]
+
+  faktory:
+    container_name: ${COMPOSE_PROJECT_NAME}-faktory
+    image: contribsys/faktory:latest
+    volumes:
+      - ./faktory:/var/lib/faktory/db
+    ports:
+      - 7419:7419
+      - 7420:7420
+    working_dir: /faktory
+
+  # ctp:
+  #   container_name: ${COMPOSE_PROJECT_NAME}-app
+  #   image: ghcr.io/bigood/ctp:latest
+  #   ports:
+  #     - 8080:80
+  #   working_dir: /faktory
+  #   depends_on:
+  #     faktory: # Disable this if you are using an external Postgres database
+  #       condition: service_healthy
