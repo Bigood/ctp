@@ -93,7 +93,7 @@ const mapUserV1toUserV2 = (userV1: UserV1, practices) => {
         surname = fullname.shift(),
         name = fullname.join(" ");
 
-  const _practices = _.merge(userV1.profile.methods, userV1.profile.technics, userV1.profile.activities)
+  const _practices = [...userV1.profile.methods, ...userV1.profile.technics, ...userV1.profile.activities]
 
   return {
     idv1: userV1._id.$oid,
@@ -137,7 +137,7 @@ const mapPedagoV1toUserV2 = (pedagoV1: PedagoV1, practices) => {
         surname = fullname.shift(),
         name = fullname.join(" ");
 
-  const _practices = _.merge(pedagoV1.methods, pedagoV1.technics, pedagoV1.activities)
+  const _practices = [...pedagoV1.methods, ...pedagoV1.technics, ...pedagoV1.activities]
 
   return {
     idv1: pedagoV1._id.$oid,
