@@ -2,9 +2,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { Link } from "@redwoodjs/router"
 import {faDiscord, faYoutube, faLinkedin, faMailchimp} from "@fortawesome/free-brands-svg-icons"
 import { useTranslation } from 'react-i18next'
+import ThemeSwap from "../ThemeSwap/ThemeSwap"
+import LanguageSwap from "../LanguageSwap/LanguageSwap"
 
 const Footer = () => {
-  const {i18n, t} = useTranslation();
+  const {t} = useTranslation();
   return (
     <footer className="footer bg-base-300 p-10 text-base-content">
       <div>
@@ -34,8 +36,8 @@ const Footer = () => {
           {t('administration')}
         </Link>
 
-        <button onClick={() => i18n.changeLanguage('fr')}>{t('french')}</button>
-        <button onClick={() => i18n.changeLanguage('en')}>{t('english')}</button>
+        <LanguageSwap/>
+        <ThemeSwap/>
       </div>
       <div>
         <span className="footer-title">Company</span>
