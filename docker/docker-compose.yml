@@ -222,7 +222,7 @@ services:
     ports:
       - 7419:7419
       - 7420:7420
-    working_dir: /faktory
+    # working_dir: /faktory
 
   # ctp:
   #   container_name: ${COMPOSE_PROJECT_NAME}-app
