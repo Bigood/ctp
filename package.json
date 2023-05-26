@@ -9,6 +9,7 @@
   },
   "devDependencies": {
     "@redwoodjs/core": "^3.7.0",
+    "node-ssh": "^13.1.0",
     "prettier-plugin-tailwindcss": "^0.2.1"
   },
   "eslintConfig": {

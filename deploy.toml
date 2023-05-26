@@ -1,0 +1,31 @@
+# This file contains config for a baremetal deployment
+#
+# SSH connection options include:
+#
+# * host - the remote server hostname/IP
+# * port - defaults to 22
+# * username - required, the user you're connecting as
+# * password - only set if you're not using key-based authentication
+# * privateKey - a Buffer containing the private key (use this _or_ 'privateKeyPath', not both)
+# * privateKeyPath - local file path to a private key that will be sent with the connection request
+# * passphrase - used if your private key has a passphrase
+# * agentForward - set to `true` to forward the client machine's ssh credentials
+#
+# See https://redwoodjs.com/docs/deploy/baremetal for more info
+
+
+# NGINX serves web, but you can do otherwise https://redwoodjs.com/docs/deploy/baremetal#redwood-serves-api-nginx-serves-web-side
+# https://redwoodjs.com/docs/deploy/baremetal#redwood-serves-api-nginx-serves-web-side
+
+[[production.servers]]
+host = "${DEPLOY_HOST}"
+username = "${DEPLOY_USER}"
+agentForward = true
+sides = ["api"]
+packageManagerCommand = "yarn"
+monitorCommand = "pm2"
+path = "${DEPLOY_PATH}"
+processNames = ["serve"]
+repo = "git@github.com:bigood/ctp.git"
+branch = "master"
+keepReleases = 5
