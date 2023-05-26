@@ -3,8 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "dependencies": {
-    "@redwoodjs/api": "^3.7.0",
-    "@redwoodjs/graphql-server": "^3.7.0",
+    "@redwoodjs/api": "^5.2.3",
+    "@redwoodjs/graphql-server": "^5.2.3",
     "async": "^3.2.4",
     "cross-undici-fetch": "^0.4.14",
     "faktory-worker": "^4.5.1",
