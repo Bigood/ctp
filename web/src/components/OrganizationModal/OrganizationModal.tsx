@@ -7,7 +7,7 @@ import { Controller, FieldError, Form, FormError, Label, NumberField, Submit, Te
 import { useTranslation } from 'react-i18next'
 import InputGeocoding from "../InputGeocoding/InputGeocoding"
 import Map from "../Map/Map"
-import { useAuth } from "@redwoodjs/auth"
+import { useAuth } from "src/auth"
 
 Modal.setAppElement('#redwood-app')
 

@@ -2,7 +2,7 @@ import { useTranslation } from "react-i18next"
 import Map from 'src/components/Map/Map'
 import type { FindProfileQuery } from 'types/graphql'
 import md5 from 'md5'
-import { useAuth } from "@redwoodjs/auth"
+import { useAuth } from "src/auth"
 import { Link } from "@redwoodjs/router"
 import { routes } from "@redwoodjs/router"
 import i18next, { init } from "i18next"

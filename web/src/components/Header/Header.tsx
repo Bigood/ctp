@@ -1,4 +1,4 @@
-import { useAuth } from "@redwoodjs/auth"
+import { useAuth } from "src/auth"
 import { Link, routes } from "@redwoodjs/router"
 import { useTranslation } from "react-i18next";
 import md5 from "md5";

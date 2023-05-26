@@ -1,5 +1,5 @@
 
-import { useAuth } from '@redwoodjs/auth'
+import { useAuth } from "src/auth"
 import { Redirect, routes } from '@redwoodjs/router'
 import { MetaTags } from '@redwoodjs/web'
 

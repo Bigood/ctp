@@ -7,7 +7,7 @@ import { useState } from "react"
 import { debounce } from "lodash"
 import OrganizationModalCell from '../OrganizationModalCell'
 import { faEdit } from "@fortawesome/free-regular-svg-icons"
-import { useAuth } from "@redwoodjs/auth"
+import { useAuth } from "src/auth"
 
 const OrganizationsSearch = (props) => {
   const { defaultValue } = props;

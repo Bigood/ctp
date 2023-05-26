@@ -1,4 +1,4 @@
-import { useAuth } from '@redwoodjs/auth'
+import { useAuth } from "src/auth"
 import { MetaTags } from '@redwoodjs/web'
 import { useTranslation } from 'react-i18next'
 import NewUser from 'src/components/Admin/User/NewUser/NewUser'

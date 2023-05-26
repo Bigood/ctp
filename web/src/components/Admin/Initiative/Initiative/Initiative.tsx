@@ -4,7 +4,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { useTranslation } from "react-i18next"
 
-import { useAuth } from "@redwoodjs/auth"
+import { useAuth } from "src/auth"
 import type { DeleteInitiativeMutationVariables, FindCompleteInitiativeById } from 'types/graphql'
 import i18next, { init } from "i18next"
 import Map from "src/components/Map/Map"

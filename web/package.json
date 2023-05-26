@@ -19,6 +19,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.3.0",
     "@fortawesome/react-fontawesome": "latest",
     "@redwoodjs/auth": "^5.2.3",
+    "@redwoodjs/auth-supabase-web": "^5.2.3",
     "@redwoodjs/forms": "^5.2.3",
     "@redwoodjs/router": "^5.2.3",
     "@redwoodjs/web": "^5.2.3",
