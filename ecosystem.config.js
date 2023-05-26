@@ -2,7 +2,7 @@ module.exports = {
   apps: [
     {
       name: 'api',
-      cwd: 'current',
+      // cwd: 'current',
       script: 'node_modules/.bin/rw',
       args: 'serve api',
       instances: 'max',
