@@ -37,13 +37,13 @@ const HomePage = () => {
             </QueryContext.Provider>
           </Link>
         </div>
-        <div className="flex-1 p-2">
+        <div className="flex-1 p-8">
           <h1 className="mb-8 text-4xl">
             {t('HomePage.title')}
           </h1>
           <div>
             <Link to="/explore/users" className="btn-primary btn-md btn mr-2">
-              {t('users')}
+              {t('user', {count:2})}
             </Link>
             <Link
               to="/explore/initiatives"
@@ -54,7 +54,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <section className="hero bg-base-300">
+      <section className="hero bg-base-300 pb-8">
         <div className="hero-content">
           <div className="max-w-lg">
             <h1 className="mb-4 p-12 text-center text-4xl font-bold">
@@ -72,7 +72,7 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <section className="hero bg-base-200">
+      <section className="hero bg-base-200 pb-8">
         <div className="hero-content">
           <div className="max-w-xl">
             <h1 className="mb-4 p-12 text-center text-4xl font-bold">
@@ -86,10 +86,7 @@ const HomePage = () => {
                 quae ab illo inventore veritatis et quasi ropeior architecto
                 beatae vitae dicta sunt explicabo. Nemo eniem ipsam voluptatem
                 quia voluptas sit aspernatur aut odit aut fugit, sed quia
-                <img
-                  src="https://placekitten.com/300/220"
-                  className="mb-4 mt-4"
-                />
+
                 consequuntur magni dolores eosep quiklop ratione voluptatem
                 sequi nesciunt. Neque porro quisquam est, quepi dolorem ipsum
                 quia dolor srit amet, consectetur adipisci velit, seid quia non
@@ -106,14 +103,14 @@ const HomePage = () => {
           </div>
         </div>
       </section>
-      <section className="hero bg-base-300">
+      <section className="hero bg-base-100">
         <div className="hero-content">
-          <div className="card w-96 bg-neutral text-neutral-content">
+          <div className="card w-96 bg-base-200">
             <div className="card-body items-center text-center">
               <h1 className="card-title">Join the community</h1>
               <p>You have to be in a partner organization to join. Ready?</p>
               <div className="card-actions">
-                <button className="btn-primary btn">Join</button>
+                <Link to={routes.auth()}><div className="btn-primary btn">Join</div></Link>
               </div>
             </div>
           </div>
