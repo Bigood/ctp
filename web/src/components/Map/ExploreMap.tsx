@@ -75,7 +75,7 @@ export default function ExploreMap(props) {
   const [selectedMarkerId, setSelectedMarkerId] = useState(null);
 
   const [geojson, setGeojson] = useState(DEFAULT_GEOJSON)
-  const [mapboxTheme, setMapboxTheme] = useState(localStorage.getItem(LOCALSTORAGE_KEY))
+  const [mapboxTheme, setMapboxTheme] = useState(localStorage.getItem(LOCALSTORAGE_KEY) || MAPBOX_STYLES[1])
 
   useEffect(() => {
     setGeojson(dataToGeoJson(results, props.pathToCoordinates));
