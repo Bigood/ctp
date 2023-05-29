@@ -75,11 +75,11 @@ const Header = () => {
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn-ghost btn-circle avatar btn">
               <div className="w-10 rounded-full">
-                <img
+                {currentUser?.email && <img
                   src={`https://www.gravatar.com/avatar/${md5(
                     currentUser.email
                   )}?d=identicon`}
-                />
+                />}
               </div>
             </label>
             <ul
@@ -119,9 +119,11 @@ const Header = () => {
             </ul>
           </div>
         ) : (
-          <button className="btn-primary btn">
-            <Link to={routes.auth()}>{t('login')}</Link>
-          </button>
+          <Link to={routes.auth()}>
+            <div className="btn-primary btn">
+              {t('login')}
+            </div>
+          </Link>
         )}
       </div>
     </div>

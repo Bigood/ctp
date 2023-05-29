@@ -30,12 +30,12 @@ const Auth = () => {
   }, [])
 
   const onSubmit = async (data: Record<string, string>) => {
-    const response = await logIn({ ...data })
+    const response = await logIn({ authMethod: "otp", email: data.email }).catch(err => {throw err})
     console.log(response);
-    if (response.message) {
-      toast(response.message)
-    } else if (response.error) {
-      toast.error(response.error.message)
+    if (response?.message) {
+      toast(response?.message)
+    } else if (response?.error) {
+      toast.error(response?.error.message)
     } else {
       toast.success('Un lien de vérification a été envoyé sur cette adresse e-mail. Cliquez dessus pour vous connecter')
     }
@@ -61,7 +61,7 @@ const Auth = () => {
                 <TextField
                   name="email"
                   className="input-bordered input"
-                  errorClassName="error"
+                  errorClassName="input-bordered input input-error"
                   ref={emailRef}
                   validation={{
                     required: {
