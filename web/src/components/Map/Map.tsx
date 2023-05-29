@@ -78,7 +78,7 @@ const Map = (props: MapProps) => {
     if (map.current) return // wait for map to initialize
     map.current = new mapboxgl.Map({
       container: mapContainerHTML.current,
-      style: MAPBOX_STYLES[localStorage.getItem(LOCALSTORAGE_KEY)] || MAPBOX_STYLES[1],
+      style: MAPBOX_STYLES[localStorage.getItem(LOCALSTORAGE_KEY) || 1],
       center: [defaultMapCenter.lng, defaultMapCenter.lat],
       zoom: zoomLevel,
     })

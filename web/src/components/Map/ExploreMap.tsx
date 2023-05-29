@@ -75,14 +75,14 @@ export default function ExploreMap(props) {
   const [selectedMarkerId, setSelectedMarkerId] = useState(null);
 
   const [geojson, setGeojson] = useState(DEFAULT_GEOJSON)
-  const [mapboxTheme, setMapboxTheme] = useState(localStorage.getItem(LOCALSTORAGE_KEY) || MAPBOX_STYLES[1])
+  const [mapboxTheme, setMapboxTheme] = useState(MAPBOX_STYLES[localStorage.getItem(LOCALSTORAGE_KEY) || 1])
 
   useEffect(() => {
     setGeojson(dataToGeoJson(results, props.pathToCoordinates));
   }, [results])
 
   useEffect(() => {
-    setMapboxTheme(MAPBOX_STYLES[localStorage.getItem(LOCALSTORAGE_KEY)])
+    setMapboxTheme(MAPBOX_STYLES[localStorage.getItem(LOCALSTORAGE_KEY) || 1])
   }, [])
 
   const mapRef = useRef<MapRef>(null)
