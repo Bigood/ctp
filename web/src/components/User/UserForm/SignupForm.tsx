@@ -246,7 +246,7 @@ const SignupForm = (props: SignupFormProps) => {
                     />
                     <span>{t('form.teacher')}</span>
                   </div>
-                  <div className="flex-center mb-1 flex">
+                  {/* <div className="flex-center mb-1 flex">
                     <CheckboxField
                       name="job"
                       defaultChecked={false}
@@ -255,7 +255,7 @@ const SignupForm = (props: SignupFormProps) => {
                       errorClassName="checkbox mr-2 input-error"
                     />
                     <span>{t('form.support')}</span>
-                  </div>
+                  </div> */}
                 </div>
                 <FieldError name="job" className="rw-field-error" />
               </div>

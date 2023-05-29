@@ -1,4 +1,4 @@
-import { SelectField } from '@redwoodjs/forms'
+import { useRegister } from '@redwoodjs/forms'
 import { t } from "i18next"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { faPlus, faSearch } from "@fortawesome/free-solid-svg-icons"
@@ -10,6 +10,9 @@ import { faEdit } from "@fortawesome/free-regular-svg-icons"
 import { useAuth } from "src/auth"
 
 const OrganizationsSearch = (props) => {
+  //https://stackoverflow.com/a/68623501/1437016
+  const register = useRegister({name:"organizationId", validation: {required: true, valueAsNumber: true} })
+
   const { defaultValue } = props;
   const [query, setQuery] = useState(defaultValue?.name || "")
   const [dropdownVisible, setDropdownVisible] = useState(false)
@@ -30,7 +33,7 @@ const OrganizationsSearch = (props) => {
     <div className="form-control relative">
       <div className="flex">
         <div className="relative grow">
-          <input type="hidden" value={organization?.id} name="organization" />
+          <input {...register} type="number" {...(organization ? {value:parseInt(organization?.id)} : {})} />
           <input
             type="text"
             className="input-bordered input w-full pr-12"
