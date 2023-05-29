@@ -8,7 +8,7 @@ const AuthCallback = () => {
   const { currentUser } = useAuth()
 
   //Récupération de l'ID local de l'user s'il a déjà créé
-  const id = typeof currentUser.id == 'number' ? currentUser.id : undefined
+  const id = typeof currentUser?.id == 'number' ? currentUser?.id : undefined
 
   return (
     <>

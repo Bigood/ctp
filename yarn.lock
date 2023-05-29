@@ -4449,7 +4449,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@redwoodjs/auth-supabase-web@npm:^5.2.3":
+"@redwoodjs/auth-supabase-api@npm:5.2.3":
+  version: 5.2.3
+  resolution: "@redwoodjs/auth-supabase-api@npm:5.2.3"
+  dependencies:
+    "@babel/runtime-corejs3": 7.21.5
+    core-js: 3.30.2
+    jsonwebtoken: 9.0.0
+  checksum: 0fe93d372c20129133150d996d1b233cc5e7dcc648bf86926d7e9bc9b7b6c8d69d38d0f3d69a9f26f3ad0e9ba957b9e93e0a491459a4bcb67533fda4a6744878
+  languageName: node
+  linkType: hard
+
+"@redwoodjs/auth-supabase-setup@npm:5.2.3":
+  version: 5.2.3
+  resolution: "@redwoodjs/auth-supabase-setup@npm:5.2.3"
+  dependencies:
+    "@babel/runtime-corejs3": 7.21.5
+    "@redwoodjs/cli-helpers": 5.2.3
+    core-js: 3.30.2
+  checksum: c5b35dd7cff97ac21429ee5e5a09071ce1689acfb30f6ba79171fa42932729e626c8245b00ebc33227445d5ba92f3e11772750c0d43419a8a73843bec27f20c0
+  languageName: node
+  linkType: hard
+
+"@redwoodjs/auth-supabase-web@npm:5.2.3":
   version: 5.2.3
   resolution: "@redwoodjs/auth-supabase-web@npm:5.2.3"
   dependencies:
@@ -6235,7 +6257,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@supabase/supabase-js@npm:^2.23.0":
+"@supabase/supabase-js@npm:^2":
   version: 2.23.0
   resolution: "@supabase/supabase-js@npm:2.23.0"
   dependencies:
@@ -8297,6 +8319,7 @@ __metadata:
   resolution: "api@workspace:api"
   dependencies:
     "@redwoodjs/api": ^5.2.3
+    "@redwoodjs/auth-supabase-api": 5.2.3
     "@redwoodjs/graphql-server": ^5.2.3
     async: ^3.2.4
     cross-undici-fetch: ^0.4.14
@@ -22115,6 +22138,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "root-workspace-0b6124@workspace:."
   dependencies:
+    "@redwoodjs/auth-supabase-setup": 5.2.3
     "@redwoodjs/core": ^5.2.3
     "@tailwindcss/typography": ^0.5.9
     cli-progress: ^3.12.0
@@ -25265,11 +25289,11 @@ __metadata:
     "@fortawesome/free-solid-svg-icons": ^6.3.0
     "@fortawesome/react-fontawesome": latest
     "@redwoodjs/auth": ^5.2.3
-    "@redwoodjs/auth-supabase-web": ^5.2.3
+    "@redwoodjs/auth-supabase-web": 5.2.3
     "@redwoodjs/forms": ^5.2.3
     "@redwoodjs/router": ^5.2.3
     "@redwoodjs/web": ^5.2.3
-    "@supabase/supabase-js": ^2.23.0
+    "@supabase/supabase-js": ^2
     autoprefixer: ^10.4.13
     humanize-string: 2.1.0
     i18n: ^0.15.1

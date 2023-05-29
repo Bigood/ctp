@@ -13,10 +13,11 @@ import AppLayout from './layouts/AppLayout'
 import AdminLayout from './layouts/AdminLayout/AdminLayout'
 import AuthLayout from './layouts/AuthLayout/AuthLayout'
 import AuthCallback from './components/Auth/AuthCallback'
+import { useAuth } from './auth'
 
 const Routes = () => {
   return (
-    <Router>
+    <Router useAuth={useAuth}>
       <Set wrap={AppLayout} title="CTP">
         <Private unauthenticated="auth">
           <Route path="/profile" page={UserLoggedInProfilePage} name="profile" />

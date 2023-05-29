@@ -1,16 +1,21 @@
-import { parseJWT, Decoded } from '@redwoodjs/api'
+import { parseJWT } from '@redwoodjs/api'
 import { AuthenticationError, ForbiddenError } from '@redwoodjs/graphql-server'
 import { db } from './db'
 /**
  * Represents the user attributes returned by the decoding the
  * Authentication provider's JWT together with an optional list of roles.
  */
-type RedwoodUser = Record<string, unknown> & { roles?: string }
+type RedwoodUser = Record<string, unknown> & { roles?: string[] }
 
 /**
  * getCurrentUser returns the user information together with
  * an optional collection of roles used by requireAuth() to check
  * if the user is authenticated or has role-based access
+ *
+ * @param decoded - The decoded access token containing user info and JWT claims like `sub`. Note could be null.
+ * @param { token, SupportedAuthTypes type } - The access token itself as well as the auth provider type
+ * @param { APIGatewayEvent event, Context context } - An object which contains information from the invoker
+ * such as headers and cookies, and the context information about the invocation such as IP Address
  *
  * !! BEWARE !! Anything returned from this function will be available to the
  * client--it becomes the content of `currentUser` on the web side (as well as
@@ -20,17 +25,15 @@ type RedwoodUser = Record<string, unknown> & { roles?: string }
  *
  * @see https://github.com/redwoodjs/redwood/tree/main/packages/auth for examples
  *
- * @param decoded - The decoded access token containing user info and JWT
- *   claims like `sub`. Note, this could be null.
- * @param { token, SupportedAuthTypes type } - The access token itself as well
- *   as the auth provider type
- * @param { APIGatewayEvent event, Context context } - An optional object which
- *   contains information from the invoker such as headers and cookies, and the
- *   context information about the invocation such as IP Address
  * @returns RedwoodUser
  */
 export const getCurrentUser = async (
-  decoded: Decoded
+  decoded,
+  /* eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars */
+  { token, type },
+  /* eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars */
+  { event, context }
+
 ): Promise<RedwoodUser | null> => {
   if (!decoded) {
     return null

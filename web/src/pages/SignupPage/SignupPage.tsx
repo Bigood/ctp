@@ -7,14 +7,12 @@ const SignupPage = () => {
   const { currentUser } = useAuth()
   const { t } = useTranslation();
 
-  //Récupération de l'ID local de l'user s'il a déjà créé
-  const id = typeof currentUser.id == 'number' ? currentUser.id : undefined
-  const forcedValues = { email: currentUser.email, cuid: currentUser.sub }
+  const forcedValues = { email: currentUser?.email, cuid: currentUser?.sub }
 
   return (
     <>
       <MetaTags title={t('complete-your-profile')} description="" />
-      <NewUser values={forcedValues} />
+      <NewUser values={currentUser ? forcedValues : {}} />
     </>
   )
 }
